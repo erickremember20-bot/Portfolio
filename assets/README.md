@@ -8,92 +8,70 @@ Origem: Figma `Jb6w9GH2aN7mVVCQseu3n5`. Exporte cada frame `[imagem]` em **PNG/J
 
 ---
 
-## Home — `index.html`
+## Status dos assets
 
-Página **PORTFOLIO - prototipo**, frame `Home · desktop 1400` (`277:6799`).
-**18 arquivos.**
+**28 de 31 imagens já estão na pasta** e as páginas as carregam. Os arquivos
+enviados mantiveram os nomes das camadas do Figma — o HTML foi religado a esses
+nomes, então **nada precisa ser renomeado**.
 
-### Retrato e capas dos cases
+### Faltam 3 arquivos (seção "Sobre" da home)
 
-| Arquivo | Nó | Camada | Proporção |
+| Arquivo esperado | Nó | Camada | Proporção |
 |---|---|---|---|
-| `home-retrato.jpg` | `277:6810` | `Rectangle 1` | 480 × 360 |
-| `home-capa-nega-nago.jpg` | `277:6852` | `capa_nega_nago 1` + `2` | 1160 × 520 |
-| `home-capa-ct-em-campo.jpg` | `277:6878` | `capa_bh 1` | 1160 × 520 |
-| `home-capa-canaltech-hub.jpg` | `277:6903` | `laptop_iphone 1` | 1160 × 520 |
+| `home-foto-processo.jpg` | `277:7001` | `foto_luiza 1` | 373 × 280 |
+| `home-foto-trabalhando.jpg` | `277:7003` | `foto_grupo 1` | 373 × 280 |
+| `home-foto-retrato.jpg` | `277:7005` | `foto_time 1` | 373 × 280 |
 
-> A capa da Nega Nagô tem **duas imagens empilhadas** no mesmo frame. Exporte o
-> **frame** (`277:6852`), não as camadas soltas — sai um arquivo só.
+Se enviar com outro nome, é só avisar que eu religo o caminho.
 
-### Logos das marcas — SVG, fundo transparente
-
-| Arquivo | Nó | Proporção |
-|---|---|---|
-| `home-logo-kabum.svg` | `277:6828` | 162 × 43 |
-| `home-logo-netshoes.svg` | `277:6829` | 162 × 25 |
-| `home-logo-canaltech.svg` | `277:6830` | 162 × 34 |
-| `home-logo-motorola.svg` | `277:6831` | 162 × 37 |
-| `home-logo-magalu.svg` | `277:6832` | 162 × 36 |
-
-> A página aplica `grayscale` e 72% de opacidade nos logos, como no Figma.
-
-### Playground — 6 capas, 570 × 400
-
-| Arquivo | Nó | Camada |
-|---|---|---|
-| `home-play-ilustracao.jpg` | `277:6953` | `ilustração 1` |
-| `home-play-short-film.jpg` | `277:6959` | `AVDC 1` |
-| `home-play-3d-tyler.jpg` | `277:6967` | `3d_animation_tyler 1` |
-| `home-play-3d-gold-life.jpg` | `277:6973` | `3d_animation_gold_life 1` |
-| `home-play-ia-gold-life.jpg` | `277:6981` | `ai_animation_gold_life 1` |
-| `home-play-artesanato.jpg` | `277:6987` | `artesanato 1` |
-
-### Sobre — 3 fotos, 373 × 280
-
-| Arquivo | Nó | Camada |
-|---|---|---|
-| `home-foto-processo.jpg` | `277:7001` | `foto_luiza 1` |
-| `home-foto-trabalhando.jpg` | `277:7003` | `foto_grupo 1` |
-| `home-foto-retrato.jpg` | `277:7005` | `foto_time 1` |
-
-### Currículo
+### E o currículo
 
 `curriculo-erick-teixeira.pdf` — os dois botões "Ver Currículo" apontam para ele.
 
-### Ícones: não precisa enviar
+---
 
-Os três ícones da home (copiar, currículo, LinkedIn) estão **desenhados em SVG
-inline** no HTML. Nada a exportar.
+## O que está ligado onde
+
+### Home — `index.html`
+
+| Slot | Arquivo |
+|---|---|
+| Retrato do hero | `erick.png` |
+| Marcas | `logo_kabum.png` · `logo_netshoes.png` · `logo_canaltech.png` · `logo_motorola.png` · `logo_magalu.png` |
+| Capa projeto 01 | `capa_nega_nago.jpg` |
+| Capa projeto 02 | `capa_ct_em_campo.png` |
+| Capa projeto 03 | `capa_canaltech_hub_links.png` |
+| Playground 1–6 | `01_ilustracao_2D.gif` · `02_short_film_ai.gif` · `03_3d_animation_tyler.gif` · `04_3d_animation_gold_life.gif` · `05_ai_animation_gold_life.gif` · `06_artesanato.gif` |
+| Fotos do Sobre | **faltando** (ver acima) |
+
+Os três ícones (copiar, currículo, LinkedIn) estão desenhados em **SVG inline** no
+HTML — os `.svg` enviados (`Copy.svg`, `ReadCvLogo.svg`, `LinkedIn_icon.svg`)
+ficam na pasta como fonte, mas a página não depende deles.
+
+### Case CT em Campo — `ct-em-campo.html`
+
+Todas as 13 estão presentes:
+
+`Motion_before_after.gif` · `desktop_mobile.png` · `kv_arquibancada2_brasil_16x9.png` ·
+`02.png` · `Components.png` · `Animacao_01.gif` · `Animacao_02.gif` · `desktop.png` ·
+`app_01.png` · `app_02.png` · `motion_ct_em_campo.gif` ·
+`ct_em_campo_social_media.png` · `whatsapp_mockup.png`
 
 ---
 
-## Case CT em Campo — `ct-em-campo.html`
+## ⚠️ Peso: 102 MB na pasta
 
-Página **CT EM CAMPO**, frame `1:36`. **13 arquivos**, todos com prefixo `case-`.
+Os GIFs do Playground somam ~60 MB (8 a 12 MB cada) e `motion_ct_em_campo.gif`
+tem 12 MB. As páginas usam `loading="lazy"`, então nada disso baixa antes de
+entrar na tela — mas quem rolar até o Playground no celular vai puxar ~60 MB.
 
-| # | Arquivo | Nó | Camada |
-|---|---|---|---|
-| 1 | `case-capa-ct-em-campo.png` | `1:55` | `Motion_before_after 1` |
-| 2 | `case-antes-depois-desktop-mobile.png` | `1:237` | `desktop_mobile 1` |
-| 3 | `case-key-visual-arquibancada.png` | `1:256` | `kv_arquibancada2_brasil_16x9 1` |
-| 4 | `case-direcao-fluxo-geracao.png` | `1:447` | `02 1` |
-| 5 | `case-sistema-componentes-estados.png` | `1:510` | `Components 1` |
-| 6 | `case-sistema-animacao-01.png` | `1:516` | `Animação_01 1` |
-| 7 | `case-sistema-animacao-02.png` | `1:518` | `Animação_02 1` |
-| 8 | `case-sistema-template-vs-dedicada.png` | `1:522` | `desktop 1` |
-| 9 | `case-sistema-mobile-01.png` | `1:528` | `app_01 1` |
-| 10 | `case-sistema-mobile-02.png` | `1:530` | `app_02 1` |
-| 11 | `case-alcance-motion-formatos.png` | `1:568` | `motion_ct_em_campo_02 1` |
-| 12 | `case-alcance-social-grade.png` | `1:573` | `social_media 1` |
-| 13 | `case-alcance-whatsapp-mockup.png` | `1:577` | `whatsapp_mockup 1` |
+Vale converter os sete GIFs para **MP4/WebM** (`<video autoplay muted loop
+playsinline>`) ou **WebP animado**: o mesmo movimento costuma cair para 5–10% do
+peso. Me avisa que eu troco.
 
-> ⚠️ Este case foi portado da página **CT EM CAMPO** (`1:36`, 18027px de altura).
-> A página **PORTFOLIO - prototipo** tem uma versão mais recente do mesmo case
-> (`277:6139`, 17411px), com a tipografia e a paleta da Home. Ver o README da raiz.
+## Arquivos ainda não usados
 
----
-
-## Peso
-
-Se algum arquivo passar de ~1 MB, exporte em JPG q82. O conjunto todo deveria
-ficar abaixo de 10 MB para a página abrir rápido no celular.
+Estes vieram no envio e são dos outros dois cases, que ainda não foram portados:
+`01 · Foundations.png`, `02 · Components.png`, `01_probelm_solution.png`,
+`02_desktop_mobile.png`, `03_telas.png`, `05_cookies.png`, `06_linktree1.png`,
+`07_linktree2.png`, `figma-icon.svg`, `DownloadSimple.svg`.
