@@ -30,8 +30,8 @@
     btn.addEventListener('click', function () {
       var email = btn.getAttribute('data-email');
       var feito = function () {
-        if (alvo) alvo.textContent = 'E-mail copiado';
-        toast('E-mail copiado: ' + email);
+        if (alvo) alvo.textContent = (window.__t ? window.__t('E-mail copiado') : 'E-mail copiado');
+        toast((window.__t ? window.__t('E-mail copiado: ') : 'E-mail copiado: ') + email);
         clearTimeout(voltar);
         voltar = setTimeout(function () { if (alvo) alvo.textContent = original; }, 2400);
       };

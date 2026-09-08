@@ -33,6 +33,7 @@ def dataurl(rel):
     return cache[rel]
 
 case_css=open(os.path.join(DIST,'assets','case.css'),encoding='utf-8').read()
+i18n_js=open(os.path.join(DIST,'assets','i18n.js'),encoding='utf-8').read()
 
 partes_css=[]; partes_html=[]; titulos={}
 for pid, arq in PAGS:
@@ -75,6 +76,7 @@ script = '''
     });
     if (!achou) return false;
     document.title = TIT[id] || TIT.home;
+    if (window.__i18n) window.__i18n.reposicionar();
     if (alvo) {
       var el = document.getElementById(alvo);
       if (el) { el.scrollIntoView({behavior:'auto', block:'start'}); return true; }
@@ -159,6 +161,7 @@ body{{margin:0;background:#f1f1f1}}
      font-family:'Sora',system-ui,sans-serif;opacity:0;pointer-events:none;
      transition:opacity .18s,transform .18s"></div>
 <style>.toast[data-show]{{opacity:1!important;transform:translate(-50%,0)!important}}</style>
+<script>{i18n_js}</script>
 <script>{script}</script>
 </body>
 </html>

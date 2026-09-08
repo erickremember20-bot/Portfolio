@@ -12,9 +12,10 @@ local=open(os.path.join(SD,'fontes-web','local.css')).read()
 
 os.makedirs(os.path.join(DIST,'assets','fonts'),exist_ok=True)
 for f in os.listdir(os.path.join(SD,'fontes-web','f')):
-    shutil.copy(os.path.join(SD,'fw','f',f), os.path.join(DIST,'assets','fonts',f))
+    shutil.copy(os.path.join(SD,'fontes-web','f',f), os.path.join(DIST,'assets','fonts',f))
 shutil.copy(os.path.join(RAIZ,'assets','case.css'), os.path.join(DIST,'assets','case.css'))
 shutil.copy(os.path.join(RAIZ,'assets','case.js'),  os.path.join(DIST,'assets','case.js'))
+shutil.copy(os.path.join(RAIZ,'assets','i18n.js'), os.path.join(DIST,'assets','i18n.js'))
 
 fontes_tag = ('<style>\n/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição\n'
               '   para terceiros e sem depender do Google Fonts. */\n' + local + '</style>')

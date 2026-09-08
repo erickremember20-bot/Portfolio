@@ -55,6 +55,9 @@ body{
 }
 img{max-width:100%;display:block}
 p{margin:0}
+/* o navegador recua <dd> e <figure> em 40px por padrão. No Figma tudo começa
+   na mesma margem, então o recuo tem que sair. */
+dl,dt,dd,figure,blockquote{margin:0}
 h1,h2,h3{margin:0;font-weight:700}
 a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
@@ -377,7 +380,7 @@ TEIXEIRA</h1>
 
   <div class="hero__bio">
     <div class="contato">
-      <a class="btn btn--dark" href="https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing" target="_blank" rel="noopener">
+      <a class="btn btn--dark" href="https://drive.google.com/file/d/1fOA2GRwlvkM8g6n0hKdpMAUngW7WzRoP/view?usp=sharing" target="_blank" rel="noopener">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/>
           <path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -700,7 +703,7 @@ TEIXEIRA</h1>
         </svg>
         <span class="btn__t">Copiar e-mail</span>
       </button>
-      <a class="btn btn--ghost" href="https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing" target="_blank" rel="noopener">
+      <a class="btn btn--ghost" href="https://drive.google.com/file/d/1fOA2GRwlvkM8g6n0hKdpMAUngW7WzRoP/view?usp=sharing" target="_blank" rel="noopener">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/>
           <path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -732,6 +735,7 @@ TEIXEIRA</h1>
 .toast[data-show]{opacity:1;transform:translate(-50%,0)}
 </style>
 
+<script src="assets/i18n.js"></script>
 <script>
 (function () {
   'use strict';
@@ -773,8 +777,8 @@ TEIXEIRA</h1>
     btn.addEventListener('click', function () {
       var email = btn.getAttribute('data-email');
       var feito = function () {
-        if (alvo) alvo.textContent = 'E-mail copiado';
-        toast('E-mail copiado: ' + email);
+        if (alvo) alvo.textContent = (window.__t ? window.__t('E-mail copiado') : 'E-mail copiado');
+        toast((window.__t ? window.__t('E-mail copiado: ') : 'E-mail copiado: ') + email);
         clearTimeout(voltar);
         voltar = setTimeout(function () { if (alvo) alvo.textContent = original; }, 2400);
       };

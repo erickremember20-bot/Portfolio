@@ -61,6 +61,7 @@ Depois de mexer na raiz, regenere: veja [`ferramentas/LEIAME.md`](ferramentas/LE
 | `assets/` (PNG/JPG/GIF) | 100 MB | — |
 | `docs/assets/` (WebP) | — | **14 MB** |
 | Arquivo único | — | 19 MB |
+| Dicionário PT/EN (`assets/i18n.js`) | — | 131 KB |
 
 Os nove GIFs viraram WebP animado; as imagens paradas viraram WebP a 2× do
 tamanho de exibição. Tudo abaixo da primeira dobra usa `loading="lazy"`, então
@@ -69,6 +70,18 @@ a primeira tela baixa poucas centenas de KB.
 As fontes (Sora e JetBrains Mono, subconjuntos latin e latin-ext, 167 KB no
 total) são servidas do próprio domínio: a página publicada **não faz nenhuma
 requisição para terceiros**.
+
+## Português e inglês
+
+A página abre em **inglês** e tem um botão PT/EN sempre visível — na barra do topo
+no desktop, como pastilha flutuante no canto inferior direito no celular. A escolha
+fica guardada no navegador.
+
+O português é o que está escrito no HTML: se o JavaScript não carregar, a página
+continua em português e legível. A tradução (859 blocos, incluindo título da aba,
+textos alternativos das imagens e os cartões de compartilhamento) vive em
+[`ferramentas/i18n-pt-en.json`](ferramentas/i18n-pt-en.json) — para corrigir uma
+frase, edite lá e rode `python3 ferramentas/i18n.py`.
 
 ## Fidelidade ao Figma
 
@@ -81,6 +94,9 @@ lida dos nós: 88 / 64 / 48 / 40 / 32 / 20 / 18 / 16 / 14 / 12.
 
 Toda imagem no Figma é `scaleMode: FILL` cobrindo o frame inteiro — as molduras
 aqui usam `object-fit: cover` com o `aspect-ratio` exato de cada frame.
+
+O navegador recua `<figure>` e `<dd>` em 40px por padrão; o reset zera os dois,
+que é o que deixava a ficha técnica e as imagens fora do alinhamento do Figma.
 
 ## Responsivo
 
@@ -99,7 +115,7 @@ JS, sem overflow horizontal e sem imagem quebrada em
 
 ## Links
 
-- Currículo — https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing
+- Currículo — https://drive.google.com/file/d/1fOA2GRwlvkM8g6n0hKdpMAUngW7WzRoP/view?usp=sharing
 - LinkedIn — https://www.linkedin.com/in/erick-teixeira-031b3a213/
 - Nega Nagô — [protótipo](https://www.figma.com/design/DPnAXlPAlYzHfeA6hp1j0i/Nega_Nago_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1_pO37J2lMBUw9Kema0x5AYgqKkW54W4L?usp=sharing)
 - CT em Campo — [protótipo](https://www.figma.com/design/aUh8z5QbGFmJ4k48denDDk/CT_em_Campo_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1pyaQZb6Cmb2Ra1Qt6ZT43MQc41mXQ5do?usp=sharing)
