@@ -10,21 +10,11 @@ Origem: Figma `Jb6w9GH2aN7mVVCQseu3n5`. Exporte cada frame `[imagem]` em **PNG/J
 
 ## Status dos assets
 
-**28 de 31 imagens já estão na pasta** e as páginas as carregam. Os arquivos
+**As 31 imagens das duas páginas estão na pasta e carregam.** Os arquivos
 enviados mantiveram os nomes das camadas do Figma — o HTML foi religado a esses
 nomes, então **nada precisa ser renomeado**.
 
-### Faltam 3 arquivos (seção "Sobre" da home)
-
-| Arquivo esperado | Nó | Camada | Proporção |
-|---|---|---|---|
-| `home-foto-processo.jpg` | `277:7001` | `foto_luiza 1` | 373 × 280 |
-| `home-foto-trabalhando.jpg` | `277:7003` | `foto_grupo 1` | 373 × 280 |
-| `home-foto-retrato.jpg` | `277:7005` | `foto_time 1` | 373 × 280 |
-
-Se enviar com outro nome, é só avisar que eu religo o caminho.
-
-### E o currículo
+### Falta só o currículo
 
 `curriculo-erick-teixeira.pdf` — os dois botões "Ver Currículo" apontam para ele.
 
@@ -42,7 +32,7 @@ Se enviar com outro nome, é só avisar que eu religo o caminho.
 | Capa projeto 02 | `capa_ct_em_campo.png` |
 | Capa projeto 03 | `capa_canaltech_hub_links.png` |
 | Playground 1–6 | `01_ilustracao_2D.gif` · `02_short_film_ai.gif` · `03_3d_animation_tyler.gif` · `04_3d_animation_gold_life.gif` · `05_ai_animation_gold_life.gif` · `06_artesanato.gif` |
-| Fotos do Sobre | **faltando** (ver acima) |
+| Fotos do Sobre | `foto_luiza.jpg` · `foto_grupo.jpg` · `foto_time.jpg` |
 
 Os três ícones (copiar, currículo, LinkedIn) estão desenhados em **SVG inline** no
 HTML — os `.svg` enviados (`Copy.svg`, `ReadCvLogo.svg`, `LinkedIn_icon.svg`)
