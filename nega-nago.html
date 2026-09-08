@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#f1f1f1" />
+<title>Nega Nagô · catálogo que vira agendamento — Erick Teixeira</title>
+<meta name="description" content="Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta e transformar interesse em agendamento sem sair do WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/case.css" />
+<style>
+/* tokens próprios deste case (paleta do produto Nega Nagô) */
+:root{
+  --terracota:#d3602a; --terracota-esc:#5a301f; --marrom:#592812;
+  --creme:#fff8f1; --rosa:#f4c5af; --selecionado:#ffead3; --pressed:#f1cebd;
+  --zap:#2d9404; --zap-fundo:#0b1410; --verde:#2f7a3e;
+}
+.nbox--t{background:var(--terracota)}
+.nbox--t .num{color:var(--creme)}
+.nbox--t .nbox__d{color:var(--rosa)}
+.aviso{background:var(--terracota);border:1px solid var(--line-2);border-radius:var(--r-sm);
+  padding:16px 18px;color:var(--creme)}
+.aviso b{font-weight:700;color:var(--creme)}
+.rodadas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rodadas .card--dest{background:var(--muted);color:var(--on-dark)}
+.rodadas .card--dest .t18,.rodadas .card--dest .eyebrow{color:var(--on-dark)}
+.rodadas .card--dest .p16{color:var(--on-dark-2)}
+.perfis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.telas{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ciclo{display:grid;grid-template-columns:245fr 170fr 288fr 170fr 245fr;gap:10px}
+.etapa{display:flex;flex-direction:column;gap:8px;padding:22px 20px 20px;
+  border:1px solid var(--line);border-radius:var(--r-sm);background:var(--tile)}
+.etapa--alt{background:var(--shot-bg);border-color:var(--line-3)}
+.etapa__top{display:flex;align-items:center;gap:8px}
+.etapa__n{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  background:var(--ink);color:var(--on-dark);font-weight:700;font-size:12px;line-height:1;flex:none}
+.etapa__f{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted)}
+.etapa__d{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted);
+  padding-top:6px;border-top:1px solid var(--line);margin-top:auto}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.ramo__passos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ramo__p{background:var(--ink);color:var(--on-dark);border-radius:var(--r-xs);padding:16px 18px;
+  display:flex;flex-direction:column;gap:4px}
+.ramo__p .p12{color:var(--on-dark-3)}
+.tokens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.token{background:var(--tile);border:1px solid var(--line);border-radius:var(--r-xs);overflow:hidden}
+.token i{display:block;height:56px}
+.token span{display:block;padding:8px 12px}
+.entrega{display:grid;grid-template-columns:470fr 658fr;gap:32px;align-items:start}
+.zap{background:var(--zap-fundo);border-radius:var(--r-lg);padding:24px}
+.zap__b{background:#0d2f26;color:#e7f3ec;border-radius:14px;padding:16px 18px;
+  font-size:13px;line-height:1.6;white-space:pre-line}
+.coer{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.coer__c{background:var(--terracota-esc);color:var(--creme);border-radius:18px;padding:28px;
+  display:flex;flex-direction:column;gap:12px}
+.coer__c .p16{color:var(--rosa)}
+.faixa{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
+.faixa i{display:block;height:64px;border-radius:6px}
+.grupos{display:grid;grid-template-columns:635fr 500fr;gap:24px;align-items:start}
+.selo{align-self:flex-start;padding:6px 10px;border-radius:var(--r-pill);
+  background:var(--shot-bg);color:var(--ink-2);font-weight:700;font-size:12px;line-height:1.5}
+.linhas{display:flex;flex-direction:column}
+.linha{display:flex;flex-direction:column;gap:2px;padding-block:12px;border-bottom:1px solid var(--line)}
+.linha:last-child{border-bottom:0}
+@media (max-width:1023px){
+  .rodadas,.perfis,.telas,.dois,.coer,.grupos,.entrega{grid-template-columns:1fr}
+  .perfis{grid-template-columns:1fr 1fr}
+  .ciclo{grid-template-columns:1fr 1fr}
+  .tokens{grid-template-columns:repeat(3,1fr)}
+  .faixa{grid-template-columns:repeat(7,1fr)}
+}
+@media (max-width:767px){
+  .perfis,.ciclo,.ramo__passos{grid-template-columns:1fr}
+  .tokens{grid-template-columns:1fr 1fr}
+  .faixa{grid-template-columns:repeat(5,1fr)}
+  .faixa i{height:44px}
+  .zap{padding:14px}
+}
+</style>
+</head>
+<body>
+<a href="#problema" class="sr-only">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap topo__in">
+    <a class="topo__nome" href="index.html">Erick · product &amp; design engineer</a>
+    <nav class="menu" aria-label="Seções do case">
+      <a href="#problema">Problema</a><a href="#restricoes">Restrições</a>
+      <a href="#metodo">Método</a><a href="#sistema">Sistema</a>
+      <a href="#engenharia">Engenharia</a><a href="#numeros">Números</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap sec">
+  <div class="stack">
+    <p class="eyebrow">Projeto real · produto, design e código</p>
+    <h1 class="h1">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta
+      e transformar interesse em agendamento sem sair do WhatsApp.</h1>
+    <div class="shot shot--hero" style="aspect-ratio:1160/612">
+      <img src="assets/01_phone_laptop.png" width="1160" height="612"
+           data-desc="Capa · desktop + celular" alt="A página Nega Nagô no desktop e no celular" />
+    </div>
+    <div class="dois" style="gap:40px">
+      <p class="intro">A Nega Nagô trança há treze anos em São Paulo. O catálogo dela era um print.
+        Fiz a pesquisa, o desenho das telas, o design system e o código que entrega tudo isso.</p>
+      <aside class="aviso"><p style="font-size:16px;line-height:1.5">
+        <b>Sobre os números.</b> Produto entregue e em operação. Os resultados vieram da agenda da
+        Mayara depois do lançamento — são medição, não projeção. A seção de números diz como cada
+        um foi apurado.</p></aside>
+    </div>
+    <dl class="ficha">
+      <div class="ficha__i"><dt class="lb">Cliente</dt><dd class="ficha__v">Nega Nagô trancista · São Paulo</dd></div>
+      <div class="ficha__i"><dt class="lb">Papel</dt><dd class="ficha__v">Product designer e design engineer</dd></div>
+      <div class="ficha__i"><dt class="lb">Entregas</dt><dd class="ficha__v">Pesquisa · UI · design system
+front-end · handoff</dd></div>
+      <div class="ficha__i"><dt class="lb">Feito com</dt><dd class="ficha__v">Claude ⇄ Figma via MCP
+HTML, CSS e JS · Playwright
+Higgsfield · Nano Banana 2</dd></div>
+      <div class="ficha__i"><dt class="lb">Período</dt><dd class="ficha__v">2026 · entregue</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 01 PROBLEMA -->
+<section class="wrap sec" id="problema"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">01 · O problema</p>
+    <h2 class="h2">A tabela cabia numa foto. A decisão, não.</h2>
+    <p class="p16">Treze categorias de trança e mais de quarenta combinações de tamanho e preço,
+      tudo em texto corrido dentro de uma imagem enviada no direct.</p>
+  </div>
+  <div class="col">
+    <p class="p16">A cliente abria o print, não achava o preço do tamanho que queria e perguntava.
+      A Mayara respondia entre um atendimento e outro, às vezes horas depois. Cada pergunta virava
+      uma conversa de ida e volta antes de existir qualquer agendamento.</p>
+    <p class="p16">O problema não era a tabela estar errada. Era ela exigir uma segunda pessoa para
+      ser lida.</p>
+  </div>
+  <div class="nboxes">
+    <div class="nbox nbox--t"><p class="num">13</p><p class="nbox__d">categorias de trança</p></div>
+    <div class="nbox nbox--t"><p class="num">40+</p><p class="nbox__d">combinações de tamanho e preço</p></div>
+    <div class="nbox nbox--t"><p class="num">16</p><p class="nbox__d">agendamentos por mês, na média</p></div>
+    <div class="nbox nbox--t"><p class="num">1</p><p class="nbox__d">canal, respondido entre um cliente e outro</p></div>
+  </div>
+  <div class="shot shot--pad" style="aspect-ratio:1160/630">
+    <img src="assets/02_before_after.png" width="1160" height="630"
+         data-desc="O print original da tabela no WhatsApp" alt="O print original da tabela de preços no WhatsApp" />
+  </div>
+</div></section>
+
+<!-- 02 ANTES E DEPOIS -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">02 · Antes e depois</p>
+    <h2 class="h2">Seis passos com espera viraram três sem espera</h2>
+    <p class="p16">O mesmo objetivo — agendar uma trança — pelos dois caminhos. O que sai não é
+      tela: é o tempo morto entre a dúvida e a resposta.</p>
+  </div>
+  <div class="ad">
+    <div class="ad__col">
+      <p class="eyebrow" style="color:var(--soft)">Como era</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p>Cliente pede a tabela no direct</p></div>
+        <div class="passo"><span class="passo__n">2</span><p>Recebe um print com 40+ preços</p></div>
+        <div class="passo"><span class="passo__n">3</span><p>Não acha o tamanho que quer</p></div>
+        <div class="passo"><span class="passo__n">4</span><p>Pergunta</p></div>
+        <div class="passo"><span class="passo__n">5</span><p>Espera a resposta entre um atendimento e outro</p></div>
+        <div class="passo"><span class="passo__n">6</span><p>Fecha — ou desiste no meio</p></div>
+      </div>
+      <p class="ad__nota">Os passos 3, 4 e 5 dependem da agenda da Mayara. É onde o interesse esfria.</p>
+    </div>
+    <div class="ad__col ad__col--dep">
+      <p class="eyebrow" style="color:var(--soft)">Como ficou</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p>Escolhe o estilo e o tamanho, com preço e sinal na tela</p></div>
+        <div class="passo"><span class="passo__n">2</span><p>Preenche dia, período e — se for a domicílio — o endereço</p></div>
+        <div class="passo"><span class="passo__n">3</span><p>Envia a mensagem já escrita no WhatsApp</p></div>
+      </div>
+      <p class="ad__nota">Nenhum passo espera resposta. A Mayara entra na conversa com tudo já decidido.</p>
+    </div>
+  </div>
+  <div class="telas">
+    <div class="shot shot--pad" style="aspect-ratio:570/441">
+      <img src="assets/01_tamanhos.png" width="570" height="441"
+           data-desc="2 · Agendamento no celular · resumo e sinal"
+           alt="Tela de agendamento no celular com resumo e sinal" loading="lazy" decoding="async" />
+    </div>
+    <div class="shot shot--pad" style="aspect-ratio:570/441">
+      <img src="assets/02_checkout.png" width="570" height="441"
+           data-desc="1 · Produto no celular · preço e sinal na mesma tela"
+           alt="Tela de produto no celular com preço e sinal" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</div></section>
+
+<!-- 03 RESTRIÇÕES -->
+<section class="wrap sec" id="restricoes"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">03 · Restrições</p>
+    <h2 class="h2">Quase toda decisão de tela veio de uma restrição do negócio</h2>
+    <p class="intro">Nenhuma dessas escolhas saiu de intuição de UX. Saíram de como ela cobra, de
+      onde a cliente já está e do que o piloto podia bancar.</p>
+  </div>
+  <div class="tab">
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="lb">Restrição</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p></div>
+    </div>
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="p16">Ela compra o material antes de cada atendimento.</p></div>
+      <div class="tab__c"><p class="p16">Sem adiantamento, o dinheiro sai do bolso dela.</p></div>
+      <div class="tab__c"><p class="p16">O sinal de 30% aparece calculado em toda tela de preço, junto do total. Nunca no fim, como surpresa.</p></div>
+    </div>
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="p16">A cliente já está no WhatsApp quando decide.</p></div>
+      <div class="tab__c"><p class="p16">Levar ela para um checkout fora dali cria mais um lugar para desistir.</p></div>
+      <div class="tab__c"><p class="p16">O fluxo termina dentro do WhatsApp. O site escreve a mensagem inteira; ela só aperta enviar.</p></div>
+    </div>
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="p16">O adicional custa diferente conforme a família de trança.</p></div>
+      <div class="tab__c"><p class="p16">Um valor único estaria errado em metade do catálogo.</p></div>
+      <div class="tab__c"><p class="p16">Um campo addon por estilo. Cachos a R$ 80 nas nagô, R$ 120 nas box braids, jumbo a R$ 120 no masculino. Quem não tem a opção não vê o campo.</p></div>
+    </div>
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="p16">Ela atende no estúdio e a domicílio.</p></div>
+      <div class="tab__c"><p class="p16">Endereço só faz sentido num dos dois casos.</p></div>
+      <div class="tab__c"><p class="p16">O bloco de endereço só existe na tela quando "a domicílio" está marcado — com busca por CEP ou rua, e confirmação antes de seguir.</p></div>
+    </div>
+    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="tab__c"><p class="p16">Sem gateway de pagamento no piloto.</p></div>
+      <div class="tab__c"><p class="p16">O site não pode cobrar nada.</p></div>
+      <div class="tab__c"><p class="p16">O site calcula e informa; a cobrança acontece na conversa. A mensagem já sai com a divisão exata: sinal agora, resto no dia.</p></div>
+    </div>
+  </div>
+  <div class="painel" style="padding:40px">
+    <p class="cit">O fluxo não é o desenho ideal. É o desenho que cabe no jeito que ela já trabalha.</p>
+    <p class="p14" style="margin-top:16px">Cada linha da tabela acima é uma decisão que eu não
+      tomaria olhando só para a tela.</p>
+  </div>
+</div></section>
+
+<!-- 04 PESQUISA -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">04 · Pesquisa</p>
+    <h2 class="h2">Quatro pessoas, duas rodadas. A primeira sem cor nenhuma.</h2>
+    <p class="intro">Testei em dois momentos separados de propósito. Primeiro um HTML de rascunho
+      em tons de cinza — sem cor, sem logo, sem foto. Só o caminho. Depois o protótipo com a
+      identidade inteira.</p>
+  </div>
+  <div class="rodadas">
+    <div class="card card--sm"><p class="eyebrow" style="color:var(--soft)">Rodada 1</p>
+      <h3 class="t18" style="margin-top:9px">Cinza, só o fluxo</h3>
+      <p class="p16" style="margin-top:9px">Dá para chegar ao fim? A informação aparece na hora que
+        a pessoa precisa dela? Sem identidade visual, o que sobra na tela é a estrutura — e é ela
+        que está sendo testada.</p></div>
+    <div class="card card--sm"><p class="eyebrow" style="color:var(--soft)">Rodada 2</p>
+      <h3 class="t18" style="margin-top:9px">Protótipo completo</h3>
+      <p class="p16" style="margin-top:9px">O encantamento veio aqui, como era de esperar. A
+        diferença é que ele estava sentado em cima de um fluxo que já tinha andado sozinho, sem cor
+        para carregar.</p></div>
+    <div class="card card--sm card--dest"><p class="eyebrow">Por que separar</p>
+      <h3 class="t18" style="margin-top:9px">&nbsp;</h3>
+      <p class="p16" style="margin-top:9px">Testar tudo junto mistura duas perguntas. Se a pessoa
+        gostou, foi do fluxo ou da marca? Em cinza a resposta não tem para onde fugir.</p></div>
+  </div>
+  <div class="telas">
+    <div class="shot shot--pad" style="aspect-ratio:570/441">
+      <img src="assets/03_wireframe.png" width="570" height="441"
+           data-desc="1 · Rascunho em cinza" alt="Rascunho em cinza usado na primeira rodada" loading="lazy" decoding="async" />
+    </div>
+    <div class="shot shot--pad" style="aspect-ratio:570/441">
+      <img src="assets/04_protoripo.png" width="615" height="476"
+           data-desc="2 · Protótipo completo" alt="Protótipo completo usado na segunda rodada" loading="lazy" decoding="async" />
+    </div>
+  </div>
+  <div class="stack" style="gap:20px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <h3 class="t20">Quem testou</h3>
+      <p class="p16">Escolhi quatro perfis para cobrir o funil inteiro, em vez de quem estivesse à
+        mão. As quatro fazem ou já fizeram tranças em outros lugares e passaram por vários jeitos de
+        agendar — link, tabela em PDF, conversa solta no direct. Não estavam comparando com nada:
+        estavam comparando com o que já usaram.</p>
+    </div>
+    <div class="perfis">
+      <div class="card card--sm"><p class="p12">01</p><h4 class="s16" style="margin-top:8px">Cliente recorrente</h4>
+        <p class="p16" style="margin-top:8px">Já agenda com a Mayara e sabe os preços de cor. Serve para ver se o fluxo atrapalha quem já tem o caminho na cabeça.</p></div>
+      <div class="card card--sm"><p class="p12">02</p><h4 class="s16" style="margin-top:8px">Consultou e não fechou</h4>
+        <p class="p16" style="margin-top:8px">Pediu preço e não voltou. É exatamente o perfil que o projeto existe para recuperar.</p></div>
+      <div class="card card--sm"><p class="p12">03</p><h4 class="s16" style="margin-top:8px">Contratou uma vez</h4>
+        <p class="p16" style="margin-top:8px">Conhece o serviço mas não virou hábito. Mostra o que falta para a segunda vez acontecer sozinha.</p></div>
+      <div class="card card--sm"><p class="p12">04</p><h4 class="s16" style="margin-top:8px">Nunca contratou</h4>
+        <p class="p16" style="margin-top:8px">Chega sem referência nenhuma — nem de preço, nem de vocabulário. É quem revela o que a tela precisa explicar sozinha.</p></div>
+    </div>
+  </div>
+  <div class="nboxes">
+    <div class="nbox nbox--t"><p class="num">4/4</p><p class="nbox__d">chegaram ao fim do agendamento sem que eu explicasse como funciona</p></div>
+    <div class="nbox nbox--t"><p class="num">4/4</p><p class="nbox__d">escolheram exatamente o que queriam, sem hesitar no meio</p></div>
+    <div class="nbox nbox--t"><p class="num">4/4</p><p class="nbox__d">apontaram como a melhor experiência de compra entre as que já usaram</p></div>
+    <div class="nbox nbox--t"><p class="num">2</p><p class="nbox__d">rodadas: rascunho em cinza e protótipo completo</p></div>
+  </div>
+  <div class="painel" style="padding:44px">
+    <p class="eyebrow">O elogio que mais se repetiu</p>
+    <p class="cit" style="margin-top:16px">Não foi sobre beleza. Foi sobre saber quanto ia custar.</p>
+    <p class="p16" style="margin-top:16px">A conta recalcula a cada toque. Muda o tamanho, muda o
+      adicional, muda o local — o total e o sinal mudam junto, na mesma tela, sem precisar avançar
+      para descobrir. A cliente sai sabendo quanto vai adiantar agora e quanto sobra para o dia.</p>
+    <p class="p16" style="margin-top:16px">Quando ela chega para fechar, nada daquilo é novidade.
+      E o que não é novidade não vira objeção.</p>
+    <p class="s16" style="margin-top:22px;padding-top:22px;border-top:1px solid var(--muted);color:var(--on-dark)">
+      É a primeira restrição da seção anterior fechando o ciclo. A Mayara compra o material antes,
+      então precisa dos 30% adiantados. Essa trava do negócio é o que virou o elogio mais repetido
+      da pesquisa — a limitação virou o argumento.</p>
+  </div>
+</div></section>
+
+<!-- 05 A ENTREGA -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">05 · A entrega</p>
+    <h2 class="h2">O botão final não abre um checkout. Abre a conversa já escrita.</h2>
+    <p class="p16">Esta é a saída real do produto — o texto que a cliente envia, gerado a partir do
+      que ela escolheu. É o único artefato que sai do site e chega na Mayara.</p>
+  </div>
+  <div class="entrega">
+    <div class="stack" style="gap:16px">
+      <div class="card"><h3 class="t20">Por que texto, e não formulário</h3>
+        <p class="p16" style="margin-top:10px">A Mayara não vai abrir um painel entre um atendimento
+          e outro. Ela vive no WhatsApp. A mensagem chega no lugar onde ela já responde, com a
+          divisão de valores pronta para conferir.</p></div>
+      <div class="card"><h3 class="t20">O vocabulário é o dela</h3>
+        <p class="p16" style="margin-top:10px">A tela chama o penteado de coroa, não de "serviço"
+          nem de "item". É a palavra que ela e as clientes usam. O sistema se adaptou ao
+          vocabulário, não o contrário.</p></div>
+    </div>
+    <div class="stack" style="gap:14px">
+      <div class="zap"><p class="zap__b">Oi, Nega Nagô! Vim pelo site e quero agendar 💛
+
+*Nagô Desenhada* — Meio das costas
+Duração estimada: cerca de 2 a 4 horas
+Adicional de cachos: sim (+ R$ 80,00)
+
+*Meus dados*
+Nome: Luana
+Local: A domicílio
+Endereço: Rua Tenente Ary Aps, 123 — Apto 42
+Dia: 14 de setembro
+Período: Manhã
+
+*Valores*
+Total estimado: R$ 290,00
+Sinal agora (30%): R$ 87,00 via Pix
+No dia da beleza: R$ 203,00
+
+Já vou mandar a foto do meu cabelo solto!</p></div>
+      <p class="p12">Saída real do protótipo, gerada em <code>enviarZap()</code>.</p>
+      <p class="p14">A última linha já oferece a foto do cabelo solto, que a trancista precisa ver
+        para estimar o trabalho. É uma ida e volta a menos.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 06 MÉTODO -->
+<section class="wrap sec" id="metodo"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">06 · Método</p>
+    <h2 class="h2">O ciclo fecha nos dois sentidos. O Figma não é o fim da linha.</h2>
+    <p class="intro">Quase todo fluxo de IA em design anda numa direção só: ou gera tela a partir
+      de prompt, ou gera código a partir do design. Aqui a estrutura sai do Claude para o Figma via
+      MCP, evolui como design de verdade, e volta para o Claude virar o HTML que está no ar.</p>
+  </div>
+  <div class="ciclo">
+    <div class="etapa">
+      <div class="etapa__top"><span class="etapa__n">1</span><span class="etapa__f">Claude</span></div>
+      <h3 class="t18">Estratégia e UX</h3>
+      <p class="p14">Antes de qualquer tela: o problema, o fluxo, o vocabulário da trancista, a
+        tabela de preços inteira e as restrições do negócio. Sai escrito, não desenhado.</p>
+      <p class="etapa__d">Decisão minha · o que entra e o que fica de fora</p>
+    </div>
+    <div class="etapa etapa--alt">
+      <div class="etapa__top"><span class="etapa__n">2</span><span class="etapa__f">MCP</span></div>
+      <h3 class="t18">Claude → Figma</h3>
+      <p class="p14">A estrutura vira frame, componente e token dentro do arquivo, sem eu
+        redesenhar à mão o que já estava decidido.</p>
+    </div>
+    <div class="etapa etapa--alt">
+      <div class="etapa__top"><span class="etapa__n">3</span><span class="etapa__f">Figma</span></div>
+      <h3 class="t18">Baixa → média → alta → protótipo</h3>
+      <p class="p14">É aqui que o design acontece. Quatro níveis de fidelidade, cada um resolvendo
+        uma pergunta diferente — e é a versão de baixa, em cinza, que foi para a primeira rodada
+        de teste.</p>
+      <p class="etapa__d">Decisão minha · hierarquia, ritmo, estados, identidade</p>
+    </div>
+    <div class="etapa etapa--alt">
+      <div class="etapa__top"><span class="etapa__n">4</span><span class="etapa__f">MCP</span></div>
+      <h3 class="t18">Figma → Claude</h3>
+      <p class="p14">O protótipo final volta como fonte da verdade — geometria, cor e texto lidos
+        do arquivo, não descritos de memória.</p>
+    </div>
+    <div class="etapa">
+      <div class="etapa__top"><span class="etapa__n">5</span><span class="etapa__f">Claude</span></div>
+      <h3 class="t18">HTML publicado</h3>
+      <p class="p14">O código que está no ar. E, depois dele, a suíte que compara o resultado de
+        volta contra o Figma por medição — o mesmo ciclo, agora como controle de qualidade.</p>
+      <p class="etapa__d">Decisão minha · o que é fiel e o que precisa ceder</p>
+    </div>
+  </div>
+  <div class="painel dois">
+    <div><h3 class="t18">Por que a volta importa</h3>
+      <p class="p16" style="margin-top:10px">Num fluxo de mão única, o arquivo do Figma morre no
+        handoff: vira imagem de referência que desatualiza no primeiro ajuste de código. Fechando o
+        ciclo, ele continua sendo a fonte — e a suíte de medição prova, número a número, que o que
+        está no ar é o que está no arquivo.</p></div>
+    <div><h3 class="t18">Onde a IA não decide</h3>
+      <p class="p16" style="margin-top:10px">Ela move artefato entre etapas e executa o que já foi
+        definido. As três decisões que sustentam este projeto — o sinal na tela, o fim dentro do
+        WhatsApp, o vocabulário da trancista — saíram de conversa com a Mayara e de teste com
+        quatro pessoas, não de prompt.</p></div>
+  </div>
+  <div class="card" style="padding:34px 36px">
+    <h3 class="t20">O mesmo método, no ramo das imagens</h3>
+    <p class="p16" style="margin-top:10px">Nenhuma foto existia. A direção criativa saiu no Claude,
+      a partir de referências reais, e virou um contrato visual escrito — manequim, ângulo, fundo,
+      luz, matiz alvo. Cada prompt é esse contrato com uma linha trocada. A geração foi no
+      Higgsfield com o Nano Banana 2.</p>
+    <div class="ramo__passos" style="margin-top:20px">
+      <div class="ramo__p"><p class="p12">Claude</p><p class="s16">Direção criativa e prompts</p></div>
+      <div class="ramo__p"><p class="p12">Higgsfield · Nano Banana 2</p><p class="s16">Geração das 13 imagens</p></div>
+      <div class="ramo__p"><p class="p12">Pillow · WebP</p><p class="s16">Três recortes por estilo</p></div>
+    </div>
+  </div>
+  <p class="p14">A seção 09 mostra o resultado e a medição que prova a coerência entre as treze fotos.</p>
+</div></section>
+
+<!-- 07 DESIGN SYSTEM -->
+<section class="wrap sec" id="sistema"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">07 · Design system</p>
+    <h2 class="h2">Um sistema pequeno, documentado inteiro</h2>
+    <p class="p16">Nove conjuntos de componentes, 36 variantes, 29 ícones e dois breakpoints. Os
+      nomes das variáveis no Figma são os mesmos nomes das custom properties no CSS.</p>
+  </div>
+  <div class="tokens">
+    <div class="token"><i style="background:#d3602a"></i><span><b class="s12">terracota</b><br><span class="p12">#d3602a</span></span></div>
+    <div class="token"><i style="background:#592812"></i><span><b class="s12">escuro</b><br><span class="p12">#592812</span></span></div>
+    <div class="token"><i style="background:#fff8f1"></i><span><b class="s12">fundo</b><br><span class="p12">#fff8f1</span></span></div>
+    <div class="token"><i style="background:#ffead3"></i><span><b class="s12">selecionado</b><br><span class="p12">#ffead3</span></span></div>
+    <div class="token"><i style="background:#f1cebd"></i><span><b class="s12">pressed</b><br><span class="p12">#f1cebd</span></span></div>
+    <div class="token"><i style="background:#2d9404"></i><span><b class="s12">zap</b><br><span class="p12">#2d9404</span></span></div>
+  </div>
+  <div class="shot shot--pad" style="aspect-ratio:1160/648">
+    <img src="assets/nega_nago_design_system_02.png" width="1160" height="653"
+         data-desc="Os 29 ícones do sistema" alt="Os 29 ícones do design system" loading="lazy" decoding="async" />
+  </div>
+  <p class="p14">Os de catálogo — tamanho, modelo, local — são coloridos e viram ilustração dentro
+    das linhas de opção. Os de interface herdam <code>currentColor</code>, então mudam de cor junto
+    do estado do componente.</p>
+  <div class="nboxes">
+    <div class="nbox nbox--t"><p class="num">9</p><p class="nbox__d">conjuntos de componentes</p></div>
+    <div class="nbox nbox--t"><p class="num">36</p><p class="nbox__d">variantes documentadas</p></div>
+    <div class="nbox nbox--t"><p class="num">29</p><p class="nbox__d">ícones desenhados</p></div>
+    <div class="nbox nbox--t"><p class="num">14</p><p class="nbox__d">páginas no Figma, do briefing ao handoff</p></div>
+  </div>
+</div></section>
+
+<!-- 08 ENGENHARIA -->
+<section class="wrap sec" id="engenharia"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">08 · Engenharia</p>
+    <h2 class="h2">Comparei o código contra o Figma por medição, não a olho</h2>
+    <p class="p16">Escrevi uma suíte em Playwright que abre o protótipo nos dois breakpoints e lê o
+      valor computado de cada gap, largura e altura. Quatro erros que pareciam certos na tela
+      apareceram assim.</p>
+  </div>
+  <div class="lista">
+    <div class="lista__i">
+      <div><h3 class="t18">1fr → minmax(0,1fr)</h3><p class="p14" style="margin-top:6px;color:var(--muted)">medido 112 / 108 / 83 px → 101 / 104 px</p></div>
+      <p class="p16">No grid do catálogo, o nome mais longo — "Nagô Desenhada" — esticava a própria
+        coluna e espremia as vizinhas. Na tela passava por diferença de foto. Era o track
+        dimensionado pelo conteúdo.</p>
+    </div>
+    <div class="lista__i">
+      <div><h3 class="t18">Margem automática cancelando o stretch</h3><p class="p14" style="margin-top:6px;color:var(--muted)">hero medida 615 × 493 → 847 × 360</p></div>
+      <p class="p16">O container usava <code>margin:0 auto</code> dentro de um pai em flex. Margem
+        automática num filho flex cancela o stretch, então a hero encolhia até o tamanho do conteúdo
+        em vez de ocupar o breakpoint. Só apareceu porque eu estava comparando números com o Figma.</p>
+    </div>
+    <div class="lista__i">
+      <div><h3 class="t18">[hidden] perdendo para a classe</h3><p class="p14" style="margin-top:6px;color:var(--muted)">4 lugares corrigidos de uma vez</p></div>
+      <p class="p16">O bloco de endereço recebia o atributo <code>hidden</code> corretamente, mas
+        <code>.end{display:flex}</code> ganhava do padrão do navegador e ele continuava visível.
+        Uma linha — <code>[hidden]{display:none!important}</code> — consertou também três outros
+        lugares que estavam quebrados em silêncio.</p>
+    </div>
+    <div class="lista__i">
+      <div><h3 class="t18">Modo escuro invertendo a marca</h3><p class="p14" style="margin-top:6px;color:var(--muted)">18 propriedades comparadas · 0 diferença</p></div>
+      <p class="p16">Abri no meu celular, que fica em modo noturno, e a paleta da marca estava toda
+        trocada. O Android repinta por conta páginas que não declaram esquema de cor.
+        <code>color-scheme:light</code> mais a meta tag travaram. Verifiquei rodando o mesmo teste
+        com o navegador em modo escuro e comparando 18 propriedades computadas antes e depois.</p>
+    </div>
+  </div>
+  <div class="rodadas">
+    <div class="card card--sm"><h3 class="t18">Um arquivo, sem framework</h3>
+      <p class="p16" style="margin-top:10px">HTML, CSS e JavaScript num arquivo só. Nada para
+        instalar, nada para buildar, nada para quebrar quando uma dependência sobe de versão. Para
+        um piloto de uma pessoa, isso é a escolha certa.</p></div>
+    <div class="card card--sm"><h3 class="t18">617 KB a Home inteira</h3>
+      <p class="p16" style="margin-top:10px">Com as treze fotos carregadas. Converti as 46 imagens
+        de PNG para WebP e o conjunto caiu de 17 MB para 1,9 MB. A cliente abre no 4G, não no wi-fi
+        do escritório.</p></div>
+    <div class="card card--sm"><h3 class="t18">A suíte roda o fluxo inteiro</h3>
+      <p class="p16" style="margin-top:10px">Mede gaps, simula o arraste do carrossel com eventos de
+        ponteiro, intercepta a API de CEP com resposta falsa e percorre agendamento até o botão
+        final — nos dois breakpoints, a cada mudança.</p></div>
+  </div>
+</div></section>
+
+<!-- 09 CATÁLOGO DE IMAGENS -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">09 · Catálogo de imagens</p>
+    <h2 class="h2">Nenhuma foto existia. Dirigi e gerei as 13.</h2>
+    <p class="p16">Não havia sessão, modelo nem banco de imagem que servisse. Fechei um contrato
+      visual — manequim, ângulo, fundo, luz, matiz — usei o Claude para escrever os prompts a
+      partir dele e gerei no Higgsfield com o Nano Banana 2.</p>
+  </div>
+  <div class="shot shot--pad" style="aspect-ratio:1160/348">
+    <img src="assets/07_tabela.png" width="1160" height="348"
+         data-desc="Contact sheet dos treze estilos" alt="Contact sheet dos treze estilos gerados"
+         loading="lazy" decoding="async" />
+  </div>
+  <div class="coer">
+    <div class="coer__c">
+      <h3 class="t20" style="color:var(--creme)">A coerência dá para medir</h3>
+      <p class="p16">Amostrei os quatro cantos de cada foto e converti para matiz. Os treze fundos
+        caem entre 12,4° e 19,2° — amplitude de 6,8° em treze gerações independentes. O terracota
+        da marca é 19,2°, o marrom é 18,6°.</p>
+      <p class="p16">Não foi sorte: o matiz alvo estava escrito no prompt. A prova pelo contrário
+        está no mesmo dado — a luminosidade, que eu não pedi como número, abriu de 35% a 56%.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+      <div class="faixa">
+        <i style="background:#7e4333"></i>
+        <i style="background:#8d4b39"></i>
+        <i style="background:#98533e"></i>
+        <i style="background:#a25a42"></i>
+        <i style="background:#aa5f45"></i>
+        <i style="background:#b56649"></i>
+        <i style="background:#b86d51"></i>
+        <i style="background:#ba7458"></i>
+        <i style="background:#bd7b5f"></i>
+        <i style="background:#b97354"></i>
+        <i style="background:#b16948"></i>
+        <i style="background:#9f5e41"></i>
+        <i style="background:#90563b"></i>
+      </div>
+      <p class="p14">Cor média do fundo, uma amostra por estilo, na ordem do catálogo</p>
+    </div>
+  </div>
+  <div class="shot shot--pad" style="aspect-ratio:1160/340">
+    <img src="assets/07_tamanhos.png" width="1160" height="340"
+         data-desc="Um render, três recortes" alt="Um render e seus três recortes"
+         loading="lazy" decoding="async" />
+  </div>
+  <p class="p14">Quando a Mayara fotografar de verdade, cada foto entra no lugar de uma, com os
+    mesmos nomes de arquivo. Nada no código muda.</p>
+</div></section>
+
+<!-- 10 NÚMEROS -->
+<section class="wrap sec" id="numeros"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">10 · Números</p>
+    <h2 class="h2">O que o projeto mudou, e como cada número foi apurado</h2>
+    <p class="p16">Os números do produto qualquer pessoa reproduz rodando a suíte. Os da operação
+      vieram da agenda da Mayara, comparando o antes e o depois do lançamento.</p>
+  </div>
+  <div class="grupos">
+    <div class="card" style="padding:30px 32px">
+      <span class="selo">✓ Medido no produto</span>
+      <p class="p16" style="margin-top:8px">Abra o repositório e rode a suíte: todos saem iguais.</p>
+      <div class="linhas" style="margin-top:8px">
+        <div class="linha"><p class="t20">617 KB</p><p class="p14">peso da Home completa, com as treze fotos</p></div>
+        <div class="linha"><p class="t18">17 MB → 1,9 MB</p><p class="p14">as 46 imagens, depois da conversão para WebP</p></div>
+        <div class="linha"><p class="t20">6,8°</p><p class="p14">amplitude de matiz do fundo nas treze fotos de produto</p></div>
+        <div class="linha"><p class="t20">36</p><p class="p14">variantes de componente documentadas no Figma</p></div>
+        <div class="linha"><p class="t20">3</p><p class="p14">telas para sair do catálogo com a mensagem pronta</p></div>
+        <div class="linha"><p class="t20">0</p><p class="p14">erros de console em 360 px e 1400 px</p></div>
+      </div>
+    </div>
+    <div class="card" style="padding:30px 32px">
+      <span class="selo">✓ Medido na operação</span>
+      <p class="p16" style="margin-top:8px">Da agenda dela, não de modelo. O intervalo de confiança
+        e o valor-p foram calculados sobre os agendamentos observados antes e depois do lançamento.</p>
+      <div class="linhas" style="margin-top:8px">
+        <div class="linha"><p class="t20">16</p><p class="p14">agendamentos por mês antes do lançamento</p></div>
+        <div class="linha"><p class="t20">40</p><p class="p14">agendamentos por mês depois</p></div>
+        <div class="linha"><p class="t20">2,50×</p><p class="p14">razão de taxas · IC 95% 1,37–4,78 · p = 0,0018 binomial condicional exato</p></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 11 EM ABERTO -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">11 · Em aberto</p>
+    <h2 class="h2">O que eu não resolvi</h2>
+  </div>
+  <div class="lista">
+    <div class="lista__i"><h3 class="t16">Agenda ainda não é real</h3>
+      <p class="p16">Os dias ocupados estão fixos no código. Integrar a Google Agenda da Mayara é o
+        próximo passo, e é o que separa um protótipo de uma ferramenta que ela usa toda semana.</p></div>
+    <div class="lista__i"><h3 class="t16">Busca de endereço testada só com resposta falsa</h3>
+      <p class="p16">O ambiente onde desenvolvi bloqueia as APIs de CEP e de mapa. A busca funciona
+        contra respostas simuladas e tem queda controlada para entrada manual, mas ainda precisa de
+        um teste contra a rede real.</p></div>
+    <div class="lista__i"><h3 class="t16">As imagens de IA ainda não estão identificadas na tela</h3>
+      <p class="p16">São renders de referência, não portfólio da Mayara. Está escrito nesta página,
+        mas precisa estar escrito no produto — que já está no ar com cliente. É a pendência mais
+        urgente da lista.</p></div>
+    <div class="lista__i"><h3 class="t16">Quatro pessoas acham o problema grande, não o de cauda</h3>
+      <p class="p16">A amostra foi escolhida com cuidado, mas continua pequena. Quatro sessões
+        pegam o que trava todo mundo; não pegam o caso raro que aparece na centésima cliente. Com o
+        fluxo agora em operação, dá para observar uso real em vez de sessão marcada — é o próximo
+        passo da pesquisa.</p></div>
+  </div>
+  <div class="chips" style="gap:10px">
+    <a class="btn btn--dark" href="#" data-link="prototipo">Ver Protótipo</a>
+    <a class="btn btn--dark" href="#" data-link="html">Baixar HTML</a>
+  </div>
+</div></section>
+
+<!-- VER MAIS -->
+<section class="wrap sec"><div class="stack">
+  <div class="head">
+    <p class="eyebrow">12 · Mais</p>
+    <h2 class="h2">Outros projetos</h2>
+  </div>
+  <div class="projetos">
+    <a class="projeto" href="ct-em-campo.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_ct_em_campo.png" width="571" height="428"
+             data-desc="capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">CT em Campo</h3>
+        <p class="p14">Uma ativação de Copa que não cabia no template do portal. Superfície
+          dedicada, design system, motion e front-end — com o patrocinador dividindo tela com
+          ninguém.</p></div>
+    </a>
+    <a class="projeto" href="canaltech-hub.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_canaltech_hub_links.png" width="571" height="321"
+             data-desc="capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">Canaltech · Hub de links</h3>
+        <p class="p14">A página de links da Canaltech deixou de ser alugada. Design system,
+          acessibilidade, consentimento e telemetria num HTML único que o time publica sem build.</p></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- CONTATO -->
+<section class="wrap" id="contato">
+  <div class="contato">
+    <div>
+      <p class="disp"><i aria-hidden="true"></i><span>Disponível para trabalhar</span></p>
+      <h2 class="h2 h2--xl">Desenho, escrevo o código e digo o que não deu certo.</h2>
+    </div>
+    <p class="lead">Treze anos de design, cinco deles na Canaltech entre design system, marketing e
+      comercial. Se você tem uma superfície que precisa sair pronta e medida, e não especificada,
+      me chama.</p>
+    <div class="acoes">
+      <button class="btn btn--light" type="button" data-email="oerickteixeira@gmail.com">
+        <span class="btn__t">Copiar e-mail</span></button>
+      <a class="btn btn--ghost" href="assets/curriculo-erick-teixeira.pdf" target="_blank" rel="noopener">Ver o currículo</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="base"><p>© 2026 Erick Teixeira</p><p>oerickteixeira@gmail.com · São Paulo</p></div>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/case.js"></script>
+</body>
+</html>

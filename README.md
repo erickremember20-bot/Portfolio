@@ -2,71 +2,82 @@
 
 HTML estático, sem build. Portado nó a nó do Figma `Jb6w9GH2aN7mVVCQseu3n5`.
 
-| Página | Arquivo | Origem no Figma | Tipografia |
-|---|---|---|---|
-| **Home** | `index.html` | página `PORTFOLIO - prototipo`, frame `277:6799` | Sora |
-| **Case CT em Campo** | `ct-em-campo.html` | página `CT EM CAMPO`, frame `1:36` | Inter |
+| Página | Arquivo | Origem no Figma |
+|---|---|---|
+| **Home** | `index.html` | `PORTFOLIO - prototipo` · `277:6799` |
+| **Nega Nagô** | `nega-nago.html` | `PORTFOLIO - prototipo` · `277:5578` |
+| **Canaltech · Hub de links** | `canaltech-hub.html` | `PORTFOLIO - prototipo` · `277:4889` |
+| **CT em Campo** | `ct-em-campo.html` | `CT EM CAMPO` · `1:36` ⚠️ |
 
 Abra `index.html` no navegador. Não há dependência de build — só as fontes do
 Google Fonts.
 
-## ⚠️ As duas páginas vêm de versões diferentes do arquivo
+## ⚠️ O CT em Campo vem de outra versão do arquivo
 
-O Figma tem **quatro páginas** que são versões do mesmo portfólio: `PORTFOLIO`,
-`PORTFOLIO - COLORS`, `PORTFOLIO - COLORS 2` e `PORTFOLIO - prototipo`. Cada uma
-tem Home + três cases.
+Três das quatro páginas saem da mesma página do Figma (`PORTFOLIO - prototipo`) e
+compartilham a mesma linguagem: **Sora** sobre `#f1f1f1`, com o azul-acinzentado
+`#778898` / `#d5dadf`. O CT em Campo foi portado antes, da página solta
+`CT EM CAMPO`, e usa **Inter** sobre branco.
 
-A **Home** foi portada da `PORTFOLIO - prototipo` (a mais recente). O **case CT em
-Campo** foi portado antes, da página solta `CT EM CAMPO`. São desenhos diferentes:
+A `PORTFOLIO - prototipo` tem a sua própria versão desse case (`277:6139`, 17411px)
+na linguagem das outras. **Enquanto ela não for portada, sair da home para o CT em
+Campo troca de tipografia e de paleta no meio da navegação.** Os outros dois cases
+já estão consistentes entre si e com a home.
 
-| | Home | Case CT em Campo |
-|---|---|---|
-| Tipografia | Sora | Inter |
-| Fundo | `#f1f1f1` | `#ffffff` |
-| Texto | `#21262a` | `#1a1a1a` |
-| Fios | `#d5dadf` / `#778898` | `#e2e2e2` / `#c6c6c6` |
-| Altura do frame | 7740 | 18027 |
+## Estrutura
 
-A `PORTFOLIO - prototipo` tem a sua própria versão do case (`277:6139`, 17411px),
-na mesma linguagem da Home. **Enquanto o case não for reportado a partir dela, as
-duas páginas não combinam visualmente.**
+```
+index.html            home
+nega-nago.html        case 01
+ct-em-campo.html      case 02   (versão antiga — ver acima)
+canaltech-hub.html    case 03
+assets/
+  case.css            sistema compartilhado pelos cases novos
+  case.js             placeholders, copiar e-mail, menu ativo
+  …                   imagens
+```
 
-## Faltam as imagens
+`index.html` e `ct-em-campo.html` carregam o CSS embutido no próprio arquivo;
+`nega-nago.html` e `canaltech-hub.html` compartilham `assets/case.css`.
 
-O ambiente onde as páginas foram geradas tem os hosts de asset do Figma
-bloqueados por política de rede, então nenhuma imagem pôde ser exportada. **As
-páginas não quebram sem elas**: cada moldura mostra o nome exato do arquivo que
-falta. Assim que os arquivos entrarem em `assets/`, as imagens aparecem sozinhas.
+## Assets
 
-Lista completa com nome ↔ nó de origem: [`assets/README.md`](assets/README.md).
-São **18 arquivos para a home** e **13 para o case**.
+**41 das 50 imagens estão na pasta.** Faltam as 9 do Nega Nagô e o PDF do
+currículo — lista com nome ↔ nó de origem em [`assets/README.md`](assets/README.md).
+Enquanto um arquivo não chega, a moldura mostra o nome que falta em vez de
+quebrar o layout.
 
 ## Fidelidade ao Figma
 
 Conferido automaticamente, não a olho:
 
-| | Home | Case |
-|---|---|---|
-| Blocos de texto conferidos | **90**, sem divergência | **222**, sem divergência |
-| Componentes com cor/raio idênticos | **26** | **23** |
-| Asserções de layout | **42** em 8 larguras | **41** em 9 larguras |
+| | Home | Nega Nagô | Canaltech Hub | CT em Campo |
+|---|---|---|---|---|
+| Blocos de texto conferidos | 90 | — | — | 222 |
+| Componentes com cor/raio idênticos | 26 | — | — | 23 |
+| Asserções de layout | 44 | 22 | 22 | 41 |
 
-Container 1160px em ambas, como nos frames de origem. Escalas tipográficas lidas
-dos nós, não estimadas: Home em Sora 88/64/40/20/18/16/14/12; case em Inter
-48/40/21/17/15.5/14.5/13 mais JetBrains Mono 11.5 nos valores tabulares.
+Container 1160px em todas, como nos frames de origem. Escala Sora lida dos nós:
+88 / 64 / 48 / 40 / 32 / 20 / 18 / 16 / 14 / 12.
 
 ## Responsivo
 
-O Figma só tem o desktop 1400. Abaixo disso é adaptação:
+O Figma só tem o desktop 1400. Abaixo disso é adaptação, verificada sem erro de
+JS, sem overflow horizontal e sem elemento estourando o container em
+360 · 390 · 600 · 768 · 900 · 940 · 1024 · 1280 · 1400.
 
-| Largura | Home | Case |
-|---|---|---|
-| < 1400 | margem cede antes do container | idem |
-| < 1280 | hero e projetos viram proporção | hero vira proporção 592:520 |
-| < 1024 | hero em coluna; disciplinas 5→3; provas 3→1; grade 2→1 | 4 e 5 colunas viram 2 e 3 |
-| < 940 | — | menu vira faixa rolável |
-| < 768 | tudo em coluna; marcas com scroll horizontal; botões em largura cheia | tudo em coluna; rampas de cor com scroll horizontal |
-| < 400 | números em coluna | ficha técnica e nbox em coluna |
+| Largura | O que muda |
+|---|---|
+| < 1400 | a margem de 120px cede primeiro, para o container segurar 1160 |
+| < 1280 | blocos de duas colunas viram proporção em vez de pixel fixo |
+| < 1024 | 3, 4, 5 e 6 colunas quebram; tabelas viram lista empilhada |
+| < 940 | o menu do topo vira faixa rolável na horizontal |
+| < 768 | tudo em coluna única; escala tipográfica reduzida; botões em largura cheia |
+| < 400 | números e ficha técnica em coluna única |
 
-Verificado sem erro de JS, sem overflow horizontal e sem elemento estourando o
-container em 360 · 390 · 600 · 768 · 900 · 940 · 1024 · 1280 · 1400.
+## ⚠️ Peso
+
+`assets/` tem ~102 MB, quase tudo em GIF (os seis do Playground somam ~60 MB e
+`motion_ct_em_campo.gif` tem 12 MB). Todas as imagens abaixo da primeira dobra
+usam `loading="lazy"`, então nada disso baixa antes de entrar na tela — mas
+converter os sete GIFs para MP4/WebM derrubaria o peso para 5–10% disso.
