@@ -75,9 +75,10 @@ main section[id]{scroll-margin-top:84px}
 .shot{background:var(--shot-bg);border:1px solid var(--line-3);border-radius:var(--r);
   overflow:hidden;display:flex;align-items:center;justify-content:center}
 .shot--hero{border-color:var(--line-2);background:var(--line)}
-.shot--pad{padding:24px}
-.shot--pad30{padding:30px}
-.shot img{width:100%;height:100%;object-fit:cover}
+/* No Figma toda imagem é scaleMode FILL e o retângulo cobre o frame inteiro
+   (x=0, y=0, clipsContent). O padding do frame não recorta a imagem: ela vai
+   de borda a borda e o excedente é cortado. */
+.shot img{width:100%;height:100%;object-fit:cover;object-position:center}
 .fig{display:flex;flex-direction:column;gap:10px}
 .fig figcaption{font-weight:400;font-size:12px;line-height:1.5;color:var(--body)}
 .ph{width:100%;height:100%;min-height:150px;background:
@@ -155,7 +156,7 @@ main section[id]{scroll-margin-top:84px}
 /* ver mais + contato */
 .projetos{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .projeto{background:var(--tile);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
-.projeto__capa{height:240px;background:var(--line)}
+.projeto__capa{aspect-ratio:571/240;background:var(--line)}
 .projeto__t{display:flex;flex-direction:column;gap:8px;padding:22px 24px 26px}
 .contato{background:var(--ink);border-radius:28px;padding:40px 56px;color:var(--on-dark);
   display:flex;flex-direction:column;gap:36px;margin-block:var(--sec-y)}
@@ -232,8 +233,6 @@ main section[id]{scroll-margin-top:84px}
   .acoes{padding-top:14px}
   .acoes .btn{width:100%;justify-content:center}
   .base{flex-direction:column;gap:6px;padding-top:22px}
-  .shot--pad,.shot--pad30{padding:12px}
-  .projeto__capa{height:180px}
   .projeto__t{padding:18px}
   .chip{font-size:11.5px;padding:5px 11px}
   .fig figcaption{font-size:12px}

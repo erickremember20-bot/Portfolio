@@ -104,8 +104,8 @@ svg{display:block;flex:none}
 .shot{background:var(--line);border-radius:var(--r);overflow:hidden;
   display:flex;align-items:center;justify-content:center}
 .shot--bordered{border:1px solid var(--line-2)}
-.shot--pad{padding:30px}
-.shot img{width:100%;height:100%;object-fit:cover}
+/* No Figma toda imagem é scaleMode FILL cobrindo o frame inteiro: sem padding. */
+.shot img{width:100%;height:100%;object-fit:cover;object-position:center}
 .ph{position:relative;width:100%;height:100%;min-height:120px;background:
   repeating-linear-gradient(45deg,#e7eaee 0 12px,#e1e5ea 12px 24px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -175,7 +175,7 @@ svg{display:block;flex:none}
 .grade{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .tile{background:var(--tile);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
   display:flex;flex-direction:column}
-.tile__capa{height:400px;background:var(--line)}
+.tile__capa{aspect-ratio:570/400;background:var(--line)}
 .tile__txt{display:flex;flex-direction:column;gap:8px;padding:20px 22px 24px}
 
 /* ---------- sobre ---------- */
@@ -185,7 +185,7 @@ svg{display:block;flex:none}
 .sobre__t{display:flex;flex-direction:column;gap:16px}
 .sobre__p{display:flex;flex-direction:column;gap:14px;padding-top:10px}
 .fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.foto{height:280px;padding:24px 22px}
+.foto{aspect-ratio:373/280}
 .traj{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-top:4px}
 .passo{padding:7px 13px;border-radius:var(--r-pill);background:var(--line);
   font-weight:400;font-size:12px;line-height:1.5;color:var(--ink)}
@@ -265,7 +265,6 @@ svg{display:block;flex:none}
 
   .hero{padding-block:28px;gap:20px}
   .hero__top .shot{max-width:none}
-  .shot--pad{padding:14px}
   .contato{width:100%}
   .btn{padding:13px 20px;font-size:15px}
   .contato .btn{width:100%;justify-content:center}
@@ -304,7 +303,6 @@ svg{display:block;flex:none}
   .sobre__head{padding-block:0}
   .fotos{grid-template-columns:1fr;gap:14px}
   .fotos .foto:last-child{grid-column:auto}
-  .foto{height:220px;padding:14px}
   .nums{grid-template-columns:1fr 1fr}
   .nums__i{padding:16px 16px}
   .traj{gap:8px}
@@ -347,7 +345,7 @@ TEIXEIRA</h1>
       <p class="intro">Desenho a campanha inteira e escrevo o código que a entrega — com IA dentro
         do fluxo, não ao lado dele.</p>
     </div>
-    <div class="shot shot--bordered shot--pad" style="aspect-ratio:4/3">
+    <div class="shot shot--bordered" style="aspect-ratio:480/360">
       <img src="assets/erick.png" width="480" height="360"
            data-desc="Retrato · 4:3" alt="Retrato de Erick Teixeira" />
     </div>
@@ -407,7 +405,7 @@ TEIXEIRA</h1>
 <!-- ======================= PROJETOS ======================= -->
 <section class="wrap projetos" id="projetos">
   <article class="proj">
-    <div class="shot shot--bordered shot--pad proj__capa">
+    <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
       <img src="assets/capa_nega_nago.jpg" width="1160" height="520"
            data-desc="Capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
     </div>
@@ -434,7 +432,7 @@ TEIXEIRA</h1>
   </article>
 
   <article class="proj">
-    <div class="shot shot--bordered shot--pad proj__capa">
+    <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
       <img src="assets/capa_ct_em_campo.png" width="1160" height="520"
            data-desc="Capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
     </div>
@@ -461,7 +459,7 @@ TEIXEIRA</h1>
   </article>
 
   <article class="proj">
-    <div class="shot shot--bordered shot--pad proj__capa">
+    <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
       <img src="assets/capa_canaltech_hub_links.png" width="1160" height="520"
            data-desc="Capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
     </div>
@@ -537,7 +535,7 @@ TEIXEIRA</h1>
 
   <div class="grade">
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/01_ilustracao_2D.gif" width="570" height="400"
              data-desc="Ilustração 2D · Apparel &amp; Print" alt="Ilustração 2D para camiseta" loading="lazy" decoding="async" />
       </div>
@@ -548,7 +546,7 @@ TEIXEIRA</h1>
       </div>
     </article>
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/02_short_film_ai.gif" width="570" height="400"
              data-desc="Short Film · IA Generativa" alt="Short film em IA generativa" loading="lazy" decoding="async" />
       </div>
@@ -560,7 +558,7 @@ TEIXEIRA</h1>
     </article>
 
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/03_3d_animation_tyler.gif" width="570" height="400"
              data-desc="Animação 3D · Character Design" alt="Animação 3D character design" loading="lazy" decoding="async" />
       </div>
@@ -571,7 +569,7 @@ TEIXEIRA</h1>
       </div>
     </article>
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/04_3d_animation_gold_life.gif" width="570" height="400"
              data-desc="Animação 3D · Brand Experience" alt="Animação 3D brand experience" loading="lazy" decoding="async" />
       </div>
@@ -583,7 +581,7 @@ TEIXEIRA</h1>
     </article>
 
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/05_ai_animation_gold_life.gif" width="570" height="400"
              data-desc="Animação em IA · Conteúdo de Marca" alt="Animação em IA para marca" loading="lazy" decoding="async" />
       </div>
@@ -594,7 +592,7 @@ TEIXEIRA</h1>
       </div>
     </article>
     <article class="tile">
-      <div class="shot tile__capa">
+      <div class="shot tile__capa" style="aspect-ratio:570/400">
         <img src="assets/06_artesanato.gif" width="570" height="400"
              data-desc="Craft Físico · Arte em Camadas" alt="Quadro artesanal em camadas de papel" loading="lazy" decoding="async" />
       </div>
@@ -625,15 +623,15 @@ TEIXEIRA</h1>
   </div>
 
   <div class="fotos">
-    <div class="shot shot--bordered foto">
+    <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
       <img src="assets/foto_luiza.jpg" width="373" height="280"
            data-desc="Foto 2 · processo" alt="Foto do processo de trabalho" loading="lazy" decoding="async" />
     </div>
-    <div class="shot shot--bordered foto">
+    <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
       <img src="assets/foto_grupo.jpg" width="373" height="280"
            data-desc="Foto 1 · trabalhando" alt="Foto trabalhando com o time" loading="lazy" decoding="async" />
     </div>
-    <div class="shot shot--bordered foto">
+    <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
       <img src="assets/foto_time.jpg" width="374" height="280"
            data-desc="Foto 3 · retrato" alt="Retrato" loading="lazy" decoding="async" />
     </div>
@@ -685,7 +683,7 @@ TEIXEIRA</h1>
         </svg>
         Ver o currículo
       </a>
-      <a class="btn btn--ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76v5.69h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.96 1.31-1.96 2.66v5.14h-3.7v-11Z"/>
         </svg>
