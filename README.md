@@ -6,65 +6,87 @@ HTML estático, sem build. Portado nó a nó do Figma `Jb6w9GH2aN7mVVCQseu3n5`.
 |---|---|---|
 | **Home** | `index.html` | `PORTFOLIO - prototipo` · `277:6799` |
 | **Nega Nagô** | `nega-nago.html` | `PORTFOLIO - prototipo` · `277:5578` |
+| **CT em Campo** | `ct-em-campo.html` | `PORTFOLIO - prototipo` · `277:6139` |
 | **Canaltech · Hub de links** | `canaltech-hub.html` | `PORTFOLIO - prototipo` · `277:4889` |
-| **CT em Campo** | `ct-em-campo.html` | `CT EM CAMPO` · `1:36` ⚠️ |
 
-Abra `index.html` no navegador. Não há dependência de build — só as fontes do
-Google Fonts.
+As quatro páginas usam a mesma linguagem: **Sora** sobre `#f1f1f1`, com o
+azul-acinzentado `#778898` / `#d5dadf`. O CT em Campo, que antes vinha da página
+solta `CT EM CAMPO` em Inter sobre branco, foi reportado para a versão que está
+na `PORTFOLIO - prototipo`, mantendo o verde `#009721` da campanha como acento.
 
-## ⚠️ O CT em Campo vem de outra versão do arquivo
+## O que publicar
 
-Três das quatro páginas saem da mesma página do Figma (`PORTFOLIO - prototipo`) e
-compartilham a mesma linguagem: **Sora** sobre `#f1f1f1`, com o azul-acinzentado
-`#778898` / `#d5dadf`. O CT em Campo foi portado antes, da página solta
-`CT EM CAMPO`, e usa **Inter** sobre branco.
+```
+docs/                              ← é isto que sobe para a hospedagem
+  index.html  nega-nago.html  ct-em-campo.html  canaltech-hub.html
+  assets/     imagens em .webp, CSS, JS e as fontes .woff2
+  .htaccess   cache longo dos assets e compressão do HTML
 
-A `PORTFOLIO - prototipo` tem a sua própria versão desse case (`277:6139`, 17411px)
-na linguagem das outras. **Enquanto ela não for portada, sair da home para o CT em
-Campo troca de tipografia e de paleta no meio da navegação.** Os outros dois cases
-já estão consistentes entre si e com a home.
+portfolio-erick-teixeira.html      ← as quatro páginas em um arquivo só
+```
 
-## Estrutura
+**Hostinger:** hPanel → Gerenciador de Arquivos → entre em `public_html` →
+envie o `.zip` da pasta `docs/` → botão direito → **Extrair**. O `index.html`
+precisa ficar direto em `public_html`, não dentro de uma subpasta.
+
+**GitHub Pages:** Settings → Pages → Branch `main`, pasta `/docs`.
+
+O arquivo único não precisa de servidor: dá para abrir com dois cliques ou
+mandar por e-mail. Ele carrega mais devagar (19 MB de uma vez) do que a pasta
+`docs/`, onde cada imagem só baixa quando entra na tela.
+
+## Estrutura da fonte
 
 ```
 index.html            home
 nega-nago.html        case 01
-ct-em-campo.html      case 02   (versão antiga — ver acima)
+ct-em-campo.html      case 02
 canaltech-hub.html    case 03
-assets/
-  case.css            sistema compartilhado pelos cases novos
-  case.js             placeholders, copiar e-mail, menu ativo
-  …                   imagens
+assets/               imagens originais (PNG/JPG/GIF) + case.css + case.js
+ferramentas/          scripts que geram docs/ e o arquivo único
+docs/                 saída pronta para publicar
 ```
 
 `index.html` e `ct-em-campo.html` carregam o CSS embutido no próprio arquivo;
 `nega-nago.html` e `canaltech-hub.html` compartilham `assets/case.css`.
 
-## Assets
+Os arquivos da raiz apontam para `assets/` e para o Google Fonts — são a fonte
+de edição. Os de `docs/` apontam para `.webp` e para as fontes locais.
+Depois de mexer na raiz, regenere: veja [`ferramentas/LEIAME.md`](ferramentas/LEIAME.md).
 
-**41 das 50 imagens estão na pasta.** Faltam as 9 do Nega Nagô e o PDF do
-currículo — lista com nome ↔ nó de origem em [`assets/README.md`](assets/README.md).
-Enquanto um arquivo não chega, a moldura mostra o nome que falta em vez de
-quebrar o layout.
+## Peso
+
+| | Antes | Depois |
+|---|---|---|
+| `assets/` (PNG/JPG/GIF) | 100 MB | — |
+| `docs/assets/` (WebP) | — | **14 MB** |
+| Arquivo único | — | 19 MB |
+
+Os nove GIFs viraram WebP animado; as imagens paradas viraram WebP a 2× do
+tamanho de exibição. Tudo abaixo da primeira dobra usa `loading="lazy"`, então
+a primeira tela baixa poucas centenas de KB.
+
+As fontes (Sora e JetBrains Mono, subconjuntos latin e latin-ext, 167 KB no
+total) são servidas do próprio domínio: a página publicada **não faz nenhuma
+requisição para terceiros**.
 
 ## Fidelidade ao Figma
 
-Conferido automaticamente, não a olho:
+Conferido banda a banda contra os PDFs exportados do arquivo, não a olho nu:
+cor medida em pixel, largura de coluna, raio, preenchimento e quebra de linha.
 
-| | Home | Nega Nagô | Canaltech Hub | CT em Campo |
-|---|---|---|---|---|
-| Blocos de texto conferidos | 90 | — | — | 222 |
-| Componentes com cor/raio idênticos | 26 | — | — | 23 |
-| Asserções de layout | 44 | 22 | 22 | 41 |
+Container 1160px em todas as páginas, como nos frames de origem. Cabeçalho de
+seção com título em 900px e texto de apoio em 820px (`277:5023`). Escala Sora
+lida dos nós: 88 / 64 / 48 / 40 / 32 / 20 / 18 / 16 / 14 / 12.
 
-Container 1160px em todas, como nos frames de origem. Escala Sora lida dos nós:
-88 / 64 / 48 / 40 / 32 / 20 / 18 / 16 / 14 / 12.
+Toda imagem no Figma é `scaleMode: FILL` cobrindo o frame inteiro — as molduras
+aqui usam `object-fit: cover` com o `aspect-ratio` exato de cada frame.
 
 ## Responsivo
 
 O Figma só tem o desktop 1400. Abaixo disso é adaptação, verificada sem erro de
-JS, sem overflow horizontal e sem elemento estourando o container em
-360 · 390 · 600 · 768 · 900 · 940 · 1024 · 1280 · 1400.
+JS, sem overflow horizontal e sem imagem quebrada em
+360 · 414 · 768 · 1024 · 1280 · 1440.
 
 | Largura | O que muda |
 |---|---|
@@ -75,9 +97,10 @@ JS, sem overflow horizontal e sem elemento estourando o container em
 | < 768 | tudo em coluna única; escala tipográfica reduzida; botões em largura cheia |
 | < 400 | números e ficha técnica em coluna única |
 
-## ⚠️ Peso
+## Links
 
-`assets/` tem ~102 MB, quase tudo em GIF (os seis do Playground somam ~60 MB e
-`motion_ct_em_campo.gif` tem 12 MB). Todas as imagens abaixo da primeira dobra
-usam `loading="lazy"`, então nada disso baixa antes de entrar na tela — mas
-converter os sete GIFs para MP4/WebM derrubaria o peso para 5–10% disso.
+- Currículo — https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing
+- LinkedIn — https://www.linkedin.com/in/erick-teixeira-031b3a213/
+- Nega Nagô — [protótipo](https://www.figma.com/design/DPnAXlPAlYzHfeA6hp1j0i/Nega_Nago_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1_pO37J2lMBUw9Kema0x5AYgqKkW54W4L?usp=sharing)
+- CT em Campo — [protótipo](https://www.figma.com/design/aUh8z5QbGFmJ4k48denDDk/CT_em_Campo_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1pyaQZb6Cmb2Ra1Qt6ZT43MQc41mXQ5do?usp=sharing)
+- CT Links — [protótipo](https://www.figma.com/design/Kvw7C8zKm7ppLMmgFErrf2/CT_Links_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1X7_uG_CaMZfWMl8K55ng5t3JL-Ukh39u?usp=sharing)

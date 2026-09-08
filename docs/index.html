@@ -11,15 +11,36 @@
 <meta property="og:site_name" content="Erick Teixeira" />
 <meta property="og:title" content="Erick Teixeira · Product & Design Engineer" />
 <meta property="og:description" content="Desenho a campanha inteira e escrevo o código que a entrega — com IA dentro do fluxo, não ao lado dele." />
-<meta property="og:image" content="assets/erick.png" />
+<meta property="og:image" content="assets/erick.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Erick Teixeira · Product & Design Engineer" />
 <meta name="twitter:description" content="Desenho a campanha inteira e escrevo o código que a entrega — com IA dentro do fluxo, não ao lado dele." />
-<meta name="twitter:image" content="assets/erick.png" />
+<meta name="twitter:image" content="assets/erick.webp" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição
+   para terceiros e sem depender do Google Fonts. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 
 <style>
 /* ==========================================================================
@@ -370,7 +391,7 @@ TEIXEIRA</h1>
         do fluxo, não ao lado dele.</p>
     </div>
     <div class="shot shot--bordered" style="aspect-ratio:480/360">
-      <img src="assets/erick.png" width="480" height="360"
+      <img src="assets/erick.webp" width="480" height="360"
            data-desc="Retrato · 4:3" alt="Retrato de Erick Teixeira" />
     </div>
   </div>
@@ -406,11 +427,11 @@ TEIXEIRA</h1>
   <p class="lb-sm">Marcas com que trabalhei</p>
   <div class="marcas__scroll">
     <div class="marcas__row">
-      <span class="marca"><img src="assets/logo_kabum.png" width="162" height="43" data-desc="logo_kabum" alt="KaBuM!" loading="lazy" decoding="async" /></span>
-      <span class="marca"><img src="assets/logo_netshoes.png" width="162" height="25" data-desc="logo_netshoes" alt="Netshoes" loading="lazy" decoding="async" /></span>
-      <span class="marca"><img src="assets/logo_canaltech.png" width="162" height="34" data-desc="logo_canaltech" alt="Canaltech" loading="lazy" decoding="async" /></span>
-      <span class="marca"><img src="assets/logo_motorola.png" width="162" height="37" data-desc="logo_motorola" alt="Motorola" loading="lazy" decoding="async" /></span>
-      <span class="marca"><img src="assets/logo_magalu.png" width="162" height="36" data-desc="logo_magalu" alt="Magalu" loading="lazy" decoding="async" /></span>
+      <span class="marca"><img src="assets/logo_kabum.webp" width="162" height="43" data-desc="logo_kabum" alt="KaBuM!" loading="lazy" decoding="async" /></span>
+      <span class="marca"><img src="assets/logo_netshoes.webp" width="162" height="25" data-desc="logo_netshoes" alt="Netshoes" loading="lazy" decoding="async" /></span>
+      <span class="marca"><img src="assets/logo_canaltech.webp" width="162" height="34" data-desc="logo_canaltech" alt="Canaltech" loading="lazy" decoding="async" /></span>
+      <span class="marca"><img src="assets/logo_motorola.webp" width="162" height="37" data-desc="logo_motorola" alt="Motorola" loading="lazy" decoding="async" /></span>
+      <span class="marca"><img src="assets/logo_magalu.webp" width="162" height="36" data-desc="logo_magalu" alt="Magalu" loading="lazy" decoding="async" /></span>
     </div>
   </div>
 </section>
@@ -430,7 +451,7 @@ TEIXEIRA</h1>
 <section class="wrap projetos" id="projetos">
   <a class="proj" href="nega-nago.html" aria-label="Abrir o case Nega Nagô">
     <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
-      <img src="assets/capa_nega_nago.jpg" width="1160" height="520"
+      <img src="assets/capa_nega_nago.webp" width="1160" height="520"
            data-desc="Capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
     </div>
     <div class="proj__meta">
@@ -457,7 +478,7 @@ TEIXEIRA</h1>
 
   <a class="proj" href="ct-em-campo.html" aria-label="Abrir o case CT em Campo · Canaltech × Netshoes">
     <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
-      <img src="assets/capa_ct_em_campo.png" width="1160" height="520"
+      <img src="assets/capa_ct_em_campo.webp" width="1160" height="520"
            data-desc="Capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
     </div>
     <div class="proj__meta">
@@ -484,7 +505,7 @@ TEIXEIRA</h1>
 
   <a class="proj" href="canaltech-hub.html" aria-label="Abrir o case Canaltech · Hub de links">
     <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
-      <img src="assets/capa_canaltech_hub_links.png" width="1160" height="520"
+      <img src="assets/capa_canaltech_hub_links.webp" width="1160" height="520"
            data-desc="Capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
     </div>
     <div class="proj__meta">
@@ -560,7 +581,7 @@ TEIXEIRA</h1>
   <div class="grade">
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/01_ilustracao_2D.gif" width="570" height="400"
+        <img src="assets/01_ilustracao_2D.webp" width="570" height="400"
              data-desc="Ilustração 2D · Apparel &amp; Print" alt="Ilustração 2D para camiseta" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -571,7 +592,7 @@ TEIXEIRA</h1>
     </article>
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/02_short_film_ai.gif" width="570" height="400"
+        <img src="assets/02_short_film_ai.webp" width="570" height="400"
              data-desc="Short Film · IA Generativa" alt="Short film em IA generativa" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -583,7 +604,7 @@ TEIXEIRA</h1>
 
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/03_3d_animation_tyler.gif" width="570" height="400"
+        <img src="assets/03_3d_animation_tyler.webp" width="570" height="400"
              data-desc="Animação 3D · Character Design" alt="Animação 3D character design" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -594,7 +615,7 @@ TEIXEIRA</h1>
     </article>
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/04_3d_animation_gold_life.gif" width="570" height="400"
+        <img src="assets/04_3d_animation_gold_life.webp" width="570" height="400"
              data-desc="Animação 3D · Brand Experience" alt="Animação 3D brand experience" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -606,7 +627,7 @@ TEIXEIRA</h1>
 
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/05_ai_animation_gold_life.gif" width="570" height="400"
+        <img src="assets/05_ai_animation_gold_life.webp" width="570" height="400"
              data-desc="Animação em IA · Conteúdo de Marca" alt="Animação em IA para marca" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -617,7 +638,7 @@ TEIXEIRA</h1>
     </article>
     <article class="tile">
       <div class="shot tile__capa" style="aspect-ratio:570/400">
-        <img src="assets/06_artesanato.gif" width="570" height="400"
+        <img src="assets/06_artesanato.webp" width="570" height="400"
              data-desc="Craft Físico · Arte em Camadas" alt="Quadro artesanal em camadas de papel" loading="lazy" decoding="async" />
       </div>
       <div class="tile__txt">
@@ -648,15 +669,15 @@ TEIXEIRA</h1>
 
   <div class="fotos">
     <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
-      <img src="assets/foto_luiza.jpg" width="373" height="280"
+      <img src="assets/foto_luiza.webp" width="373" height="280"
            data-desc="Foto 2 · processo" alt="Foto do processo de trabalho" loading="lazy" decoding="async" />
     </div>
     <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
-      <img src="assets/foto_grupo.jpg" width="373" height="280"
+      <img src="assets/foto_grupo.webp" width="373" height="280"
            data-desc="Foto 1 · trabalhando" alt="Foto trabalhando com o time" loading="lazy" decoding="async" />
     </div>
     <div class="shot shot--bordered foto" style="aspect-ratio:373/280">
-      <img src="assets/foto_time.jpg" width="374" height="280"
+      <img src="assets/foto_time.webp" width="374" height="280"
            data-desc="Foto 3 · retrato" alt="Retrato" loading="lazy" decoding="async" />
     </div>
   </div>

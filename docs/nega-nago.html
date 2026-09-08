@@ -11,14 +11,35 @@
 <meta property="og:site_name" content="Erick Teixeira" />
 <meta property="og:title" content="Nega Nagô · Case — Erick Teixeira" />
 <meta property="og:description" content="O catálogo de uma trancista virou agendamento sem sair do WhatsApp. Pesquisa, design system e front-end, com resultado medido na agenda dela." />
-<meta property="og:image" content="assets/capa_nega_nago.jpg" />
+<meta property="og:image" content="assets/capa_nega_nago.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Nega Nagô · Case — Erick Teixeira" />
 <meta name="twitter:description" content="O catálogo de uma trancista virou agendamento sem sair do WhatsApp. Pesquisa, design system e front-end, com resultado medido na agenda dela." />
-<meta name="twitter:image" content="assets/capa_nega_nago.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<meta name="twitter:image" content="assets/capa_nega_nago.webp" />
+<style>
+/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição
+   para terceiros e sem depender do Google Fonts. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <link rel="stylesheet" href="assets/case.css" />
 <style>
 /* tokens próprios deste case (paleta do produto Nega Nagô) */
@@ -154,7 +175,7 @@
     <h1 class="h1">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta
       e transformar interesse em agendamento sem sair do WhatsApp.</h1>
     <div class="shot shot--hero" style="aspect-ratio:1160/612">
-      <img src="assets/01_phone_laptop.png" width="1160" height="612"
+      <img src="assets/01_phone_laptop.webp" width="1160" height="612"
            data-desc="Capa · desktop + celular" alt="A página Nega Nagô no desktop e no celular" />
     </div>
     <div class="chamada">
@@ -200,7 +221,7 @@ Higgsfield · Nano Banana 2</dd></div>
     <div class="nbox nbox--t"><p class="num">1</p><p class="nbox__d">canal, respondido entre um cliente e outro</p></div>
   </div>
   <div class="shot" style="aspect-ratio:1160/630">
-    <img src="assets/02_before_after.png" width="1160" height="630"
+    <img src="assets/02_before_after.webp" width="1160" height="630"
          data-desc="O print original da tabela no WhatsApp" alt="O print original da tabela de preços no WhatsApp" />
   </div>
 </div></section>
@@ -238,12 +259,12 @@ Higgsfield · Nano Banana 2</dd></div>
   </div>
   <div class="telas">
     <div class="shot" style="aspect-ratio:570/441">
-      <img src="assets/01_tamanhos.png" width="570" height="441"
+      <img src="assets/01_tamanhos.webp" width="570" height="441"
            data-desc="2 · Agendamento no celular · resumo e sinal"
            alt="Tela de agendamento no celular com resumo e sinal" loading="lazy" decoding="async" />
     </div>
     <div class="shot" style="aspect-ratio:570/441">
-      <img src="assets/02_checkout.png" width="570" height="441"
+      <img src="assets/02_checkout.webp" width="570" height="441"
            data-desc="1 · Produto no celular · preço e sinal na mesma tela"
            alt="Tela de produto no celular com preço e sinal" loading="lazy" decoding="async" />
     </div>
@@ -319,11 +340,11 @@ Higgsfield · Nano Banana 2</dd></div>
   </div>
   <div class="telas">
     <div class="shot" style="aspect-ratio:570/441">
-      <img src="assets/03_wireframe.png" width="570" height="441"
+      <img src="assets/03_wireframe.webp" width="570" height="441"
            data-desc="1 · Rascunho em cinza" alt="Rascunho em cinza usado na primeira rodada" loading="lazy" decoding="async" />
     </div>
     <div class="shot" style="aspect-ratio:570/441">
-      <img src="assets/04_protoripo.png" width="615" height="476"
+      <img src="assets/04_protoripo.webp" width="615" height="476"
            data-desc="2 · Protótipo completo" alt="Protótipo completo usado na segunda rodada" loading="lazy" decoding="async" />
     </div>
   </div>
@@ -502,7 +523,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
     <div class="token"><i style="background:#2d9404"></i><span><b class="s12">zap</b><br><span class="p12">#2d9404</span></span></div>
   </div>
   <div class="shot" style="aspect-ratio:1160/648">
-    <img src="assets/nega_nago_design_system_02.png" width="1160" height="653"
+    <img src="assets/nega_nago_design_system_02.webp" width="1160" height="653"
          data-desc="Os 29 ícones do sistema" alt="Os 29 ícones do design system" loading="lazy" decoding="async" />
   </div>
   <p class="p14">Os de catálogo — tamanho, modelo, local — são coloridos e viram ilustração dentro
@@ -579,7 +600,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
       partir dele e gerei no Higgsfield com o Nano Banana 2.</p>
   </div>
   <div class="shot" style="aspect-ratio:1160/348">
-    <img src="assets/07_tabela.png" width="1160" height="348"
+    <img src="assets/07_tabela.webp" width="1160" height="348"
          data-desc="Contact sheet dos treze estilos" alt="Contact sheet dos treze estilos gerados"
          loading="lazy" decoding="async" />
   </div>
@@ -612,7 +633,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
     </div>
   </div>
   <div class="shot" style="aspect-ratio:1160/340">
-    <img src="assets/07_tamanhos.png" width="1160" height="340"
+    <img src="assets/07_tamanhos.webp" width="1160" height="340"
          data-desc="Um render, três recortes" alt="Um render e seus três recortes"
          loading="lazy" decoding="async" />
   </div>
@@ -693,7 +714,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
   <div class="projetos">
     <a class="projeto" href="ct-em-campo.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_ct_em_campo.png" width="571" height="428"
+        <img src="assets/capa_ct_em_campo.webp" width="571" height="428"
              data-desc="capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
       </div>
       <div class="projeto__t"><h3 class="t20">CT em Campo</h3>
@@ -703,7 +724,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
     </a>
     <a class="projeto" href="canaltech-hub.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_canaltech_hub_links.png" width="571" height="321"
+        <img src="assets/capa_canaltech_hub_links.webp" width="571" height="321"
              data-desc="capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
       </div>
       <div class="projeto__t"><h3 class="t20">Canaltech · Hub de links</h3>

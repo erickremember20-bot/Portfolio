@@ -11,14 +11,35 @@
 <meta property="og:site_name" content="Erick Teixeira" />
 <meta property="og:title" content="Canaltech · Hub de links — Erick Teixeira" />
 <meta property="og:description" content="A página de links deixou de ser alugada e passou a medir a si mesma. Design system, acessibilidade, consentimento e telemetria num HTML único." />
-<meta property="og:image" content="assets/capa_canaltech_hub_links.png" />
+<meta property="og:image" content="assets/capa_canaltech_hub_links.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Canaltech · Hub de links — Erick Teixeira" />
 <meta name="twitter:description" content="A página de links deixou de ser alugada e passou a medir a si mesma. Design system, acessibilidade, consentimento e telemetria num HTML único." />
-<meta name="twitter:image" content="assets/capa_canaltech_hub_links.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<meta name="twitter:image" content="assets/capa_canaltech_hub_links.webp" />
+<style>
+/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição
+   para terceiros e sem depender do Google Fonts. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <link rel="stylesheet" href="assets/case.css" />
 <style>
 /* tokens próprios deste case (paleta do produto Canaltech) */
@@ -151,7 +172,7 @@ code{font-family:inherit;font-size:inherit}
 <!-- HERO -->
 <section class="wrap sec"><div class="stack" style="gap:36px">
   <div class="shot shot--hero" style="aspect-ratio:1160/524">
-    <img src="assets/01_probelm_solution.png" width="1160" height="524"
+    <img src="assets/01_probelm_solution.webp" width="1160" height="524"
          data-desc="Antes e depois do hub de links" alt="Comparação entre a página alugada e o hub próprio" />
   </div>
   <div class="stack" style="gap:16px">
@@ -297,12 +318,12 @@ Playwright</dd></div>
   <figure class="fig">
     <div class="capturas">
       <div class="shot" style="aspect-ratio:572/470">
-        <img src="assets/06_linktree1.png" width="572" height="470"
+        <img src="assets/06_linktree1.webp" width="572" height="470"
              data-desc="Antes · captura 1" alt="Primeira geração da página de links, no Linktree"
              loading="lazy" decoding="async" />
       </div>
       <div class="shot" style="aspect-ratio:572/470">
-        <img src="assets/07_linktree2.png" width="572" height="470"
+        <img src="assets/07_linktree2.webp" width="572" height="470"
              data-desc="Antes · captura 2" alt="Segunda geração da página de links, no Linktree"
              loading="lazy" decoding="async" />
       </div>
@@ -312,7 +333,7 @@ Playwright</dd></div>
   </figure>
   <figure class="fig">
     <div class="shot shot--hero" style="aspect-ratio:1160/620">
-      <img src="assets/02_desktop_mobile.png" width="1160" height="620"
+      <img src="assets/02_desktop_mobile.webp" width="1160" height="620"
            data-desc="Depois · o hub próprio nos dois tamanhos"
            alt="O hub próprio em desktop e mobile" loading="lazy" decoding="async" />
     </div>
@@ -407,7 +428,7 @@ Playwright</dd></div>
           espiona.</p></div>
     </div>
     <div class="shot" style="aspect-ratio:574/422">
-      <img src="assets/05_cookies.png" width="572" height="420"
+      <img src="assets/05_cookies.webp" width="572" height="420"
            data-desc="Barra e painel de consentimento" alt="Barra e painel de consentimento"
            loading="lazy" decoding="async" />
     </div>
@@ -525,12 +546,12 @@ Playwright</dd></div>
   <figure class="fig">
     <div class="boards">
       <div class="shot" style="aspect-ratio:572/322">
-        <img src="assets/board-01-foundations.png" width="578" height="325"
+        <img src="assets/board-01-foundations.webp" width="578" height="325"
              data-desc="Board 01 · Fundações" alt="Board 01 com as fundações do sistema"
              loading="lazy" decoding="async" />
       </div>
       <div class="shot" style="aspect-ratio:572/322">
-        <img src="assets/board-02-components.png" width="572" height="322"
+        <img src="assets/board-02-components.webp" width="572" height="322"
              data-desc="Board 02 · Componentes" alt="Board 02 com os componentes e variantes"
              loading="lazy" decoding="async" />
       </div>
@@ -594,7 +615,7 @@ Playwright</dd></div>
   </div>
   <figure class="fig">
     <div class="shot shot--hero" style="aspect-ratio:1160/980">
-      <img src="assets/03_telas.png" width="1160" height="980"
+      <img src="assets/03_telas.webp" width="1160" height="980"
            data-desc="Telas · mobile 360 e desktop 1400" alt="As telas em mobile 360 e desktop 1400"
            loading="lazy" decoding="async" />
     </div>
@@ -661,7 +682,7 @@ Playwright</dd></div>
   <div class="projetos">
     <a class="projeto" href="ct-em-campo.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_ct_em_campo.png" width="571" height="428"
+        <img src="assets/capa_ct_em_campo.webp" width="571" height="428"
              data-desc="capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
       </div>
       <div class="projeto__t"><h3 class="t20">CT em Campo</h3>
@@ -671,7 +692,7 @@ Playwright</dd></div>
     </a>
     <a class="projeto" href="nega-nago.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_nega_nago.jpg" width="621" height="278"
+        <img src="assets/capa_nega_nago.webp" width="621" height="278"
              data-desc="capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
       </div>
       <div class="projeto__t"><h3 class="t20">Nega Nagô</h3>
