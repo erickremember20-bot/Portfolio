@@ -17,11 +17,12 @@
   --ct-lima:#c4f84b; --ct-campanha:#e57c13;
 }
 .espacos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+/* no Figma (277:4938) a pílula tem fundo #f1f3f5 e fio #c0c8d0 */
 .pill{display:flex;flex-direction:column;gap:6px;padding:18px 24px;
-  background:var(--shot-bg);border-radius:var(--r-sm)}
-.etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
-  border-block:1px solid var(--line)}
-.etapa{display:flex;flex-direction:column;gap:10px;padding:16px 18px 18px;background:var(--page)}
+  background:#f1f3f5;border:1px solid var(--line-3);border-radius:var(--r-sm)}
+/* as quatro etapas do double diamond ficam soltas: sem fio entre colunas */
+.etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.etapa{display:flex;flex-direction:column;gap:10px}
 .etapa__f{font-weight:700;font-size:12px;line-height:1;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-2)}
 .bul{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:start}
@@ -30,21 +31,39 @@
 .nbox{background:var(--ct-azul);border:1px solid var(--line);padding:22px 20px}
 .nbox .num{color:#f1f1f1}
 .nbox .nbox__d,.nbox .p12{color:#f1f3f5}
+/* na seção 10 os mesmos blocos aparecem claros (277:5560) */
+.nbox--claro{background:var(--tile);border-color:var(--line)}
+.nbox--claro .num{color:var(--ink)}
+.nbox--claro .nbox__d,.nbox--claro .p12{color:var(--body)}
 .grade2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grade2--3{grid-template-columns:repeat(3,1fr)}
 .rbox{display:flex;flex-direction:column;gap:8px;padding:22px 24px;
   background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
-.dbox{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:22px 24px;
+/* dentro do cartão claro do "mesmo método", as três caixas são cinza (#e8e8e9) */
+.rbox--cinza{background:#e8e8e9;border-color:var(--line-3)}
+/* 04 · decisões: dois cartões por linha, número pequeno acima do título (277:5230) */
+.decisoes{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.dbox{display:flex;flex-direction:column;gap:10px;padding:26px 28px;
   background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
-.dbox__pq{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted);
-  padding-top:10px;margin-top:10px;border-top:1px solid var(--line)}
+.dbox__n{font-weight:700;font-size:13px;line-height:1.5;color:var(--body);margin-bottom:2px}
+/* o Figma não usa monoespaçada no corpo: os trechos de código vêm na mesma fonte */
+code{font-family:inherit;font-size:inherit}
+.dbox__pq{font-weight:400;font-size:14px;line-height:1.5;color:var(--muted);margin-top:10px}
 .cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.ciclo{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+/* 06 · método (277:5330): cada cartão tem a altura do próprio conteúdo,
+   as etapas 02 e 04 vêm em cinza e o marcador é redondo — 03 em azul */
+.ciclo{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:start}
 .et{display:flex;flex-direction:column;gap:8px;padding:20px;
   background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+.et--alt{background:#e8e8e9;border-color:var(--line-3)}
 .et__top{display:flex;align-items:center;gap:8px}
-.et__n{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;flex:none;
+.et__n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;
   background:var(--ink);color:var(--on-dark);font-weight:700;font-size:12px;line-height:1}
+.et__n--cinza{background:var(--body)}
+.et__n--azul{background:var(--ct-azul)}
+/* a etiqueta da ferramenta é uma pílula: cinza no cartão claro, branca no cinza */
+.et__top .p12{padding:4px 10px;border-radius:8px;background:#e8e8e9;color:var(--ink-2)}
+.et--alt .et__top .p12{background:#fefefe}
 .et__d{font-weight:600;font-size:12px;line-height:1.5;color:var(--muted);
   padding-top:8px;margin-top:auto;border-top:1px solid var(--line)}
 .dois{display:grid;grid-template-columns:1fr 1fr;gap:44px}
@@ -64,7 +83,9 @@
 .eventos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ev{display:flex;flex-direction:column;gap:8px;padding:22px 24px;
   background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
-.ev code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted)}
+/* no Figma o nome dos campos é uma pílula #e8e8e9, na mesma fonte do resto (277:5470) */
+.ev code{align-self:flex-start;font-family:inherit;font-size:13px;line-height:1.5;
+  color:var(--body);background:#e8e8e9;border-radius:8px;padding:5px 11px}
 .perg{background:var(--ct-azul);color:var(--on-dark);border:1px solid var(--line-3);
   border-radius:var(--r-lg);padding:26px 24px;display:flex;flex-direction:column;gap:14px}
 .perg .bul p{color:var(--on-dark-2);font-size:14px}
@@ -96,7 +117,8 @@
   .etapas,.ciclo,.comps,.grade3{grid-template-columns:1fr}
   .tokens{grid-template-columns:1fr 1fr}
   .cont{grid-template-columns:1fr 1fr}
-  .dbox{grid-template-columns:1fr;gap:10px;padding:18px}
+  .decisoes{grid-template-columns:1fr}
+  .dbox{padding:20px 22px}
 }
 </style>
 </head>
@@ -265,12 +287,12 @@ Playwright</dd></div>
   <figure class="fig">
     <div class="capturas">
       <div class="shot" style="aspect-ratio:572/470">
-        <img src="assets/07_linktree2.png" width="572" height="470"
+        <img src="assets/06_linktree1.png" width="572" height="470"
              data-desc="Antes · captura 1" alt="Primeira geração da página de links, no Linktree"
              loading="lazy" decoding="async" />
       </div>
       <div class="shot" style="aspect-ratio:572/470">
-        <img src="assets/06_linktree1.png" width="572" height="470"
+        <img src="assets/07_linktree2.png" width="572" height="470"
              data-desc="Antes · captura 2" alt="Segunda geração da página de links, no Linktree"
              loading="lazy" decoding="async" />
       </div>
@@ -316,37 +338,37 @@ Playwright</dd></div>
       o botão faz quando não existe destino, o que a barra faz na segunda visita, o que a página
       faz quando o arquivo some do servidor.</p>
   </div>
-  <div class="stack" style="gap:14px">
-    <div class="dbox"><p class="num" style="font-size:32px;color:var(--muted)">01</p>
-      <div><h3 class="t20">Estados viraram regra, não improviso</h3>
-        <p class="p14" style="margin-top:8px">O frame trazia só o repouso. Derivei 11 regras de
+  <div class="decisoes">
+    <div class="dbox"><p class="dbox__n">01</p>
+      <h3 class="t20">Estados viraram regra, não improviso</h3>
+        <p class="p16">O frame trazia só o repouso. Derivei 11 regras de
           estado dos próprios tokens — hover, press, foco, inválido, aceito e o toggle ligado — e
           documentei cada uma no board do design system.</p>
         <p class="dbox__pq">Por quê: sem isso, cada dev inventa um hover diferente e a página
-          envelhece em duas sprints.</p></div></div>
-    <div class="dbox"><p class="num" style="font-size:32px;color:var(--muted)">02</p>
-      <div><h3 class="t20">O painel de consentimento foi construído do zero</h3>
-        <p class="p14" style="margin-top:8px">O componente do Figma só previa o botão
+          envelhece em duas sprints.</p></div>
+    <div class="dbox"><p class="dbox__n">02</p>
+      <h3 class="t20">O painel de consentimento foi construído do zero</h3>
+        <p class="p16">O componente do Figma só previa o botão
           "Preferências", sem destino. Montei o painel inteiro com os tokens existentes: diálogo
           modal, foco preso, ESC, clique no fundo e trava de rolagem.</p>
         <p class="dbox__pq">Por quê: um botão que não abre nada é pior do que não ter botão — e a
-          LGPD não é opcional.</p></div></div>
-    <div class="dbox"><p class="num" style="font-size:32px;color:var(--muted)">03</p>
-      <div><h3 class="t20">Sem destino, o botão se declara desligado</h3>
-        <p class="p16" style="margin-top:8px">A faixa de campanha depende de uma constante.
+          LGPD não é opcional.</p></div>
+    <div class="dbox"><p class="dbox__n">03</p>
+      <h3 class="t20">Sem destino, o botão se declara desligado</h3>
+        <p class="p16">A faixa de campanha depende de uma constante.
           Preenchida, o botão é link. Vazia, ele perde o <code>href</code>, vira
           <code>role="button"</code> com <code>aria-disabled</code> e para de responder ao clique,
           em vez de virar âncora morta.</p>
-        <p class="dbox__pq" style="font-size:14px">Por quê: a votação tem data para acabar, e quem
-          desliga a campanha não deveria precisar abrir o código.</p></div></div>
-    <div class="dbox"><p class="num" style="font-size:32px;color:var(--muted)">04</p>
-      <div><h3 class="t20">O grão do hero saiu do Figma como código</h3>
-        <p class="p16" style="margin-top:8px">A camada de grão no arquivo era um cinza chapado, com
+        <p class="dbox__pq">Por quê: a votação tem data para acabar, e quem
+          desliga a campanha não deveria precisar abrir o código.</p></div>
+    <div class="dbox"><p class="dbox__n">04</p>
+      <h3 class="t20">O grão do hero saiu do Figma como código</h3>
+        <p class="p16">A camada de grão no arquivo era um cinza chapado, com
           o nome pedindo a troca por um PNG. Reproduzi o ruído em CSS com
           <code>feTurbulence</code> — sem arquivo e sem requisição. Quando o PNG chegar, ele assume
           sozinho.</p>
         <p class="dbox__pq">Por quê: entregar dependendo de um asset que ainda não existe é
-          entregar pela metade.</p></div></div>
+          entregar pela metade.</p></div>
   </div>
 </div></section>
 
@@ -398,17 +420,17 @@ Playwright</dd></div>
       <p class="p12">O que a página precisa fazer que a alugada não fazia: marca, hierarquia,
         consentimento e medição. Sai escrito, antes de existir tela.</p>
       <p class="et__d">Decisão minha · o que entra e o que fica de fora</p></div>
-    <div class="et"><div class="et__top"><span class="et__n">02</span><span class="p12">MCP</span></div>
+    <div class="et et--alt"><div class="et__top"><span class="et__n et__n--cinza">02</span><span class="p12">MCP</span></div>
       <h3 class="t18">Figma → Claude</h3><p class="eyebrow" style="font-size:12px">Assistido · transporte</p>
       <p class="p12">O frame é lido por MCP: nós, variáveis, tipografia, grade e assets. Nada é
         descrito de memória.</p></div>
-    <div class="et"><div class="et__top"><span class="et__n">03</span><span class="p12">Figma + código</span></div>
+    <div class="et"><div class="et__top"><span class="et__n et__n--azul">03</span><span class="p12">Figma + código</span></div>
       <h3 class="t18">Sistema, estados e lacunas</h3><p class="eyebrow" style="font-size:12px">Humano · autoral</p>
       <p class="p12">É aqui que o produto acontece. Os 16 tokens viram custom properties com o
         mesmo nome, e as 11 regras de estado, o painel de consentimento e os fallbacks — que o
         frame não previa — são decididos um a um.</p>
       <p class="et__d">Decisão minha · hierarquia, estados, consentimento, fallback</p></div>
-    <div class="et"><div class="et__top"><span class="et__n">04</span><span class="p12">Claude Code</span></div>
+    <div class="et et--alt"><div class="et__top"><span class="et__n et__n--cinza">04</span><span class="p12">Claude Code</span></div>
       <h3 class="t18">Claude → HTML</h3><p class="eyebrow" style="font-size:12px">Assistido · corrigido</p>
       <p class="p12">O código sai com os tokens mapeados um a um, e é revisado à mão antes de virar
         entrega.</p></div>
@@ -436,9 +458,9 @@ Playwright</dd></div>
       molde. O sistema, a suíte e o modo demonstração valem para a próxima superfície da casa sem
       começar do zero.</p>
     <div class="grade2 grade2--3" style="margin-top:20px">
-      <div class="rbox"><p class="p12">Claude Code ⇄ Figma · MCP</p><p class="s16">Leitura e escrita no mesmo laço</p></div>
-      <div class="rbox"><p class="p12">Playwright</p><p class="s16">176 asserções, sem QA manual a cada ajuste</p></div>
-      <div class="rbox"><p class="p12">Boards 16:9</p><p class="s16">Documentação gerada a partir do próprio código</p></div>
+      <div class="rbox rbox--cinza"><p class="p12">Claude Code ⇄ Figma · MCP</p><p class="s16">Leitura e escrita no mesmo laço</p></div>
+      <div class="rbox rbox--cinza"><p class="p12">Playwright</p><p class="s16">176 asserções, sem QA manual a cada ajuste</p></div>
+      <div class="rbox rbox--cinza"><p class="p12">Boards 16:9</p><p class="s16">Documentação gerada a partir do próprio código</p></div>
     </div>
     <p class="p14" style="margin-top:20px">O custo marginal do próximo link-in-bio da casa não é
       uma página nova: é trocar os destinos, rodar a suíte e publicar.</p>
@@ -580,16 +602,16 @@ Playwright</dd></div>
       é de audiência, porque a página está pronta e testada, não publicada.</p>
   </div>
   <div class="grade3">
-    <div class="nbox"><p class="num">3ª</p><p class="p12">geração da página — a primeira própria</p></div>
-    <div class="nbox"><p class="num">1</p><p class="p12">arquivo HTML entregue ao time de dev</p></div>
-    <div class="nbox"><p class="num">0</p><p class="p12">dependências e passos de build</p></div>
-    <div class="nbox"><p class="num">55 KB</p><p class="p12">o HTML; 692 KB com todos os assets</p></div>
-    <div class="nbox"><p class="num">176</p><p class="p12">asserções automatizadas passando</p></div>
-    <div class="nbox"><p class="num">10</p><p class="p12">conjuntos de componentes documentados</p></div>
-    <div class="nbox"><p class="num">35</p><p class="p12">variantes desenhadas nos boards</p></div>
-    <div class="nbox"><p class="num">11</p><p class="p12">regras de estado especificadas</p></div>
-    <div class="nbox"><p class="num">3</p><p class="p12">eventos de telemetria saindo da página</p></div>
-    <div class="nbox"><p class="num">8</p><p class="p12">destinos com hierarquia definida</p></div>
+    <div class="nbox nbox--claro"><p class="num">3ª</p><p class="p12">geração da página — a primeira própria</p></div>
+    <div class="nbox nbox--claro"><p class="num">1</p><p class="p12">arquivo HTML entregue ao time de dev</p></div>
+    <div class="nbox nbox--claro"><p class="num">0</p><p class="p12">dependências e passos de build</p></div>
+    <div class="nbox nbox--claro"><p class="num">55 KB</p><p class="p12">o HTML; 692 KB com todos os assets</p></div>
+    <div class="nbox nbox--claro"><p class="num">176</p><p class="p12">asserções automatizadas passando</p></div>
+    <div class="nbox nbox--claro"><p class="num">10</p><p class="p12">conjuntos de componentes documentados</p></div>
+    <div class="nbox nbox--claro"><p class="num">35</p><p class="p12">variantes desenhadas nos boards</p></div>
+    <div class="nbox nbox--claro"><p class="num">11</p><p class="p12">regras de estado especificadas</p></div>
+    <div class="nbox nbox--claro"><p class="num">3</p><p class="p12">eventos de telemetria saindo da página</p></div>
+    <div class="nbox nbox--claro"><p class="num">8</p><p class="p12">destinos com hierarquia definida</p></div>
   </div>
   <div class="naoaqui">
     <p class="s12">O que não está aqui.</p>
