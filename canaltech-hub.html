@@ -27,9 +27,9 @@
 .bul{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:start}
 .bul span:first-child{color:var(--muted);font-size:12px}
 .bul p{font-weight:400;font-size:12px;line-height:1.5;color:var(--body)}
-.nbox{background:var(--tile);border:1px solid var(--line)}
-.nbox .num{color:var(--ink)}
-.nbox .nbox__d{color:var(--body)}
+.nbox{background:var(--ct-azul);border:1px solid var(--line);padding:22px 20px}
+.nbox .num{color:#f1f1f1}
+.nbox .nbox__d,.nbox .p12{color:#f1f3f5}
 .grade2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grade2--3{grid-template-columns:repeat(3,1fr)}
 .rbox{display:flex;flex-direction:column;gap:8px;padding:22px 24px;
@@ -48,6 +48,8 @@
 .et__d{font-weight:600;font-size:12px;line-height:1.5;color:var(--muted);
   padding-top:8px;margin-top:auto;border-top:1px solid var(--line)}
 .dois{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+/* chamada do hero: 592 + 520 com gap 48, como no frame 277:4905 */
+.chamada{display:grid;grid-template-columns:minmax(0,592fr) minmax(0,520fr);gap:48px;align-items:start}
 .tokens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
 .token{background:var(--tile);border:1px solid var(--line);border-radius:var(--r-xs);overflow:hidden}
 .token i{display:block;height:62px}
@@ -70,10 +72,20 @@
 .grade3{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .naoaqui{background:var(--line);border:1px solid var(--line-3);border-radius:var(--r-lg);
   padding:22px 24px;display:flex;flex-direction:column;gap:6px}
-.comparacao{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comparacao{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+/* 277:5046 "como era": #fefefe / #d5dadf · 277:5075 "como ficou": #d5dadf / #c0c8d0 */
+.comparacao .ad__col{padding:22px 24px;gap:0;background:var(--tile);border-color:var(--line)}
+.comparacao .ad__col--dep{background:var(--line);border-color:var(--line-3)}
+.comparacao .eyebrow{color:var(--body)}
+.comparacao .ad__col--dep .eyebrow{color:var(--ink)}
+.comparacao .passos{padding-top:14px}
+.comparacao .passo{padding-block:9px;border-bottom:1px solid var(--line-3)}
+.comparacao .ad__col--dep .passo{border-bottom-color:var(--line-2)}
+.comparacao .passo:last-child{border-bottom:0}
+.comparacao > div > .p12{padding-top:14px}
 .capturas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:1023px){
-  .espacos,.cons,.dois,.boards,.comparacao,.capturas{grid-template-columns:1fr}
+  .espacos,.cons,.dois,.boards,.comparacao,.capturas,.chamada{grid-template-columns:1fr}
   .etapas{grid-template-columns:1fr 1fr}
   .grade2,.grade2--3,.eventos{grid-template-columns:1fr}
   .ciclo,.comps,.grade3{grid-template-columns:1fr 1fr}
@@ -114,7 +126,7 @@
     <p class="eyebrow">Projeto real · design system, IA no fluxo e código</p>
     <h1 class="h1">O link da bio era alugado. A audiência era nossa — e o dado, de ninguém.</h1>
   </div>
-  <div class="dois" style="gap:48px">
+  <div class="chamada">
     <p class="intro">A Canaltech distribuía oito destinos por um Linktree. Funcionava como índice e
       falhava como produto: sem marca, sem estado, sem consentimento e sem um único evento de
       clique que voltasse para casa. Refiz como página própria — design system, acessibilidade,
@@ -603,8 +615,8 @@ Playwright</dd></div>
     <div class="bul"><span>–</span><p class="p14">Não houve teste com leitor de tela real — só verificação de foco, rótulo, ordem de teclado e contraste.</p></div>
   </div>
   <div class="chips" style="gap:10px">
-    <a class="btn btn--dark" href="#" data-link="prototipo">Ver Protótipo</a>
-    <a class="btn btn--dark" href="#" data-link="html">Baixar HTML</a>
+    <a class="btn btn--dark" href="https://www.figma.com/design/Kvw7C8zKm7ppLMmgFErrf2/CT_Links_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver Protótipo</span></a>
+    <a class="btn btn--dark" href="https://drive.google.com/drive/folders/1X7_uG_CaMZfWMl8K55ng5t3JL-Ukh39u?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg><span>Baixar HTML</span></a>
   </div>
 </div></section>
 
@@ -649,9 +661,9 @@ Playwright</dd></div>
       me chama.</p>
     <div class="acoes">
       <button class="btn btn--light" type="button" data-email="oerickteixeira@gmail.com">
-        <span class="btn__t">Copiar e-mail</span></button>
-      <a class="btn btn--ghost" href="assets/curriculo-erick-teixeira.pdf" target="_blank" rel="noopener">Ver o currículo</a>
-      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener">LinkedIn</a>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 5.5V5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 5v9A1.5 1.5 0 0 0 5.5 15.5H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="btn__t">Copiar e-mail</span></button>
+      <a class="btn btn--ghost" href="https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Ver o currículo</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.1 9.4h2.6V18H7.1V9.4Zm1.3-4.1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM11.4 9.4H14v1.2h.04c.36-.66 1.25-1.36 2.57-1.36 2.75 0 3.26 1.72 3.26 3.96V18h-2.6v-4.25c0-1.02-.02-2.32-1.44-2.32-1.45 0-1.67 1.1-1.67 2.25V18h-2.6V9.4Z"/></svg>LinkedIn</a>
     </div>
     <div class="base"><p>© 2026 Erick Teixeira</p><p>oerickteixeira@gmail.com · São Paulo</p></div>
   </div>

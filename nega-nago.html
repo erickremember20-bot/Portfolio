@@ -8,7 +8,7 @@
 <meta name="description" content="Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta e transformar interesse em agendamento sem sair do WhatsApp." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/case.css" />
 <style>
 /* tokens próprios deste case (paleta do produto Nega Nagô) */
@@ -34,12 +34,41 @@
   border:1px solid var(--line);border-radius:var(--r-sm);background:var(--tile)}
 .etapa--alt{background:var(--shot-bg);border-color:var(--line-3)}
 .etapa__top{display:flex;align-items:center;gap:8px}
-.etapa__n{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+.etapa__n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
   background:var(--ink);color:var(--on-dark);font-weight:700;font-size:12px;line-height:1;flex:none}
-.etapa__f{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted)}
+/* no Figma (277:5930) a etapa 3 — a que acontece dentro do Figma — vem em terracota */
+.etapa__n--marca{background:var(--terracota)}
+/* as etiquetas da ferramenta são pílulas: cinza no cartão claro, branca no cartão cinza
+   e tracejada quando a etapa é uma passagem pelo MCP */
+.etapa__f{font-weight:400;font-size:12px;line-height:1.5;color:var(--ink-2);
+  padding:4px 10px;border-radius:8px;background:#e8e8e9;border:1px solid transparent}
+.etapa--alt .etapa__f{background:#fefefe}
+.etapa__f--mcp,.etapa--alt .etapa__f--mcp{background:transparent;border:1px dashed var(--line-2)}
 .etapa__d{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted);
   padding-top:6px;border-top:1px solid var(--line);margin-top:auto}
 .dois{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+/* chamada do hero: 620 + 500 com gap 40, como no frame 277:5594 */
+.chamada{display:grid;grid-template-columns:minmax(0,620fr) minmax(0,500fr);gap:40px;align-items:start}
+.eyebrow--forte{color:var(--ink)}
+/* antes/depois do Nega Nagô (277:5636): marcador circular #778898 com número claro,
+   fio entre os passos e texto no tom escuro — como no PDF exportado do Figma. */
+.ad__col .passo{grid-template-columns:25px 1fr;gap:14px;padding-block:11px;
+  border-bottom:1px solid var(--line)}
+.ad__col .passo:last-child{border-bottom:0}
+.ad__col .passo__n,.ad__col--dep .passo__n{width:25px;height:25px;border-radius:50%;
+  background:var(--muted);color:#fefefe;font-weight:700;font-size:12px}
+.ad__col .passo p{color:var(--ink)}
+/* 03 · restrições (277:5688): cada linha repete o rótulo da coluna e a terceira
+   coluna vem preenchida com #d5dadf. Larguras 348 / 277 / 535 em 1160. */
+.tab--restr .tab__l{grid-template-columns:348fr 277fr 535fr}
+.tab--restr .tab__c{display:flex;flex-direction:column;gap:10px;padding:22px 24px}
+.tab--restr .tab__c:last-child{background:var(--line)}
+.tab--restr .lb{font-size:11px;letter-spacing:.04em;color:var(--ink-2)}
+/* 04 · o perfil 02 é o destacado no Figma (277:5741): fundo #778898 e texto claro. */
+.card--foco{background:var(--muted);border-color:var(--muted)}
+.card--foco .p12{color:var(--on-dark-3)}
+.card--foco .s16{color:#fefefe}
+.card--foco .p16{color:#eef1f4}
 .ramo__passos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .ramo__p{background:var(--ink);color:var(--on-dark);border-radius:var(--r-xs);padding:16px 18px;
   display:flex;flex-direction:column;gap:4px}
@@ -52,30 +81,42 @@
 .zap{background:var(--zap-fundo);border-radius:var(--r-lg);padding:24px}
 .zap__b{background:#0d2f26;color:#e7f3ec;border-radius:14px;padding:16px 18px;
   font-size:13px;line-height:1.6;white-space:pre-line}
+/* no Figma os trechos entre asteriscos saem em mono verde-menta (277:5866) */
+.zap__b b{font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace);
+  font-weight:700;color:#8ef5c8;letter-spacing:.01em}
 .coer{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .coer__c{background:var(--terracota-esc);color:var(--creme);border-radius:18px;padding:28px;
   display:flex;flex-direction:column;gap:12px}
 .coer__c .p16{color:var(--rosa)}
-.faixa{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
-.faixa i{display:block;height:64px;border-radius:6px}
+.faixa{display:grid;grid-template-columns:repeat(13,1fr);gap:5px}
+/* no Figma cada amostra tem 39 x 223 (277:6069) — proporção mantida em qualquer largura */
+.faixa i{display:block;aspect-ratio:39/223;border-radius:6px}
 .grupos{display:grid;grid-template-columns:635fr 500fr;gap:24px;align-items:start}
+/* o selo de medição é verde no Figma (277:6110): #e8f2e8 com texto #1a6c2a */
 .selo{align-self:flex-start;padding:6px 10px;border-radius:var(--r-pill);
-  background:var(--shot-bg);color:var(--ink-2);font-weight:700;font-size:12px;line-height:1.5}
+  background:#e8f2e8;color:#1a6c2a;font-weight:700;font-size:12px;line-height:1.5}
 .linhas{display:flex;flex-direction:column}
-.linha{display:flex;flex-direction:column;gap:2px;padding-block:12px;border-bottom:1px solid var(--line)}
+/* número à esquerda e descrição à direita, na mesma linha, como no Figma */
+.linha{display:grid;grid-template-columns:168px minmax(0,1fr);gap:12px;align-items:baseline;
+  padding-block:12px;border-bottom:1px solid var(--line)}
 .linha:last-child{border-bottom:0}
 @media (max-width:1023px){
-  .rodadas,.perfis,.telas,.dois,.coer,.grupos,.entrega{grid-template-columns:1fr}
+  .rodadas,.perfis,.telas,.dois,.coer,.grupos,.entrega,.chamada{grid-template-columns:1fr}
   .perfis{grid-template-columns:1fr 1fr}
   .ciclo{grid-template-columns:1fr 1fr}
   .tokens{grid-template-columns:repeat(3,1fr)}
   .faixa{grid-template-columns:repeat(7,1fr)}
+  .linha{grid-template-columns:140px minmax(0,1fr)}
 }
 @media (max-width:767px){
   .perfis,.ciclo,.ramo__passos{grid-template-columns:1fr}
+  .tab--restr .tab__l{grid-template-columns:1fr}
+  .tab--restr .tab__c{border-right:0;border-bottom:1px solid var(--line-3)}
+  .tab--restr .tab__c:last-child{border-bottom:0}
   .tokens{grid-template-columns:1fr 1fr}
   .faixa{grid-template-columns:repeat(5,1fr)}
-  .faixa i{height:44px}
+  .linha{grid-template-columns:1fr;gap:2px}
+  .faixa i{aspect-ratio:39/140}
   .zap{padding:14px}
 }
 </style>
@@ -99,14 +140,14 @@
 <!-- HERO -->
 <section class="wrap sec">
   <div class="stack">
-    <p class="eyebrow">Projeto real · produto, design e código</p>
+    <p class="eyebrow eyebrow--forte">Projeto real · produto, design e código</p>
     <h1 class="h1">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta
       e transformar interesse em agendamento sem sair do WhatsApp.</h1>
     <div class="shot shot--hero" style="aspect-ratio:1160/612">
       <img src="assets/01_phone_laptop.png" width="1160" height="612"
            data-desc="Capa · desktop + celular" alt="A página Nega Nagô no desktop e no celular" />
     </div>
-    <div class="dois" style="gap:40px">
+    <div class="chamada">
       <p class="intro">A Nega Nagô trança há treze anos em São Paulo. O catálogo dela era um print.
         Fiz a pesquisa, o desenho das telas, o design system e o código que entrega tudo isso.</p>
       <aside class="aviso"><p style="font-size:16px;line-height:1.5">
@@ -207,36 +248,31 @@ Higgsfield · Nano Banana 2</dd></div>
     <p class="intro">Nenhuma dessas escolhas saiu de intuição de UX. Saíram de como ela cobra, de
       onde a cliente já está e do que o piloto podia bancar.</p>
   </div>
-  <div class="tab">
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="lb">Restrição</p></div>
-      <div class="tab__c"><p class="lb">O que impõe</p></div>
-      <div class="tab__c"><p class="lb">Como virou tela</p></div>
+  <div class="tab tab--restr">
+    <div class="tab__l">
+      <div class="tab__c"><p class="lb">Restrição</p><p class="p14">Ela compra o material antes de cada atendimento.</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p><p class="p14">Sem adiantamento, o dinheiro sai do bolso dela.</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p><p class="p14">O sinal de 30% aparece calculado em toda tela de preço, junto do total. Nunca no fim, como surpresa.</p></div>
     </div>
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="p16">Ela compra o material antes de cada atendimento.</p></div>
-      <div class="tab__c"><p class="p16">Sem adiantamento, o dinheiro sai do bolso dela.</p></div>
-      <div class="tab__c"><p class="p16">O sinal de 30% aparece calculado em toda tela de preço, junto do total. Nunca no fim, como surpresa.</p></div>
+    <div class="tab__l">
+      <div class="tab__c"><p class="lb">Restrição</p><p class="p14">A cliente já está no WhatsApp quando decide.</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p><p class="p14">Levar ela para um checkout fora dali cria mais um lugar para desistir.</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p><p class="p14">O fluxo termina dentro do WhatsApp. O site escreve a mensagem inteira; ela só aperta enviar.</p></div>
     </div>
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="p16">A cliente já está no WhatsApp quando decide.</p></div>
-      <div class="tab__c"><p class="p16">Levar ela para um checkout fora dali cria mais um lugar para desistir.</p></div>
-      <div class="tab__c"><p class="p16">O fluxo termina dentro do WhatsApp. O site escreve a mensagem inteira; ela só aperta enviar.</p></div>
+    <div class="tab__l">
+      <div class="tab__c"><p class="lb">Restrição</p><p class="p14">O adicional custa diferente conforme a família de trança.</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p><p class="p14">Um valor único estaria errado em metade do catálogo.</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p><p class="p14">Um campo addon por estilo. Cachos a R$ 80 nas nagô, R$ 120 nas box braids, jumbo a R$ 120 no masculino. Quem não tem a opção não vê o campo.</p></div>
     </div>
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="p16">O adicional custa diferente conforme a família de trança.</p></div>
-      <div class="tab__c"><p class="p16">Um valor único estaria errado em metade do catálogo.</p></div>
-      <div class="tab__c"><p class="p16">Um campo addon por estilo. Cachos a R$ 80 nas nagô, R$ 120 nas box braids, jumbo a R$ 120 no masculino. Quem não tem a opção não vê o campo.</p></div>
+    <div class="tab__l">
+      <div class="tab__c"><p class="lb">Restrição</p><p class="p14">Ela atende no estúdio e a domicílio.</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p><p class="p14">Endereço só faz sentido num dos dois casos.</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p><p class="p14">O bloco de endereço só existe na tela quando "a domicílio" está marcado — com busca por CEP ou rua, e confirmação antes de seguir.</p></div>
     </div>
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="p16">Ela atende no estúdio e a domicílio.</p></div>
-      <div class="tab__c"><p class="p16">Endereço só faz sentido num dos dois casos.</p></div>
-      <div class="tab__c"><p class="p16">O bloco de endereço só existe na tela quando "a domicílio" está marcado — com busca por CEP ou rua, e confirmação antes de seguir.</p></div>
-    </div>
-    <div class="tab__l" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="tab__c"><p class="p16">Sem gateway de pagamento no piloto.</p></div>
-      <div class="tab__c"><p class="p16">O site não pode cobrar nada.</p></div>
-      <div class="tab__c"><p class="p16">O site calcula e informa; a cobrança acontece na conversa. A mensagem já sai com a divisão exata: sinal agora, resto no dia.</p></div>
+    <div class="tab__l">
+      <div class="tab__c"><p class="lb">Restrição</p><p class="p14">Sem gateway de pagamento no piloto.</p></div>
+      <div class="tab__c"><p class="lb">O que impõe</p><p class="p14">O site não pode cobrar nada.</p></div>
+      <div class="tab__c"><p class="lb">Como virou tela</p><p class="p14">O site calcula e informa; a cobrança acontece na conversa. A mensagem já sai com a divisão exata: sinal agora, resto no dia.</p></div>
     </div>
   </div>
   <div class="painel" style="padding:40px">
@@ -292,7 +328,7 @@ Higgsfield · Nano Banana 2</dd></div>
     <div class="perfis">
       <div class="card card--sm"><p class="p12">01</p><h4 class="s16" style="margin-top:8px">Cliente recorrente</h4>
         <p class="p16" style="margin-top:8px">Já agenda com a Mayara e sabe os preços de cor. Serve para ver se o fluxo atrapalha quem já tem o caminho na cabeça.</p></div>
-      <div class="card card--sm"><p class="p12">02</p><h4 class="s16" style="margin-top:8px">Consultou e não fechou</h4>
+      <div class="card card--sm card--foco"><p class="p12">02</p><h4 class="s16" style="margin-top:8px">Consultou e não fechou</h4>
         <p class="p16" style="margin-top:8px">Pediu preço e não voltou. É exatamente o perfil que o projeto existe para recuperar.</p></div>
       <div class="card card--sm"><p class="p12">03</p><h4 class="s16" style="margin-top:8px">Contratou uma vez</h4>
         <p class="p16" style="margin-top:8px">Conhece o serviço mas não virou hábito. Mostra o que falta para a segunda vez acontecer sozinha.</p></div>
@@ -343,18 +379,18 @@ Higgsfield · Nano Banana 2</dd></div>
     <div class="stack" style="gap:14px">
       <div class="zap"><p class="zap__b">Oi, Nega Nagô! Vim pelo site e quero agendar 💛
 
-*Nagô Desenhada* — Meio das costas
+<b>*Nagô Desenhada*</b> — Meio das costas
 Duração estimada: cerca de 2 a 4 horas
 Adicional de cachos: sim (+ R$ 80,00)
 
-*Meus dados*
+<b>*Meus dados*</b>
 Nome: Luana
 Local: A domicílio
 Endereço: Rua Tenente Ary Aps, 123 — Apto 42
 Dia: 14 de setembro
 Período: Manhã
 
-*Valores*
+<b>*Valores*</b>
 Total estimado: R$ 290,00
 Sinal agora (30%): R$ 87,00 via Pix
 No dia da beleza: R$ 203,00
@@ -385,13 +421,13 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
       <p class="etapa__d">Decisão minha · o que entra e o que fica de fora</p>
     </div>
     <div class="etapa etapa--alt">
-      <div class="etapa__top"><span class="etapa__n">2</span><span class="etapa__f">MCP</span></div>
+      <div class="etapa__top"><span class="etapa__n">2</span><span class="etapa__f etapa__f--mcp">MCP</span></div>
       <h3 class="t18">Claude → Figma</h3>
       <p class="p14">A estrutura vira frame, componente e token dentro do arquivo, sem eu
         redesenhar à mão o que já estava decidido.</p>
     </div>
     <div class="etapa etapa--alt">
-      <div class="etapa__top"><span class="etapa__n">3</span><span class="etapa__f">Figma</span></div>
+      <div class="etapa__top"><span class="etapa__n etapa__n--marca">3</span><span class="etapa__f">Figma</span></div>
       <h3 class="t18">Baixa → média → alta → protótipo</h3>
       <p class="p14">É aqui que o design acontece. Quatro níveis de fidelidade, cada um resolvendo
         uma pergunta diferente — e é a versão de baixa, em cinza, que foi para a primeira rodada
@@ -399,7 +435,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
       <p class="etapa__d">Decisão minha · hierarquia, ritmo, estados, identidade</p>
     </div>
     <div class="etapa etapa--alt">
-      <div class="etapa__top"><span class="etapa__n">4</span><span class="etapa__f">MCP</span></div>
+      <div class="etapa__top"><span class="etapa__n">4</span><span class="etapa__f etapa__f--mcp">MCP</span></div>
       <h3 class="t18">Figma → Claude</h3>
       <p class="p14">O protótipo final volta como fonte da verdade — geometria, cor e texto lidos
         do arquivo, não descritos de memória.</p>
@@ -429,7 +465,7 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
     <p class="p16" style="margin-top:10px">Nenhuma foto existia. A direção criativa saiu no Claude,
       a partir de referências reais, e virou um contrato visual escrito — manequim, ângulo, fundo,
       luz, matiz alvo. Cada prompt é esse contrato com uma linha trocada. A geração foi no
-      Higgsfield com o Nano Banana 2.</p>
+      <b>Higgsfield com o Nano Banana 2</b>.</p>
     <div class="ramo__passos" style="margin-top:20px">
       <div class="ramo__p"><p class="p12">Claude</p><p class="s16">Direção criativa e prompts</p></div>
       <div class="ramo__p"><p class="p12">Higgsfield · Nano Banana 2</p><p class="s16">Geração das 13 imagens</p></div>
@@ -548,19 +584,19 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
       <div class="faixa">
-        <i style="background:#7e4333"></i>
-        <i style="background:#8d4b39"></i>
-        <i style="background:#98533e"></i>
-        <i style="background:#a25a42"></i>
-        <i style="background:#aa5f45"></i>
-        <i style="background:#b56649"></i>
-        <i style="background:#b86d51"></i>
-        <i style="background:#ba7458"></i>
-        <i style="background:#bd7b5f"></i>
-        <i style="background:#b97354"></i>
-        <i style="background:#b16948"></i>
-        <i style="background:#9f5e41"></i>
-        <i style="background:#90563b"></i>
+        <i style="background:#592f1f"></i>
+        <i style="background:#673d2d"></i>
+        <i style="background:#794938"></i>
+        <i style="background:#803f2f"></i>
+        <i style="background:#593121"></i>
+        <i style="background:#6e3a23"></i>
+        <i style="background:#7c4934"></i>
+        <i style="background:#8e4d34"></i>
+        <i style="background:#77412a"></i>
+        <i style="background:#70412b"></i>
+        <i style="background:#592f1f"></i>
+        <i style="background:#804d36"></i>
+        <i style="background:#7c4128"></i>
       </div>
       <p class="p14">Cor média do fundo, uma amostra por estilo, na ordem do catálogo</p>
     </div>
@@ -633,8 +669,8 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
         passo da pesquisa.</p></div>
   </div>
   <div class="chips" style="gap:10px">
-    <a class="btn btn--dark" href="#" data-link="prototipo">Ver Protótipo</a>
-    <a class="btn btn--dark" href="#" data-link="html">Baixar HTML</a>
+    <a class="btn btn--dark" href="https://www.figma.com/design/DPnAXlPAlYzHfeA6hp1j0i/Nega_Nago_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver Protótipo</span></a>
+    <a class="btn btn--dark" href="https://drive.google.com/drive/folders/1_pO37J2lMBUw9Kema0x5AYgqKkW54W4L?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg><span>Baixar HTML</span></a>
   </div>
 </div></section>
 
@@ -679,9 +715,9 @@ Já vou mandar a foto do meu cabelo solto!</p></div>
       me chama.</p>
     <div class="acoes">
       <button class="btn btn--light" type="button" data-email="oerickteixeira@gmail.com">
-        <span class="btn__t">Copiar e-mail</span></button>
-      <a class="btn btn--ghost" href="assets/curriculo-erick-teixeira.pdf" target="_blank" rel="noopener">Ver o currículo</a>
-      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener">LinkedIn</a>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 5.5V5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 5v9A1.5 1.5 0 0 0 5.5 15.5H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="btn__t">Copiar e-mail</span></button>
+      <a class="btn btn--ghost" href="https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Ver o currículo</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.1 9.4h2.6V18H7.1V9.4Zm1.3-4.1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM11.4 9.4H14v1.2h.04c.36-.66 1.25-1.36 2.57-1.36 2.75 0 3.26 1.72 3.26 3.96V18h-2.6v-4.25c0-1.02-.02-2.32-1.44-2.32-1.45 0-1.67 1.1-1.67 2.25V18h-2.6V9.4Z"/></svg>LinkedIn</a>
     </div>
     <div class="base"><p>© 2026 Erick Teixeira</p><p>oerickteixeira@gmail.com · São Paulo</p></div>
   </div>
