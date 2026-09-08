@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ffffff" />
+<title>CT em Campo · Canaltech × Netshoes — Erick Teixeira</title>
+<meta name="description" content="Case: um patrocinador compra atenção e o portal compartilhado entrega ela de graça. Design system, motion e código de uma ativação de Copa da Canaltech com a Netshoes." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+
+<style>
+/* ==========================================================================
+   TOKENS — lidos nó a nó do Figma (Jb6w9GH2aN7mVVCQseu3n5, página CT EM CAMPO)
+   ========================================================================== */
+:root{
+  /* cor */
+  --ink:#1a1a1a; --ink-2:#3a3a3a; --body:#5e5e5e; --muted:#949494;
+  --page:#ffffff; --surface:#fbfbfb; --surface-2:#f1f1f1; --surface-3:#ededed;
+  --line:#e2e2e2; --line-2:#e4e4e4; --line-3:#d2d2d2; --line-strong:#c6c6c6;
+  --dark:#2e2e2e; --darker:#141414; --on-dark:#fbfbfb;
+
+  /* medida */
+  --wrap:1160px; --pad-x:120px;
+  --r-sm:10px; --r-md:12px; --r-lg:14px; --r-xl:22px; --r-pill:999px;
+
+  /* ritmo vertical */
+  --sec-y:80px;      /* padding das seções */
+  --blk:40px;        /* gap entre blocos da seção */
+  --head-gap:14px;   /* gap do cabeçalho */
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  font-size:15.5px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-weight:700}
+a{color:inherit}
+ul{margin:0;padding:0;list-style:none}
+
+.wrap{width:min(var(--wrap),100% - (var(--pad-x) * 2));margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:where(a,button,[tabindex]):focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+
+/* ---------- escala tipográfica (Inter, valores do Figma) ---------- */
+.eyebrow{font-weight:700;font-size:11.5px;line-height:1;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-2)}
+.label{font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted)}
+.h1{font-weight:800;font-size:48px;line-height:1.06;letter-spacing:-.032em;color:var(--ink)}
+.h2{font-weight:700;font-size:40px;line-height:1.10;letter-spacing:-.028em;color:var(--ink)}
+.lead{font-weight:400;font-size:21px;line-height:1.55;color:var(--body)}
+.intro{font-weight:400;font-size:18px;line-height:1.5;color:var(--body)}
+.prose{font-weight:400;font-size:17px;line-height:1.62;color:var(--body)}
+.txt{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--body)}
+.txt-sm{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.txt-xs{font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
+.mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-weight:400;font-size:11.5px;line-height:1.5;color:var(--muted)}
+
+/* ---------- estrutura de seção ---------- */
+.sec{padding-block:var(--sec-y)}
+/* o topo é fixo: a âncora precisa parar abaixo dele */
+main section[id]{scroll-margin-top:80px}
+.sec + .sec{border-top:1px solid var(--line)}
+.sec__inner{display:flex;flex-direction:column;gap:var(--blk)}
+.head{display:flex;flex-direction:column;gap:var(--head-gap)}
+.head .h2{max-width:900px}
+.head .lead{max-width:820px}
+.body-col{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.body-col--wide{max-width:804px}
+
+/* ---------- cartões e superfícies ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl)}
+.card--sm{border-radius:var(--r-lg)}
+
+/* grupo com fio de 1px entre itens (Figma: container com gap=1) */
+.grid-hair{display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden}
+.grid-hair > *{background:var(--surface)}
+.grid-hair--sm{border-radius:var(--r-lg)}
+</style>
+<style>
+/* ==========================================================================
+   COMPONENTES
+   ========================================================================== */
+
+/* topo */
+.topo{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.topo__inner{display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding-block:18px;min-width:0}
+.topo__nome{font-weight:500;font-size:15px;line-height:1.45;color:var(--ink);white-space:nowrap}
+.menu{display:flex;align-items:center;gap:22px;min-width:0;overflow-x:auto;
+  overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.menu::-webkit-scrollbar{display:none}
+.menu a{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--body);
+  text-decoration:none;white-space:nowrap;transition:color .15s}
+.menu a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:flex;flex-direction:column;align-items:center;gap:var(--blk);
+  padding-block:84px 88px;text-align:left}
+.hero > *{width:100%}
+.hero__cols{display:grid;grid-template-columns:minmax(0,592fr) minmax(0,520fr);gap:48px;align-items:start}
+.aviso{background:var(--surface-3);border:1px solid var(--line-3);border-radius:var(--r-lg);
+  padding:15px 17px;display:flex;flex-direction:column;gap:6px}
+.aviso__t{font-weight:600;font-size:13px;line-height:1.5;color:var(--ink)}
+.aviso__d{font-weight:400;font-size:14px;line-height:1.5;color:var(--body)}
+
+/* ficha técnica */
+.ficha{grid-template-columns:repeat(5,1fr)}
+.ficha__item{display:flex;flex-direction:column;gap:8px;padding:18px 20px;min-height:160px}
+.ficha__v{font-weight:500;font-size:14px;line-height:1.5;color:var(--ink);white-space:pre-line}
+
+/* moldura de imagem */
+.shot{background:var(--line-2);border:1px solid var(--line-strong);border-radius:var(--r-xl);
+  overflow:hidden;display:flex;align-items:center;justify-content:center}
+.shot img{width:100%;height:auto}
+.figura{display:flex;flex-direction:column;gap:12px}
+.figura figcaption{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.par-img{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* placeholder enquanto o asset não chegou */
+.ph{position:relative;width:100%;aspect-ratio:16/9;background:
+  repeating-linear-gradient(45deg,#f4f4f4 0 12px,#efefef 12px 24px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;text-align:center;padding:24px;color:var(--muted)}
+.ph__f{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;
+  color:var(--ink-2);background:#fff;border:1px solid var(--line-3);
+  border-radius:6px;padding:5px 9px;word-break:break-all}
+.ph__d{font-size:12.5px;line-height:1.5;max-width:46ch}
+
+/* espaços (problema / solução) */
+.espacos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.espaco{display:flex;flex-direction:column;gap:6px;padding:18px 24px;
+  background:var(--surface-2);border-radius:var(--r-lg)}
+.espaco p{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--ink)}
+
+/* etapas do double diamond */
+.etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.etapa{display:flex;flex-direction:column;gap:10px;padding-top:14px;
+  border-top:1px solid var(--line-strong)}
+.etapa__n{font-weight:700;font-size:12px;line-height:1;color:var(--muted)}
+.etapa__t{font-weight:700;font-size:21px;line-height:1.3;letter-spacing:-.014em;color:var(--ink)}
+.etapa__f{font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-2)}
+.itens{display:flex;flex-direction:column;gap:9px;padding-top:4px}
+.item-tr{display:grid;grid-template-columns:14px 1fr;gap:8px;align-items:start}
+.item-tr span:first-child{color:var(--muted);font-size:13px;line-height:1.5}
+.item-tr p{font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
+
+/* escopo (chips) */
+.escopo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-top:8px}
+.chip{padding:8px 14px;border-radius:var(--r-pill);background:var(--page);
+  border:1px solid var(--line);font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
+.seta{color:var(--muted);font-size:13px}
+.escopo__nota{width:100%;font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+/* nbox */
+.nboxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.nbox{display:flex;flex-direction:column;gap:10px;padding:22px 20px;min-height:138px;
+  background:var(--page);border:1px solid var(--line);border-radius:var(--r-lg)}
+.nbox__v{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.035em;color:var(--ink)}
+.nbox__v--muted{color:var(--ink-2)}
+.nbox__d{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+</style>
+<style>
+/* antes / depois */
+.ad{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ad__col{display:flex;flex-direction:column;gap:18px;padding:28px 26px;
+  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
+.ad__col--depois{background:var(--surface-3);border-color:var(--line-3)}
+.passos{display:flex;flex-direction:column}
+.passo{display:grid;grid-template-columns:21px 1fr;gap:13px;align-items:start;
+  padding-block:11px}
+.passo__n{width:21px;height:21px;border-radius:6px;display:grid;place-items:center;
+  background:var(--surface-2);color:var(--muted);
+  font-weight:700;font-size:11.5px;line-height:1;flex:none}
+.ad__col--depois .passo__n{background:var(--dark);color:var(--on-dark)}
+.passo p{font-weight:400;font-size:15px;line-height:1.55;color:var(--body)}
+.ad__nota{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+/* tabela de itens (restrições, achados) */
+.tab__item{display:grid;grid-template-columns:320px 1fr;gap:32px;padding:22px 24px}
+.tab__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
+.tab__d{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--body)}
+
+/* brandbook */
+.bb{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden}
+.bb__tipo{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:26px 28px;
+  border-bottom:1px solid var(--line)}
+.especime{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  padding:18px 24px;background:var(--surface-2);border-radius:var(--r-md);
+  min-height:121px}
+.especime__aa{font-weight:800;font-size:58px;line-height:1.06;letter-spacing:-.032em;color:var(--ink)}
+.especime__n{font-weight:400;font-size:13px;line-height:1.5;color:var(--muted)}
+.escala{display:flex;flex-direction:column}
+.escala__row{display:grid;grid-template-columns:1fr 120px 120px 120px;gap:0;
+  align-items:center;padding-block:9px;border-bottom:1px solid var(--line-2)}
+.escala__row--head{padding-block:6px;border-bottom:1px solid var(--line-strong)}
+.escala__row:last-child{border-bottom:0}
+.escala__nome{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink-2)}
+.escala__vals{display:contents}
+.escala__nota{padding-top:12px;font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.bb__cor{display:flex;flex-direction:column;gap:14px;padding:24px 28px 26px}
+.rampa{display:flex;flex-direction:column;gap:7px}
+.rampa__n{font-weight:600;font-size:13px;line-height:1.5;color:var(--ink)}
+.faixa{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.amostra{display:flex;flex-direction:column;gap:5px;min-width:0}
+.amostra i{display:block;height:34px;border-radius:7px;border:1px solid var(--line-strong)}
+.amostra span{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;
+  line-height:1.5;color:var(--muted);text-align:center}
+.amostra--vazia i{background:transparent;border:1px dashed var(--line-strong)}
+
+/* método / pipeline */
+.ciclo{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pas{display:flex;flex-direction:column;gap:8px;padding:20px;
+  background:var(--page);border:1px solid var(--line);border-radius:var(--r-lg)}
+.pas__n{font-weight:700;font-size:12px;line-height:1;color:var(--muted)}
+.pas__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
+.pas__f{font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-2)}
+.pas__d{font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
+
+/* números */
+.grupos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grupo{display:flex;flex-direction:column;gap:12px;padding:32px;
+  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
+.selo{align-self:flex-start;padding:6px 9px;border-radius:var(--r-pill);
+  background:var(--surface-3);color:var(--ink-2);
+  font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
+.grupo__sub{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.linhas{display:flex;flex-direction:column}
+.linha{display:flex;flex-direction:column;gap:2px;padding-block:13px;
+  border-bottom:1px solid var(--line-2)}
+.linha:last-child{border-bottom:0}
+.linha__v{font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.02em;color:var(--ink)}
+.linha__v--sys{color:var(--ink-2)}
+.linha__d{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.nota-fecho{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--body);max-width:1160px}
+
+/* em aberto */
+.aberto__item{display:flex;flex-direction:column;gap:7px;padding:22px 24px}
+.aberto__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
+.aberto__d{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--body)}
+
+/* ver mais */
+.projetos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.projeto{display:flex;flex-direction:column;gap:7px;padding:26px 24px;
+  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
+.projeto__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
+.projeto__d{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--muted)}
+
+/* contato */
+.contato{display:flex;flex-direction:column;gap:18px;padding-block:88px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;padding-top:18px}
+.btn{display:inline-flex;align-items:center;padding:12px 20px;border-radius:var(--r-sm);
+  font-weight:600;font-size:15px;line-height:1.5;text-decoration:none;transition:opacity .15s}
+.btn--p{background:var(--dark);color:var(--on-dark)}
+.btn--p:hover{opacity:.86}
+.btn--s{background:var(--page);color:var(--ink);border:1px solid var(--line)}
+.btn--s:hover{border-color:var(--line-strong)}
+.base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding-top:28px;margin-top:10px;border-top:1px solid var(--line)}
+.base p{font-weight:400;font-size:13px;line-height:1.5;color:var(--muted)}
+</style>
+<style>
+/* ==========================================================================
+   RESPONSIVO — o Figma tem só o desktop 1400; abaixo disso é adaptação
+   ========================================================================== */
+
+/* --- abaixo de 1400 a margem cede primeiro, para o container segurar 1160 --- */
+@media (max-width:1399px){ :root{--pad-x:56px} }
+
+/* --- 1280px: primeiras quebras de proporcao --- */
+@media (max-width:1279px){
+  .hero__cols{grid-template-columns:minmax(0,1fr) minmax(0,.78fr);gap:32px}
+  .tab__item{grid-template-columns:260px 1fr;gap:24px}
+  .bb__tipo{grid-template-columns:170px 1fr;gap:28px}
+}
+
+/* --- 940px: o nome + 7 itens de menu param de caber numa linha --- */
+@media (max-width:939px){
+  .topo__inner{flex-direction:column;align-items:flex-start;gap:10px;padding-block:12px}
+  .topo__nome{font-size:14px}
+  main section[id]{scroll-margin-top:104px}
+  .menu{gap:18px;width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;padding-bottom:2px}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{font-size:13.5px}
+}
+
+/* --- 1024px: quebras de 4/5 colunas --- */
+@media (max-width:1023px){
+  :root{--pad-x:40px;--sec-y:64px;--blk:32px}
+  .h1{font-size:40px}
+  .h2{font-size:33px}
+  .lead{font-size:19px}
+  .hero{padding-block:56px 64px}
+  .hero__cols{grid-template-columns:1fr;gap:24px}
+  .aviso{max-width:640px}
+  .ficha{grid-template-columns:repeat(3,1fr)}
+  .ficha__item{min-height:0}
+  .etapas{grid-template-columns:repeat(2,1fr);gap:24px}
+  .ciclo{grid-template-columns:repeat(3,1fr)}
+  .pipeline{grid-template-columns:repeat(2,1fr)}
+  .escala__row{grid-template-columns:1fr 92px 92px 92px}
+}
+
+/* --- 768px: tudo em coluna única --- */
+@media (max-width:767px){
+  :root{--pad-x:20px;--sec-y:52px;--blk:26px;--head-gap:12px}
+  body{font-size:15px}
+
+  .h1{font-size:31px;letter-spacing:-.026em;line-height:1.12}
+  .h2{font-size:25px;letter-spacing:-.022em;line-height:1.16}
+  .lead{font-size:17px}
+  .intro{font-size:16.5px}
+  .prose{font-size:16px}
+  .txt,.aberto__d,.tab__d{font-size:15px}
+  /* no Figma o eyebrow é uma linha só (lh 100%); no mobile ele quebra,
+     então precisa de entrelinha para as duas linhas não se tocarem */
+  .eyebrow{font-size:10.5px;letter-spacing:.12em;line-height:1.45}
+  .label,.etapa__f,.pas__f{line-height:1.4}
+
+  .hero{padding-block:36px 48px;gap:24px}
+  .shot--pad{padding:12px}
+
+  /* ficha técnica: 5 itens em 2 colunas, o último ocupa a linha inteira */
+  .ficha{grid-template-columns:1fr 1fr}
+  .ficha__item{padding:14px 16px;gap:6px}
+  .ficha__item:last-child{grid-column:1 / -1}
+  .ficha__v{font-size:13.5px}
+
+  .espacos,.etapas,.ad,.grupos,.projetos,.par,.par-img{grid-template-columns:1fr}
+  .etapas{gap:20px}
+  .nboxes{grid-template-columns:1fr 1fr;gap:10px}
+  .nbox{padding:16px 16px;min-height:0;gap:6px}
+  .nbox__v{font-size:31px}
+  .nbox__d{font-size:13px}
+
+  .espaco{padding:14px 18px}
+  .ad__col{padding:20px 18px;gap:14px}
+  .ciclo,.pipeline{grid-template-columns:1fr;gap:10px}
+  .pas{padding:16px}
+
+  /* tabelas (restrições, achados): título acima da descrição */
+  .tab__item{grid-template-columns:1fr;gap:8px;padding:18px 18px}
+  .tab__t{font-size:16px}
+
+  .aberto__item{padding:18px 18px}
+  .aberto__t{font-size:16px}
+  .projeto{padding:20px 18px}
+  .grupo{padding:22px 18px}
+  .linha__v{font-size:18px}
+
+  /* brandbook */
+  .bb__tipo{grid-template-columns:1fr;gap:20px;padding:18px}
+  .especime{min-height:96px;padding:14px}
+  .especime__aa{font-size:44px}
+  .bb__cor{padding:18px}
+
+  /* escala: nome em cima, os três valores em linha embaixo */
+  .escala__row{grid-template-columns:1fr;gap:2px;padding-block:11px}
+  .escala__row--head{display:none}
+  .escala__nome{font-size:16px}
+  .escala__vals{display:flex;gap:16px}
+  .escala__vals .mono::before{content:attr(data-l) " ";color:var(--line-strong)}
+
+  /* rampas: rolagem horizontal preserva a leitura do hex */
+  .rampa{min-width:0}
+  .faixa-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    margin-inline:-18px;padding-inline:18px;scrollbar-width:thin}
+  .faixa{grid-template-columns:repeat(10,68px);gap:5px}
+  .amostra i{height:28px}
+  .amostra span{font-size:10.5px}
+
+  .contato{padding-block:52px}
+  .acoes{padding-top:12px}
+  .btn{padding:11px 18px;font-size:14.5px}
+  .base{flex-direction:column;gap:6px;padding-top:20px}
+
+  .figura{gap:10px}
+  .figura figcaption{font-size:13.5px}
+  .ph{aspect-ratio:4/3;padding:16px;gap:6px}
+  .ph__d{font-size:12px}
+}
+
+@media (max-width:400px){
+  .nboxes{grid-template-columns:1fr}
+  .ficha{grid-template-columns:1fr}
+  .ficha__item:last-child{grid-column:auto}
+}
+
+@media print{
+  .topo{position:static}
+  .sec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a href="#conteudo" class="sr-only">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap topo__inner">
+    <span class="topo__nome">Erick · product &amp; design engineer</span>
+    <nav class="menu" aria-label="Seções do case">
+      <a href="#problema">Problema</a>
+      <a href="#restricoes">Restrições</a>
+      <a href="#metodo">Método</a>
+      <a href="#sistema">Sistema</a>
+      <a href="#engenharia">Engenharia</a>
+      <a href="#numeros">Números</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ======================= HERO ======================= -->
+<section class="wrap hero">
+  <p class="eyebrow">PROJETO REAL · DESIGN SYSTEM, MOTION E CÓDIGO</p>
+  <h1 class="h1">Um patrocinador compra atenção. O portal compartilhado entrega ela de graça.</h1>
+
+  <div class="hero__cols">
+    <p class="intro">A Canaltech vendeu uma ativação de Copa para a Netshoes e o formato disponível
+      era o template do portal — com anúncios, recomendações e marcas concorrentes dividindo a tela.
+      Troquei por uma superfície dedicada. Fiz o sistema, a acessibilidade, o motion e o código.</p>
+    <aside class="aviso">
+      <p class="aviso__t">Sobre os números.</p>
+      <p class="aviso__d">Campanha entregue e no ar. O que está medido aqui é o produto — contraste,
+        tokens, escopo, prazo. Não tenho dado de conversão da Netshoes, e a seção de números diz
+        isso explicitamente em vez de estimar.</p>
+    </aside>
+  </div>
+
+  <div class="shot">
+    <img src="assets/case-capa-ct-em-campo.png" width="1160" height="653"
+         data-desc="Capa · dois celulares com a página CT em Campo"
+         alt="Dois celulares lado a lado exibindo a página CT em Campo" />
+  </div>
+
+  <dl class="grid-hair grid-hair--sm ficha">
+    <div class="ficha__item"><dt class="label">CLIENTE</dt>
+      <dd class="ficha__v">Canaltech × Netshoes ativação patrocinada</dd></div>
+    <div class="ficha__item"><dt class="label">PAPEL</dt>
+      <dd class="ficha__v">Design systems e design engineer</dd></div>
+    <div class="ficha__item"><dt class="label">ENTREGAS</dt>
+      <dd class="ficha__v">Brandbook · UI · design system · motion · front-end</dd></div>
+    <div class="ficha__item"><dt class="label">FEITO COM</dt>
+      <dd class="ficha__v">Claude Code ⇄ Figma via MCP
+HTML, CSS e JS · After Effects
+Higgsfield · Nano Banana 2</dd></div>
+    <div class="ficha__item"><dt class="label">PERÍODO</dt>
+      <dd class="ficha__v">2026 · 15 dias · solo</dd></div>
+  </dl>
+</section>
+
+<!-- ======================= VISÃO GERAL ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">VISÃO GERAL · DOUBLE DIAMOND</p>
+    <h2 class="h2">O processo inteiro em uma tela, se você só tiver um minuto</h2>
+    <p class="lead">Onde a atenção do patrocinador estava se perdendo, e o que virou padrão depois.
+      As quatro etapas abaixo abrem em detalhe no resto da página.</p>
+  </div>
+
+  <div class="espacos">
+    <div class="espaco"><p class="label">ESPAÇO DO PROBLEMA</p>
+      <p>Onde a atenção do patrocinador estava se perdendo</p></div>
+    <div class="espaco"><p class="label" style="color:var(--ink-2)">ESPAÇO DA SOLUÇÃO</p>
+      <p>Uma página à altura da campanha</p></div>
+  </div>
+
+  <div class="etapas">
+    <div class="etapa">
+      <p class="etapa__n">01</p><h3 class="etapa__t">Descobrir</h3><p class="etapa__f">DIVERGE</p>
+      <div class="itens">
+        <div class="item-tr"><span>–</span><p>Uma marca patrocina uma oferta e ela sai para nossa comunidade orgânica de mais de 400 mil pessoas</p></div>
+        <div class="item-tr"><span>–</span><p>O link caía na página de oferta dentro do portal, cercada de "Últimas Ofertas" e marcas concorrentes</p></div>
+        <div class="item-tr"><span>–</span><p>Vendas e marketing repetiam a mesma queixa: o patrocinador dividia a prateleira que tinha pago</p></div>
+        <div class="item-tr"><span>–</span><p>A audiência chega pela confiança na nossa curadoria, não por mídia paga — e essa confiança é o ativo da campanha</p></div>
+      </div>
+    </div>
+    <div class="etapa">
+      <p class="etapa__n">02</p><h3 class="etapa__t">Definir</h3><p class="etapa__f">CONVERGE</p>
+      <div class="itens">
+        <div class="item-tr"><span>–</span><p>O problema não era a oferta, era o destino: a landing não pertencia à campanha</p></div>
+        <div class="item-tr"><span>–</span><p>A campanha já cobria todos os touchpoints — só o fundo do funil seguia genérico</p></div>
+        <div class="item-tr"><span>–</span><p>Critério de design: uma página, um produto, sem saída</p></div>
+        <div class="item-tr"><span>–</span><p>O que estava em jogo não era layout, era a promessa comercial feita ao patrocinador</p></div>
+      </div>
+    </div>
+    <div class="etapa">
+      <p class="etapa__n">03</p><h3 class="etapa__t">Desenvolver</h3><p class="etapa__f">DIVERGE</p>
+      <div class="itens">
+        <div class="item-tr"><span>–</span><p>Uma página dedicada a um único produto: sem menu, sem ofertas laterais, sem links de saída</p></div>
+        <div class="item-tr"><span>–</span><p>A identidade da campanha aplicada à página: logo CT em Campo, key visual e paleta</p></div>
+        <div class="item-tr"><span>–</span><p>Decisão acima da dobra: cupom pré-aplicado, contagem regressiva e selo de curadoria</p></div>
+        <div class="item-tr"><span>–</span><p>Mobile first: a comunidade chega do WhatsApp, quase inteira no celular</p></div>
+      </div>
+    </div>
+    <div class="etapa">
+      <p class="etapa__n">04</p><h3 class="etapa__t">Entregar</h3><p class="etapa__f">CONVERGE</p>
+      <div class="itens">
+        <div class="item-tr"><span>–</span><p>Desktop 1400 e mobile 360, com preço fixo, cupom e barra de CTA no mobile</p></div>
+        <div class="item-tr"><span>–</span><p>Netshoes na Copa como primeira aplicação do formato</p></div>
+        <div class="item-tr"><span>–</span><p>Adotado como o jeito padrão de o CT Ofertas rodar campanhas</p></div>
+        <div class="item-tr"><span>–</span><p>Uma estrutura reaproveitável: a próxima campanha troca marca, produto e key visual</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="escopo">
+    <p class="label" style="width:100%">MEU ESCOPO</p>
+    <span class="chip">Marca da campanha</span><span class="seta">→</span>
+    <span class="chip">Key visual</span><span class="seta">→</span>
+    <span class="chip">Assets e comunidade</span><span class="seta">→</span>
+    <span class="chip">Landing page</span>
+    <p class="escopo__nota">A campanha inteira, da criação da marca ao fundo do funil.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 01 · PROBLEMA ======================= -->
+<section class="sec" id="problema"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">01 · O PROBLEMA</p>
+    <h2 class="h2">A página existia. A exclusividade, não.</h2>
+    <p class="lead">O CT Ofertas roda num template de portal: lista de produtos, anúncios de rede,
+      módulo de recomendação, marcas concorrentes na lateral. É um bom formato para descoberta.
+      É um formato ruim para vender exclusividade.</p>
+  </div>
+  <div class="nboxes">
+    <div class="nbox"><p class="nbox__v">18</p><p class="nbox__d">touchpoints entre social, vídeo e web</p></div>
+    <div class="nbox"><p class="nbox__v">15</p><p class="nbox__d">dias entre o briefing e o handoff</p></div>
+    <div class="nbox"><p class="nbox__v">1</p><p class="nbox__d">designer, sem time de front-end do outro lado</p></div>
+    <div class="nbox"><p class="nbox__v nbox__v--muted">0</p><p class="nbox__d">verba de mídia paga para levar tráfego até lá</p></div>
+  </div>
+</div></section>
+
+<!-- ======================= 02 · ANTES E DEPOIS ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">02 · ANTES E DEPOIS</p>
+    <h2 class="h2">A reformulação não foi estética. Foi estrutural.</h2>
+    <p class="lead">O mesmo objetivo — comprar o produto patrocinado — pelos dois caminhos.
+      O que sai não é decoração: são os desvios que a página oferecia para o leitor sair dela.</p>
+  </div>
+
+  <div class="ad">
+    <div class="ad__col">
+      <p class="label" style="letter-spacing:.13em;font-size:11.5px">COMO ERA</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p>Leitor chega pelo link da oferta</p></div>
+        <div class="passo"><span class="passo__n">2</span><p>Encontra o produto numa lista com outros</p></div>
+        <div class="passo"><span class="passo__n">3</span><p>Passa por anúncio de rede e marca concorrente</p></div>
+        <div class="passo"><span class="passo__n">4</span><p>Procura o cupom, que está em outro lugar</p></div>
+        <div class="passo"><span class="passo__n">5</span><p>Sai para o e-commerce e aplica o cupom lá</p></div>
+        <div class="passo"><span class="passo__n">6</span><p>Compra — ou desiste em algum dos desvios</p></div>
+      </div>
+      <p class="ad__nota">Os passos 3, 4 e 5 são fuga. Cada um deles é uma porta para fora da
+        campanha que o patrocinador financiou.</p>
+    </div>
+    <div class="ad__col ad__col--depois">
+      <p class="label" style="letter-spacing:.13em;font-size:11.5px;color:var(--ink-2)">COMO FICOU</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p>Leitor chega numa superfície só do patrocinador</p></div>
+        <div class="passo"><span class="passo__n">2</span><p>Vê preço, prazo e cupom já aplicado na mesma tela</p></div>
+        <div class="passo"><span class="passo__n">3</span><p>Compra pelo CTA fixo, sem procurar nada</p></div>
+      </div>
+      <p class="ad__nota">Nenhum passo oferece uma saída. O cupom vem pré-aplicado, a navegação é
+        fixa no mobile e a contagem regressiva mantém o prazo à vista.</p>
+    </div>
+  </div>
+
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-antes-depois-desktop-mobile.png" width="1160" height="653"
+           data-desc="A página de oferta dedicada em desktop e mobile"
+           alt="A página de oferta dedicada mostrada em desktop e em mobile" />
+    </div>
+    <figcaption>1. A mesma oferta nos dois tamanhos. O que estava disperso no template virou uma
+      coluna só: produto, preço, prazo, cupom e CTA.</figcaption>
+  </figure>
+</div></section>
+
+<!-- ======================= 03 · RESTRIÇÕES ======================= -->
+<section class="sec" id="restricoes"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">03 · RESTRIÇÕES</p>
+    <h2 class="h2">As decisões de tela vieram do contrato, não do gosto</h2>
+    <p class="lead">Três restrições comerciais definiram a superfície antes de existir qualquer
+      pixel. Elas explicam por que a página tem a forma que tem.</p>
+  </div>
+
+  <div class="grid-hair">
+    <div class="tab__item">
+      <h3 class="tab__t">Exclusividade é o produto</h3>
+      <p class="tab__d">Se o patrocinador comprou a tela, nada de terceiro entra nela — nem anúncio
+        de rede, nem recomendação, nem marca concorrente. Isso elimina módulos inteiros do template
+        padrão e é o motivo de a página ser uma coluna só.</p>
+    </div>
+    <div class="tab__item">
+      <h3 class="tab__t">O formato precisa servir ao próximo patrocinador</h3>
+      <p class="tab__d">Uma peça sob medida para a Netshoes seria descartável. Então tudo que é de
+        marca virou variável, com dois modos, e a estrutura ficou independente de quem ocupa o espaço.</p>
+    </div>
+    <div class="tab__item">
+      <h3 class="tab__t">Não há time de front-end na outra ponta</h3>
+      <p class="tab__d">A entrega tinha que sair pronta, não especificada — o que empurrou a decisão
+        de tokenizar o sistema para espelhar o CSS desde o começo.</p>
+    </div>
+  </div>
+
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-key-visual-arquibancada.png" width="1160" height="653"
+           data-desc="Key visual: arquibancada formando o logo CT em Campo"
+           alt="Key visual da campanha: arquibancada formando o logo CT em Campo" />
+    </div>
+    <figcaption>2. O key visual é a única peça em que a marca do patrocinador aparece sozinha e em
+      tamanho cheio. Todo o resto da página é estrutura reaproveitável.</figcaption>
+  </figure>
+</div></section>
+
+<!-- ======================= 04 · BRANDBOOK ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">04 · BRANDBOOK</p>
+    <h2 class="h2">Escrevi as fundações antes de desenhar a primeira tela</h2>
+    <p class="lead">Tipografia e cor definidas como escala, não como escolha peça a peça. É o que
+      mantém dezoito touchpoints parecendo a mesma campanha sem eu revisar um por um.</p>
+  </div>
+
+  <div class="body-col">
+    <p class="prose">A rampa completa existe por um motivo prático: quando o contraste do CTA
+      falhou, eu tinha para onde subir sem inventar uma cor nova. Corrigi no token, e a correção
+      desceu sozinha para todas as peças.</p>
+  </div>
+
+  <div class="bb">
+    <div class="bb__tipo">
+      <div class="especime"><span class="especime__aa">Aa</span><span class="especime__n">Barlow</span></div>
+      <div>
+        <div class="escala">
+          <div class="escala__row escala__row--head">
+            <span class="label">ESTILO</span><span class="label">PESO</span>
+            <span class="label">TAMANHO</span><span class="label">ENTRELINHA</span>
+          </div>
+          <div class="escala__row">
+            <span class="escala__nome">Heading/h1</span>
+            <span class="escala__vals"><span class="mono">800</span><span class="mono">44px</span><span class="mono">110%</span></span>
+          </div>
+          <div class="escala__row">
+            <span class="escala__nome">Heading/h4</span>
+            <span class="escala__vals"><span class="mono">700</span><span class="mono">36px</span><span class="mono">110%</span></span>
+          </div>
+          <div class="escala__row">
+            <span class="escala__nome">Heading/h9</span>
+            <span class="escala__vals"><span class="mono">700</span><span class="mono">18px</span><span class="mono">110%</span></span>
+          </div>
+          <div class="escala__row">
+            <span class="escala__nome">Body/large</span>
+            <span class="escala__vals"><span class="mono">400</span><span class="mono">16px</span><span class="mono">150%</span></span>
+          </div>
+          <div class="escala__row">
+            <span class="escala__nome">Body/legal</span>
+            <span class="escala__vals"><span class="mono">400</span><span class="mono">10px</span><span class="mono">150%</span></span>
+          </div>
+        </div>
+        <p class="escala__nota">Nove níveis de heading e quatro de corpo. Aqui estão cinco — os treze
+          estão no arquivo, cada um com peso, tamanho, entrelinha e tracking travados.</p>
+      </div>
+    </div>
+
+    <div class="bb__cor">
+      <p class="label">COR · RAMPAS DE MARCA, 50 A 900</p>
+      <div class="rampa"><p class="rampa__n">Blue</p>
+        <div class="faixa-scroll"><div class="faixa">
+          <div class="amostra"><i style="background:#e6ebff"></i><span>e6ebff</span></div>
+          <div class="amostra"><i style="background:#b0c2ff"></i><span>b0c2ff</span></div>
+          <div class="amostra"><i style="background:#8aa4ff"></i><span>8aa4ff</span></div>
+          <div class="amostra"><i style="background:#547aff"></i><span>547aff</span></div>
+          <div class="amostra"><i style="background:#3361ff"></i><span>3361ff</span></div>
+          <div class="amostra"><i style="background:#0039ff"></i><span>0039ff</span></div>
+          <div class="amostra"><i style="background:#0034e8"></i><span>0034e8</span></div>
+          <div class="amostra"><i style="background:#0028b5"></i><span>0028b5</span></div>
+          <div class="amostra"><i style="background:#001f8c"></i><span>001f8c</span></div>
+          <div class="amostra"><i style="background:#00186b"></i><span>00186b</span></div>
+        </div></div>
+      </div>
+      <div class="rampa"><p class="rampa__n">Green</p>
+        <div class="faixa-scroll"><div class="faixa">
+          <div class="amostra"><i style="background:#e6f5eb"></i><span>e6f5eb</span></div>
+          <div class="amostra"><i style="background:#b0dfbf"></i><span>b0dfbf</span></div>
+          <div class="amostra"><i style="background:#8acfa1"></i><span>8acfa1</span></div>
+          <div class="amostra"><i style="background:#54b976"></i><span>54b976</span></div>
+          <div class="amostra"><i style="background:#33ac5b"></i><span>33ac5b</span></div>
+          <div class="amostra"><i style="background:#009732"></i><span>009732</span></div>
+          <div class="amostra"><i style="background:#00892e"></i><span>00892e</span></div>
+          <div class="amostra"><i style="background:#006b24"></i><span>006b24</span></div>
+          <div class="amostra"><i style="background:#00531c"></i><span>00531c</span></div>
+          <div class="amostra"><i style="background:#003f15"></i><span>003f15</span></div>
+        </div></div>
+      </div>
+      <div class="rampa"><p class="rampa__n">Yellow</p>
+        <div class="faixa-scroll"><div class="faixa">
+          <div class="amostra"><i style="background:#fffee6"></i><span>fffee6</span></div>
+          <div class="amostra"><i style="background:#fffab0"></i><span>fffab0</span></div>
+          <div class="amostra"><i style="background:#fff88a"></i><span>fff88a</span></div>
+          <div class="amostra"><i style="background:#fff554"></i><span>fff554</span></div>
+          <div class="amostra"><i style="background:#fff333"></i><span>fff333</span></div>
+          <div class="amostra"><i style="background:#fff000"></i><span>fff000</span></div>
+          <div class="amostra"><i style="background:#e8da00"></i><span>e8da00</span></div>
+          <div class="amostra"><i style="background:#b5aa00"></i><span>b5aa00</span></div>
+          <div class="amostra"><i style="background:#8c8400"></i><span>8c8400</span></div>
+          <div class="amostra"><i style="background:#6b6500"></i><span>6b6500</span></div>
+        </div></div>
+      </div>
+      <div class="rampa"><p class="rampa__n">Gray</p>
+        <div class="faixa-scroll"><div class="faixa">
+          <div class="amostra"><i style="background:#ffffff"></i><span>ffffff</span></div>
+          <div class="amostra"><i style="background:#e8e8e8"></i><span>e8e8e8</span></div>
+          <div class="amostra"><i style="background:#b6b6b6"></i><span>b6b6b6</span></div>
+          <div class="amostra"><i style="background:#626262"></i><span>626262</span></div>
+          <div class="amostra"><i style="background:#434343"></i><span>434343</span></div>
+          <div class="amostra"><i style="background:#141414"></i><span>141414</span></div>
+          <div class="amostra"><i style="background:#121212"></i><span>121212</span></div>
+          <div class="amostra"><i style="background:#0e0e0e"></i><span>0e0e0e</span></div>
+          <div class="amostra"><i style="background:#0b0b0b"></i><span>0b0b0b</span></div>
+          <div class="amostra amostra--vazia"><i></i><span>—</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="txt-sm" style="max-width:1160px">As amostras trazem os valores reais da campanha, não
+    cinza de wireframe — os nomes espelham as custom properties do CSS. A rampa cinza para em 800:
+    para fundo preto integral a referência é gray-500. É neste nível que o CTA foi corrigido de
+    3.84:1 para 4.55:1, no token e não no botão.</p>
+</div></section>
+
+<!-- ======================= 05 · DIREÇÃO E GERAÇÃO ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">05 · DIREÇÃO E GERAÇÃO</p>
+    <h2 class="h2">A direção é minha. O modelo só executa.</h2>
+    <p class="lead">Nenhuma foto de produto em contexto de Copa existia, e não havia verba nem prazo
+      para produção fotográfica. Dirigi as peças e gerei com IA, com acabamento manual.</p>
+  </div>
+  <div class="body-col body-col--wide">
+    <p class="prose">O fluxo tem cinco etapas e só uma delas é o modelo: referência escolhida à mão,
+      direção de arte escrita, geração assistida, revisão e acabamento no Photoshop. A referência e
+      a direção são autorais; a geração é assistida; o grading é manual.</p>
+    <p class="prose">O pipeline é rápido porque a direção está decidida antes do primeiro prompt.
+      Seis peças prontas para campanha em dois dias — escopo que antes exigiria produção
+      fotográfica, licenciamento ou banco de imagens.</p>
+  </div>
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-direcao-fluxo-geracao.png" width="1160" height="653"
+           data-desc="Diagrama do fluxo: referência, direção, geração, acabamento"
+           alt="Diagrama do fluxo de trabalho: referência, direção, geração e acabamento" />
+    </div>
+    <figcaption>3. As duas peças-chave do briefing à arte-final. A coluna cinza é a única parte
+      automatizada; tudo antes e depois dela é decisão.</figcaption>
+  </figure>
+</div></section>
+
+<!-- ======================= 06 · MÉTODO ======================= -->
+<section class="sec" id="metodo"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">06 · MÉTODO</p>
+    <h2 class="h2">Cinco etapas. As duas primeiras não se delegam.</h2>
+    <p class="lead">Toda campanha passa pelo mesmo caminho. Contrato e direção são julgamento e
+      ficam comigo; as três últimas são vazão, e são a razão de uma ativação inteira sair em quinze
+      dias em vez de seis semanas.</p>
+  </div>
+  <div class="ciclo">
+    <div class="pas"><p class="pas__n">01</p><h3 class="pas__t">Contrato de mídia</h3>
+      <p class="pas__f">HUMANO · DECISÃO</p>
+      <p class="pas__d">O que o patrocinador comprou, e o que o template do portal entrega de graça.
+        Define a superfície antes de qualquer desenho.</p></div>
+    <div class="pas"><p class="pas__n">02</p><h3 class="pas__t">Direção de arte</h3>
+      <p class="pas__f">HUMANO · DECISÃO</p>
+      <p class="pas__d">Referência, paleta e linguagem de movimento definidas à mão. Toda etapa
+        seguinte herda essas restrições.</p></div>
+    <div class="pas"><p class="pas__n">03</p><h3 class="pas__t">Sistema</h3>
+      <p class="pas__f">HUMANO · AUTORAL</p>
+      <p class="pas__d">Tokens, variantes e estados de interação montados no Figma. Contraste e alvo
+        de toque travados na variável.</p></div>
+    <div class="pas"><p class="pas__n">04</p><h3 class="pas__t">Geração</h3>
+      <p class="pas__f">ASSISTIDO · REVISADO</p>
+      <p class="pas__d">Peças geradas contra a direção, depois graduadas à mão no Photoshop. Layout
+        estruturado no Figma via MCP.</p></div>
+    <div class="pas"><p class="pas__n">05</p><h3 class="pas__t">Handoff codificado</h3>
+      <p class="pas__f">ASSISTIDO · CORRIGIDO</p>
+      <p class="pas__d">Leitura de volta exporta HTML, CSS e JS com tokens mapeados um a um.
+        Revisado à mão e entregue como página.</p></div>
+  </div>
+</div></section>
+
+<!-- ======================= 07 · SISTEMA ======================= -->
+<section class="sec" id="sistema"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">07 · SISTEMA</p>
+    <h2 class="h2">Achei um erro de contraste no CTA e corrigi no token, não no botão</h2>
+    <p class="lead">O sistema existe para uma pessoa entregar do início ao fim. Componentes com
+      estados explícitos, variáveis espelhando o CSS e acessibilidade resolvida na origem.</p>
+  </div>
+
+  <div class="grid-hair">
+    <div class="tab__item"><h3 class="tab__t">O erro</h3>
+      <p class="tab__d">O CTA primário falhava WCAG AA em 3.84:1. Verde sobre branco só passa nesse
+        valor para texto grande, e o rótulo é Barlow Bold 18px — 0,66px abaixo do limite. Um caso de
+        borda que passa despercebido justamente porque quase acerta.</p></div>
+    <div class="tab__item"><h3 class="tab__t">A correção</h3>
+      <p class="tab__d">Subi o token de marca um degrau na rampa, para 4.55:1, e desloquei o hover
+        junto para preservar a relação entre os estados. Aplicado nos dois modos de marca, então o
+        próximo patrocinador herda a correção em vez do bug.</p></div>
+    <div class="tab__item"><h3 class="tab__t">O feedback</h3>
+      <p class="tab__d">Prototipei cada estado interativo com Smart Animate. O cadeado do CTA
+        destrava quando o botão entra em pressed — o desconto exclusivo se confirma no momento exato
+        de maior intenção de compra.</p></div>
+  </div>
+
+  <div class="nboxes">
+    <div class="nbox"><p class="nbox__v nbox__v--muted" style="font-size:34px">3.84:1</p><p class="nbox__d">contraste do CTA como estava</p></div>
+    <div class="nbox"><p class="nbox__v" style="font-size:34px">4.55:1</p><p class="nbox__d">depois da correção no token</p></div>
+    <div class="nbox"><p class="nbox__v">56px</p><p class="nbox__d">alvo de toque primário, acima da diretriz de 48</p></div>
+    <div class="nbox"><p class="nbox__v">2</p><p class="nbox__d">modos de marca herdando a correção</p></div>
+  </div>
+
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-sistema-componentes-estados.png" width="1160" height="653"
+           data-desc="Estados de CTA primário e secundário, navegação e ícones"
+           alt="Estados de CTA primário e secundário, navegação e ícones documentados" />
+    </div>
+    <figcaption>4. Default, pressed, hover e disabled documentados para cada componente, em mobile
+      e desktop.</figcaption>
+  </figure>
+
+  <figure class="figura">
+    <div class="par-img">
+      <div class="shot">
+        <img src="assets/case-sistema-animacao-01.png" width="574" height="360"
+             data-desc="Animação dos estados do botão · o cadeado destravando em pressed"
+             alt="Animação dos estados do botão: o cadeado destravando em pressed" />
+      </div>
+      <div class="shot">
+        <img src="assets/case-sistema-animacao-02.png" width="574" height="360"
+             data-desc="Animação dos estados do botão · o cadeado destravando em pressed"
+             alt="Segundo quadro da animação do cadeado destravando" />
+      </div>
+    </div>
+    <figcaption>5. A afirmação do Smart Animate, em movimento: o cadeado destrava no exato momento
+      em que o CTA entra em pressed.</figcaption>
+  </figure>
+
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-sistema-template-vs-dedicada.png" width="1160" height="653"
+           data-desc="A página em desktop, ao lado da versão no template de portal"
+           alt="A página dedicada em desktop ao lado da versão no template de portal" />
+    </div>
+    <figcaption>6. À esquerda o template compartilhado, à direita a superfície dedicada. Mesma
+      oferta, mesma marca, mesma semana.</figcaption>
+  </figure>
+
+  <figure class="figura">
+    <div class="par-img">
+      <div class="shot">
+        <img src="assets/case-sistema-mobile-01.png" width="574" height="360"
+             data-desc="Craft mobile · barra fixa, carrossel e cupom no 360"
+             alt="Craft mobile: barra fixa, carrossel e cupom na largura 360" />
+      </div>
+      <div class="shot">
+        <img src="assets/case-sistema-mobile-02.png" width="574" height="360"
+             data-desc="Craft mobile · barra fixa, carrossel e cupom no 360"
+             alt="Segundo recorte do craft mobile na largura 360" />
+      </div>
+    </div>
+    <figcaption>7. O mesmo sistema no 360, onde a comunidade de fato chega. Barra de compra fixa,
+      carrossel de produto e cupom pré-aplicado.</figcaption>
+  </figure>
+</div></section>
+
+<!-- ======================= 08 · ENGENHARIA ======================= -->
+<section class="sec" id="engenharia"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">08 · ENGENHARIA</p>
+    <h2 class="h2">O ciclo fecha nos dois sentidos. O Figma não é o fim da linha.</h2>
+    <p class="lead">O pipeline existe para fechar a distância entre o arquivo de design e a página
+      pronta. O que eu entrego já está construído, não especificado para outra pessoa interpretar.</p>
+  </div>
+  <p class="txt" style="max-width:1160px">MCP conecta Claude Code e Figma nas duas direções, então o
+    design system é a única fonte de verdade dos dois lados.</p>
+  <div class="pipeline">
+    <div class="pas"><p class="pas__f">01 · SPEC</p><h3 class="pas__t">Spec no Claude Code</h3>
+      <p class="pas__d">Hierarquia de seções, regras de conteúdo e restrições de UX escritas antes
+        de existir um único pixel.</p></div>
+    <div class="pas"><p class="pas__f">02 · LAYOUT</p><h3 class="pas__t">Wireframe no Figma</h3>
+      <p class="pas__d">Estrutura gerada a partir do spec, depois dirigida à mão da baixa à alta
+        fidelidade, no mesmo arquivo.</p></div>
+    <div class="pas"><p class="pas__f">03 · SISTEMA</p><h3 class="pas__t">Componentes e variáveis</h3>
+      <p class="pas__d">Componentes, variáveis e estados de interação tokenizados para espelhar o
+        CSS, nos dois modos de marca.</p></div>
+    <div class="pas"><p class="pas__f">04 · CÓDIGO</p><h3 class="pas__t">Página codificada</h3>
+      <p class="pas__d">Leitura de volta do arquivo, com HTML, CSS e JS saindo com os tokens
+        mapeados um a um.</p></div>
+  </div>
+  <div class="body-col">
+    <p class="prose">Nenhum valor é redigitado. O que chega na outra ponta é uma página funcionando
+      — com contagem regressiva, carrossel, cupom e barra fixa vivos — e não um documento a
+      interpretar.</p>
+  </div>
+</div></section>
+
+<!-- ======================= 09 · ALCANCE ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">09 · ALCANCE</p>
+    <h2 class="h2">A página é o destino. Chegar nela era a outra metade do trabalho.</h2>
+    <p class="lead">Sem verba de mídia, a única coisa que carrega alguém do primeiro contato até o
+      produto é o reconhecimento. Então todo formato saiu dos mesmos tokens e da mesma linguagem de
+      movimento.</p>
+  </div>
+  <div class="body-col">
+    <p class="prose">Dezoito peças dimensionadas e animadas por posicionamento: feed 4:5 e Reels
+      9:16 no Instagram, cards 1:1 no WhatsApp, além de lower thirds, aberturas e transições para
+      broadcast. Motion desenhado e animado no After Effects.</p>
+    <p class="prose">A consistência aqui não é capricho de portfólio: é a função. Quem encontra a
+      campanha nos Reels precisa reconhecê-la instantaneamente na página de oferta, porque não há
+      mídia paga reforçando o caminho.</p>
+  </div>
+  <figure class="figura">
+    <div class="shot">
+      <img src="assets/case-alcance-motion-formatos.png" width="1160" height="653"
+           data-desc="Lower third, abertura e transição animadas no After Effects"
+           alt="Lower third, abertura e transição animadas no After Effects" />
+    </div>
+    <figcaption>8. Os três formatos de vídeo. A transição usa o cartão amarelo como wipe — um
+      elemento do vocabulário do futebol fazendo trabalho de edição.</figcaption>
+  </figure>
+  <div class="par">
+    <figure class="figura">
+      <div class="shot">
+        <img src="assets/case-alcance-social-grade.png" width="572" height="340"
+             data-desc="Grade de peças de Instagram e stories da campanha"
+             alt="Grade de peças de Instagram e stories da campanha" />
+      </div>
+      <figcaption>9. A grade completa de social. Mesma tipografia, mesma faixa azul de assinatura,
+        mesmo tratamento de fundo em todas.</figcaption>
+    </figure>
+    <figure class="figura">
+      <div class="shot">
+        <img src="assets/case-alcance-whatsapp-mockup.png" width="572" height="340"
+             data-desc="Mockup do WhatsApp · o card 1:1 na comunidade de 400 mil"
+             alt="Mockup do WhatsApp com o card 1:1 na comunidade de 400 mil membros" />
+      </div>
+      <figcaption>10. O ponto de entrada real. A comunidade chega por aqui, quase inteira no celular
+        — e é essa confiança, não mídia paga, que carrega a campanha até a oferta.</figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<!-- ======================= 10 · NÚMEROS ======================= -->
+<section class="sec" id="numeros"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">10 · NÚMEROS</p>
+    <h2 class="h2">O que dá para medir, e o que eu não tenho</h2>
+    <p class="lead">Separei os números em dois grupos por um motivo: os do produto qualquer pessoa
+      confere abrindo o arquivo. Os de negócio eu não tenho, e prefiro dizer isso a estimar.</p>
+  </div>
+  <div class="grupos">
+    <div class="grupo">
+      <span class="selo">MEDIDO NO PRODUTO</span>
+      <p class="grupo__sub">Confere abrindo o Figma ou o inspetor na página.</p>
+      <div class="linhas">
+        <div class="linha"><p class="linha__v linha__v--sys">3.84:1 → 4.55:1</p><p class="linha__d">contraste do CTA primário, corrigido no token</p></div>
+        <div class="linha"><p class="linha__v">1:1</p><p class="linha__d">tokens mapeados para CSS, sem valor redigitado</p></div>
+        <div class="linha"><p class="linha__v">18</p><p class="linha__d">peças entregues em 6 posicionamentos</p></div>
+        <div class="linha"><p class="linha__v">15</p><p class="linha__d">dias do briefing ao handoff, sozinho</p></div>
+        <div class="linha"><p class="linha__v">2</p><p class="linha__d">modos de marca, para o formato servir ao próximo patrocinador</p></div>
+        <div class="linha"><p class="linha__v">0</p><p class="linha__d">módulos de terceiro na página — sem anúncio, recomendação ou concorrente</p></div>
+      </div>
+    </div>
+    <div class="grupo">
+      <span class="selo">ALCANCE, NÃO RESULTADO</span>
+      <p class="grupo__sub">São audiências, não conversões. É o tamanho dos canais onde a campanha
+        circulou — não quantas pessoas compraram. Não tenho acesso ao lado do e-commerce da
+        Netshoes, então não há taxa de conversão nesta página.</p>
+      <div class="linhas">
+        <div class="linha"><p class="linha__v">570 mil+</p><p class="linha__d">seguidores no Instagram onde as peças rodaram</p></div>
+        <div class="linha"><p class="linha__v">400 mil+</p><p class="linha__d">membros da comunidade de WhatsApp</p></div>
+        <div class="linha"><p class="linha__v">R$ 0</p><p class="linha__d">em mídia paga — toda a distribuição foi orgânica</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="nota-fecho">O resultado que eu consigo afirmar é interno: depois desta campanha, o
+    formato foi adotado pela Canaltech como modelo de referência para ativações patrocinadas com
+    qualquer marca parceira. Deixou de ser uma peça pontual e virou um produto comercial repetível.
+    Os primeiros rollouts estão em andamento.</p>
+</div></section>
+
+<!-- ======================= 11 · EM ABERTO ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">11 · EM ABERTO</p>
+    <h2 class="h2">O que eu não resolvi</h2>
+  </div>
+  <div class="grid-hair">
+    <div class="aberto__item"><h3 class="aberto__t">O formato repetível ainda não foi repetido</h3>
+      <p class="aberto__d">Ele foi aprovado como padrão e a estrutura está preparada para dois modos
+        de marca, mas rodou com um patrocinador só. A prova de que é reaproveitável só existe quando
+        a segunda marca entrar sem eu precisar mexer no sistema.</p></div>
+    <div class="aberto__item"><h3 class="aberto__t">As imagens de IA não estão identificadas na página</h3>
+      <p class="aberto__d">A direção de arte é minha e o acabamento é manual, mas a geração é
+        assistida por IA — e isso está escrito aqui, no case, e não no produto. Quem chega pela
+        campanha não tem como saber. É uma correção de uma linha e ela devia estar lá.</p></div>
+    <div class="aberto__item"><h3 class="aberto__t">Não fechei o ciclo de medição</h3>
+      <p class="aberto__d">Entreguei a página sem instrumentar conversão do meu lado. Sei que o
+        formato foi adotado internamente, mas não consigo dizer se ele vendeu mais que o template —
+        que é exatamente a pergunta que um patrocinador faz. Instrumentar isso é o que separa este
+        case de uma afirmação verificável.</p></div>
+    <div class="aberto__item"><h3 class="aberto__t">A contagem regressiva é de campanha, não de estoque</h3>
+      <p class="aberto__d">O prazo na tela é o da ativação, não o do inventário real. Funciona
+        porque a oferta tinha data para acabar, mas amarrar o contador ao estoque do parceiro seria
+        mais honesto com o leitor — e é integração, não design.</p></div>
+  </div>
+</div></section>
+
+<!-- ======================= VER MAIS ======================= -->
+<section class="sec"><div class="wrap sec__inner">
+  <div class="head">
+    <p class="eyebrow">12 · MAIS</p>
+    <h2 class="h2">Outros projetos</h2>
+  </div>
+  <div class="projetos">
+    <article class="projeto"><h3 class="projeto__t">Nega Nagô</h3>
+      <p class="projeto__d">Redesenho do catálogo de uma trancista para acabar com a conversa de ida
+        e volta. Pesquisa, design system e front-end — com resultado medido na agenda dela.</p></article>
+    <article class="projeto"><h3 class="projeto__t">Em breve</h3>
+      <p class="projeto__d">Um terceiro case está sendo escrito no mesmo formato.</p></article>
+  </div>
+</div></section>
+
+<!-- ======================= CONTATO ======================= -->
+<section class="sec" id="contato" style="border-top:1px solid var(--line)">
+  <div class="wrap contato">
+    <p class="eyebrow">CONTATO</p>
+    <h2 class="h2">Desenho, escrevo o código e digo o que não deu certo.</h2>
+    <p class="lead" style="max-width:820px">Cinco anos de Canaltech, atuando entre design system,
+      marketing e comercial. Se você tem uma ativação que precisa sair pronta e não especificada,
+      me chama.</p>
+    <div class="acoes">
+      <a class="btn btn--p" href="mailto:erick.remember20@gmail.com">Enviar um e-mail</a>
+      <a class="btn btn--s" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="base">
+      <p>© 2026 Erick Teixeira</p>
+      <p>CT em Campo · Canaltech × Netshoes</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+  /* Enquanto um asset não chegou na pasta assets/, a moldura mostra o nome exato
+     do arquivo que falta em vez de um ícone de imagem quebrada. */
+  function placeholder(img){
+    var arq = (img.getAttribute('src') || '').split('/').pop();
+    var d = document.createElement('div');
+    d.className = 'ph';
+    var t = document.createElement('p');
+    t.className = 'ph__d';
+    t.textContent = img.getAttribute('data-desc') || img.getAttribute('alt') || '';
+    var f = document.createElement('span');
+    f.className = 'ph__f';
+    f.textContent = 'assets/' + arq;
+    d.appendChild(f); d.appendChild(t);
+    if (img.parentNode) img.parentNode.replaceChild(d, img);
+  }
+  var imgs = document.querySelectorAll('.shot img');
+  [].forEach.call(imgs, function(img){
+    img.addEventListener('error', function(){ placeholder(img); });
+    if (img.complete && img.naturalWidth === 0) placeholder(img);
+  });
+
+  /* marca o item do menu da seção visível */
+  var alvos = [].slice.call(document.querySelectorAll('main section[id]'));
+  var links = {};
+  [].forEach.call(document.querySelectorAll('.menu a'), function(a){
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  if ('IntersectionObserver' in window && alvos.length){
+    var io = new IntersectionObserver(function(ents){
+      ents.forEach(function(e){
+        var a = links[e.target.id];
+        if (a) a.style.color = e.isIntersecting ? 'var(--ink)' : '';
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    alvos.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
