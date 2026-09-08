@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#f1f1f1" />
 <title>CT em Campo · Canaltech × Netshoes — Erick Teixeira</title>
 <meta name="description" content="Case: um patrocinador compra atenção e o portal compartilhado entrega ela de graça. Design system, motion e código de uma ativação de Copa da Canaltech com a Netshoes." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
 
 <style>
 /* ==========================================================================
    TOKENS — lidos nó a nó do Figma (Jb6w9GH2aN7mVVCQseu3n5, página CT EM CAMPO)
    ========================================================================== */
 :root{
-  /* cor */
-  --ink:#1a1a1a; --ink-2:#3a3a3a; --body:#5e5e5e; --muted:#949494;
-  --page:#ffffff; --surface:#fbfbfb; --surface-2:#f1f1f1; --surface-3:#ededed;
-  --line:#e2e2e2; --line-2:#e4e4e4; --line-3:#d2d2d2; --line-strong:#c6c6c6;
-  --dark:#2e2e2e; --darker:#141414; --on-dark:#fbfbfb;
+  /* cor — mesmo sistema dos outros cases (Jb6w9GH2aN7mVVCQseu3n5, 277:6139),
+     com o verde da campanha como acento */
+  --ink:#21262a; --ink-2:#323940; --body:#6a6e70; --muted:#778898;
+  --page:#f1f1f1; --surface:#fefefe; --surface-2:#e8e8e9; --surface-3:#e8e8e9;
+  --line:#d5dadf; --line-2:#d5dadf; --line-3:#c0c8d0; --line-strong:#a4afba;
+  --dark:#21262a; --darker:#21262a; --on-dark:#f1f1f1; --on-dark-2:#d5dadf;
+  --verde:#009721; --sobre-verde:#f1f3f5;
 
   /* medida */
   --wrap:1160px; --pad-x:120px;
@@ -37,8 +39,8 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
   margin:0;background:var(--page);color:var(--ink);
-  font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-  font-size:15.5px;line-height:1.55;
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  font-size:16px;line-height:1.5;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
 }
 img{max-width:100%;display:block}
@@ -52,20 +54,17 @@ ul{margin:0;padding:0;list-style:none}
 :where(a,button,[tabindex]):focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
 
 /* ---------- escala tipográfica (Inter, valores do Figma) ---------- */
-.eyebrow{font-weight:700;font-size:11.5px;line-height:1;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--ink-2)}
-.label{font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--muted)}
-.h1{font-weight:800;font-size:48px;line-height:1.06;letter-spacing:-.032em;color:var(--ink)}
-.h2{font-weight:700;font-size:40px;line-height:1.10;letter-spacing:-.028em;color:var(--ink)}
-.lead{font-weight:400;font-size:21px;line-height:1.55;color:var(--body)}
-.intro{font-weight:400;font-size:18px;line-height:1.5;color:var(--body)}
-.prose{font-weight:400;font-size:17px;line-height:1.62;color:var(--body)}
-.txt{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--body)}
-.txt-sm{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
-.txt-xs{font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
-.mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-weight:400;font-size:11.5px;line-height:1.5;color:var(--muted)}
+.eyebrow{font-weight:700;font-size:14px;line-height:1.5;text-transform:uppercase;color:var(--muted)}
+.label{font-weight:700;font-size:12px;line-height:1.5;text-transform:uppercase;color:var(--ink-2)}
+.h1{font-weight:700;font-size:40px;line-height:1.1;color:var(--ink)}
+.h2{font-weight:700;font-size:40px;line-height:1.1;color:var(--ink)}
+.lead{font-weight:400;font-size:20px;line-height:1.5;color:var(--body)}
+.intro{font-weight:400;font-size:18px;line-height:1.5;color:var(--soft,#4d5155)}
+.prose{font-weight:400;font-size:16px;line-height:1.5;color:var(--body)}
+.txt{font-weight:400;font-size:16px;line-height:1.5;color:var(--body)}
+.txt-sm{font-weight:400;font-size:14px;line-height:1.5;color:var(--body)}
+.txt-xs{font-weight:400;font-size:12px;line-height:1.5;color:var(--body)}
+.mono{font-weight:400;font-size:12px;line-height:1.5;color:var(--muted)}
 
 /* ---------- estrutura de seção ---------- */
 .sec{padding-block:var(--sec-y)}
@@ -78,6 +77,8 @@ main section[id]{scroll-margin-top:80px}
 .head .lead{max-width:820px}
 .body-col{display:flex;flex-direction:column;gap:16px;max-width:760px}
 .body-col--wide{max-width:804px}
+/* no Figma este parágrafo entra recuado 200px (277:6399) */
+.body-col--rec{margin-left:201px;max-width:760px}
 
 /* ---------- cartões e superfícies ---------- */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl)}
@@ -86,7 +87,7 @@ main section[id]{scroll-margin-top:80px}
 /* grupo com fio de 1px entre itens (Figma: container com gap=1) */
 .grid-hair{display:grid;gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden}
-.grid-hair > *{background:var(--surface)}
+.grid-hair > *{background:var(--page)}
 .grid-hair--sm{border-radius:var(--r-lg)}
 </style>
 <style>
@@ -95,11 +96,12 @@ main section[id]{scroll-margin-top:80px}
    ========================================================================== */
 
 /* topo */
-.topo{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);
+.topo{position:sticky;top:0;z-index:50;background:rgba(241,241,241,.88);
   backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
 .topo__inner{display:flex;align-items:center;justify-content:space-between;
   gap:24px;padding-block:18px;min-width:0}
-.topo__nome{font-weight:500;font-size:15px;line-height:1.45;color:var(--ink);white-space:nowrap}
+.topo__nome{font-weight:600;font-size:15px;line-height:1.45;color:var(--ink);white-space:nowrap;
+  text-decoration:none}
 .menu{display:flex;align-items:center;gap:22px;min-width:0;overflow-x:auto;
   overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .menu::-webkit-scrollbar{display:none}
@@ -112,10 +114,11 @@ main section[id]{scroll-margin-top:80px}
   padding-block:84px 88px;text-align:left}
 .hero > *{width:100%}
 .hero__cols{display:grid;grid-template-columns:minmax(0,592fr) minmax(0,520fr);gap:48px;align-items:start}
-.aviso{background:var(--surface-3);border:1px solid var(--line-3);border-radius:var(--r-lg);
-  padding:15px 17px;display:flex;flex-direction:column;gap:6px}
-.aviso__t{font-weight:600;font-size:13px;line-height:1.5;color:var(--ink)}
-.aviso__d{font-weight:400;font-size:14px;line-height:1.5;color:var(--body)}
+/* no Figma a caixa "sobre os números" é verde, com texto claro */
+.aviso{background:var(--verde);border:1px solid var(--verde);border-radius:var(--r-lg);
+  padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.aviso__t{font-weight:700;font-size:13px;line-height:1.5;color:#fefefe}
+.aviso__d{font-weight:400;font-size:14px;line-height:1.5;color:#eaf6ec}
 
 /* ficha técnica */
 .ficha{grid-template-columns:repeat(5,1fr)}
@@ -123,7 +126,7 @@ main section[id]{scroll-margin-top:80px}
 .ficha__v{font-weight:500;font-size:14px;line-height:1.5;color:var(--ink);white-space:pre-line}
 
 /* moldura de imagem */
-.shot{background:var(--line-2);border:1px solid var(--line-strong);border-radius:var(--r-xl);
+.shot{background:var(--line);border:1px solid var(--line-3);border-radius:var(--r-xl);
   overflow:hidden;display:flex;align-items:center;justify-content:center}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:center}
 .figura{display:flex;flex-direction:column;gap:12px}
@@ -144,8 +147,12 @@ main section[id]{scroll-margin-top:80px}
 /* espaços (problema / solução) */
 .espacos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .espaco{display:flex;flex-direction:column;gap:6px;padding:18px 24px;
-  background:var(--surface-2);border-radius:var(--r-lg)}
-.espaco p{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--ink)}
+  background:#f1f3f5;border:1px solid var(--line-3);border-radius:var(--r-lg)}
+.espaco p{font-weight:400;font-size:16px;line-height:1.5;color:var(--ink)}
+/* o espaço da solução é verde no Figma */
+.espaco--sol{background:var(--verde);border-color:var(--verde)}
+.espaco--sol .label{color:#eaf6ec}
+.espaco--sol p{color:#fefefe}
 
 /* etapas do double diamond */
 .etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -162,33 +169,36 @@ main section[id]{scroll-margin-top:80px}
 
 /* escopo (chips) */
 .escopo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-top:8px}
-.chip{padding:8px 14px;border-radius:var(--r-pill);background:var(--page);
+.chip{padding:8px 14px;border-radius:var(--r-pill);background:var(--surface);
   border:1px solid var(--line);font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
 .seta{color:var(--muted);font-size:13px}
 .escopo__nota{width:100%;font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
 
 /* nbox */
 .nboxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+/* os blocos de número são verdes no Figma (277:6212) */
 .nbox{display:flex;flex-direction:column;gap:10px;padding:22px 20px;min-height:138px;
-  background:var(--page);border:1px solid var(--line);border-radius:var(--r-lg)}
-.nbox__v{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.035em;color:var(--ink)}
-.nbox__v--muted{color:var(--ink-2)}
-.nbox__d{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+  background:var(--verde);border:1px solid var(--verde);border-radius:var(--r-lg)}
+.nbox__v{font-weight:800;font-size:40px;line-height:1.1;color:#fefefe}
+.nbox__v--muted{color:#fefefe}
+.nbox__d{font-weight:400;font-size:14px;line-height:1.5;color:#eaf6ec}
 </style>
 <style>
 /* antes / depois */
 .ad{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .ad__col{display:flex;flex-direction:column;gap:18px;padding:28px 26px;
-  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl)}
 .ad__col--depois{background:var(--surface-3);border-color:var(--line-3)}
 .passos{display:flex;flex-direction:column}
 .passo{display:grid;grid-template-columns:21px 1fr;gap:13px;align-items:start;
   padding-block:11px}
-.passo__n{width:21px;height:21px;border-radius:6px;display:grid;place-items:center;
-  background:var(--surface-2);color:var(--muted);
-  font-weight:700;font-size:11.5px;line-height:1;flex:none}
+.passo__n{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  background:var(--line);color:var(--soft,#4d5155);
+  font-weight:700;font-size:12px;line-height:1;flex:none}
 .ad__col--depois .passo__n{background:var(--dark);color:var(--on-dark)}
-.passo p{font-weight:400;font-size:15px;line-height:1.55;color:var(--body)}
+.passo{border-bottom:1px solid var(--line-3)}
+.passo:last-child{border-bottom:0}
+.passo p{font-weight:400;font-size:15px;line-height:1.5;color:var(--ink)}
 .ad__nota{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
 
 /* tabela de itens (restrições, achados) */
@@ -201,7 +211,7 @@ main section[id]{scroll-margin-top:80px}
 .bb__tipo{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:26px 28px;
   border-bottom:1px solid var(--line)}
 .especime{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  padding:18px 24px;background:var(--surface-2);border-radius:var(--r-md);
+  padding:18px 24px;background:#e8e8e9;border-radius:var(--r-md);
   min-height:121px}
 .especime__aa{font-weight:800;font-size:58px;line-height:1.06;letter-spacing:-.032em;color:var(--ink)}
 .especime__n{font-weight:400;font-size:13px;line-height:1.5;color:var(--muted)}
@@ -227,7 +237,7 @@ main section[id]{scroll-margin-top:80px}
 .ciclo{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .pas{display:flex;flex-direction:column;gap:8px;padding:20px;
-  background:var(--page);border:1px solid var(--line);border-radius:var(--r-lg)}
+  background:transparent;border:1px solid var(--line);border-radius:var(--r-lg)}
 .pas__n{font-weight:700;font-size:12px;line-height:1;color:var(--muted)}
 .pas__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
 .pas__f{font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.12em;
@@ -237,10 +247,10 @@ main section[id]{scroll-margin-top:80px}
 /* números */
 .grupos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grupo{display:flex;flex-direction:column;gap:12px;padding:32px;
-  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
-.selo{align-self:flex-start;padding:6px 9px;border-radius:var(--r-pill);
-  background:var(--surface-3);color:var(--ink-2);
-  font-weight:700;font-size:10.5px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl)}
+.selo{align-self:flex-start;padding:6px 10px;border-radius:var(--r-pill);
+  background:#e8f2e8;color:#1a6c2a;
+  font-weight:700;font-size:11px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase}
 .grupo__sub{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
 .linhas{display:flex;flex-direction:column}
 .linha{display:flex;flex-direction:column;gap:2px;padding-block:13px;
@@ -258,28 +268,52 @@ main section[id]{scroll-margin-top:80px}
 
 /* ver mais */
 .projetos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.projeto{display:flex;flex-direction:column;gap:7px;padding:26px 24px;
-  background:var(--page);border:1px solid var(--line);border-radius:var(--r-xl)}
+.projeto{display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;
+  color:inherit;text-decoration:none;transition:opacity .18s}
+.projeto:hover .projeto__t{text-decoration:underline;text-underline-offset:3px}
+.projeto__capa{aspect-ratio:571/240;background:var(--line)}
+.projeto__capa img{width:100%;height:100%;object-fit:cover}
+.projeto__txt{display:flex;flex-direction:column;gap:7px;padding:22px 24px}
 .projeto__t{font-weight:700;font-size:17px;line-height:1.3;color:var(--ink)}
 .projeto__d{font-weight:400;font-size:15.5px;line-height:1.55;color:var(--muted)}
 
 /* contato */
-.contato{display:flex;flex-direction:column;gap:18px;padding-block:88px}
-.acoes{display:flex;flex-wrap:wrap;gap:12px;padding-top:18px}
+/* cartão de contato: mesmo bloco escuro dos outros cases (277:6720) */
+.h2--xl{font-weight:800;font-size:64px;line-height:1.1}
+.contato{background:var(--ink);border-radius:28px;padding:40px 56px;color:var(--on-dark);
+  display:flex;flex-direction:column;gap:36px;margin-block:var(--sec-y)}
+.contato .h2{color:var(--on-dark)}
+.contato .lead{color:var(--on-dark-2)}
+.contato .h2--xl{max-width:820px}
+.contato > .lead{max-width:700px}
+.disp{display:flex;align-items:center;gap:9px;padding-bottom:6px;margin-bottom:36px}
+.disp i{width:8px;height:8px;border-radius:50%;background:var(--on-dark-2);flex:none}
+.disp span{font-weight:700;font-size:14px;line-height:1.5;text-transform:uppercase;color:var(--on-dark-2)}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;padding-top:22px}
 .acoes-case{display:flex;flex-wrap:wrap;gap:10px;padding-top:4px}
 .btn-case{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:var(--r-pill);
   background:var(--dark);color:var(--on-dark);font-weight:600;font-size:15px;line-height:1.5;
   text-decoration:none;transition:opacity .15s}
 .btn-case:hover{opacity:.86}
-.btn{display:inline-flex;align-items:center;padding:12px 20px;border-radius:var(--r-sm);
-  font-weight:600;font-size:15px;line-height:1.5;text-decoration:none;transition:opacity .15s}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:var(--r-pill);
+  font-weight:600;font-size:16px;line-height:1.5;text-decoration:none;cursor:pointer;
+  border:0;font-family:inherit;transition:opacity .15s,border-color .15s}
 .btn--p{background:var(--dark);color:var(--on-dark)}
 .btn--p:hover{opacity:.86}
-.btn--s{background:var(--page);color:var(--ink);border:1px solid var(--line)}
+.btn--s{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .btn--s:hover{border-color:var(--line-strong)}
+.btn--light{background:var(--page);color:var(--ink)}
+.btn--light:hover{opacity:.88}
+.btn--ghost{background:transparent;color:var(--on-dark);border:1px solid var(--muted)}
+.btn--ghost:hover{border-color:var(--on-dark-2)}
 .base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding-top:28px;margin-top:10px;border-top:1px solid var(--line)}
-.base p{font-weight:400;font-size:13px;line-height:1.5;color:var(--muted)}
+  padding-top:36px;border-top:1px solid var(--on-dark-2)}
+.base p{font-weight:400;font-size:12px;line-height:1.5;color:var(--on-dark-2)}
+.toast{position:fixed;left:50%;bottom:28px;z-index:60;transform:translate(-50%,8px);
+  background:var(--ink);color:var(--on-dark);padding:12px 18px;border-radius:12px;
+  font-size:14px;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+.toast[data-show]{opacity:1;transform:translate(-50%,0)}
 </style>
 <style>
 /* ==========================================================================
@@ -315,6 +349,7 @@ main section[id]{scroll-margin-top:80px}
   .lead{font-size:19px}
   .hero{padding-block:56px 64px}
   .hero__cols{grid-template-columns:1fr;gap:24px}
+  .body-col--rec{margin-left:0}
   .aviso{max-width:640px}
   .ficha{grid-template-columns:repeat(3,1fr)}
   .ficha__item{min-height:0}
@@ -322,6 +357,8 @@ main section[id]{scroll-margin-top:80px}
   .ciclo{grid-template-columns:repeat(3,1fr)}
   .pipeline{grid-template-columns:repeat(2,1fr)}
   .escala__row{grid-template-columns:1fr 92px 92px 92px}
+  .h2--xl{font-size:44px}
+  .contato{padding:36px 40px}
 }
 
 /* --- 768px: tudo em coluna única --- */
@@ -331,6 +368,12 @@ main section[id]{scroll-margin-top:80px}
 
   .h1{font-size:31px;letter-spacing:-.026em;line-height:1.12}
   .h2{font-size:25px;letter-spacing:-.022em;line-height:1.16}
+  .h2--xl{font-size:29px;letter-spacing:0}
+  .contato{padding:26px 20px;gap:26px;border-radius:20px}
+  .disp{margin-bottom:20px}
+  .base{flex-direction:column;gap:6px;padding-top:22px}
+  .projeto__txt{padding:18px}
+  .acoes .btn{width:100%;justify-content:center}
   .lead{font-size:17px}
   .intro{font-size:16.5px}
   .prose{font-size:16px}
@@ -439,6 +482,12 @@ main section[id]{scroll-margin-top:80px}
   <p class="eyebrow">PROJETO REAL · DESIGN SYSTEM, MOTION E CÓDIGO</p>
   <h1 class="h1">Um patrocinador compra atenção. O portal compartilhado entrega ela de graça.</h1>
 
+  <div class="shot" style="aspect-ratio:1160/653">
+    <img src="assets/01_hero_ct_em_campo.png" width="1160" height="653"
+         data-desc="Capa · dois celulares com a página CT em Campo"
+         alt="Dois celulares lado a lado exibindo a página CT em Campo" />
+  </div>
+
   <div class="hero__cols">
     <p class="intro">A Canaltech vendeu uma ativação de Copa para a Netshoes e o formato disponível
       era o template do portal — com anúncios, recomendações e marcas concorrentes dividindo a tela.
@@ -449,12 +498,6 @@ main section[id]{scroll-margin-top:80px}
         tokens, escopo, prazo. Não tenho dado de conversão da Netshoes, e a seção de números diz
         isso explicitamente em vez de estimar.</p>
     </aside>
-  </div>
-
-  <div class="shot" style="aspect-ratio:1160/653">
-    <img src="assets/01_hero_ct_em_campo.png" width="1160" height="653"
-         data-desc="Capa · dois celulares com a página CT em Campo"
-         alt="Dois celulares lado a lado exibindo a página CT em Campo" />
   </div>
 
   <dl class="grid-hair grid-hair--sm ficha">
@@ -485,7 +528,7 @@ Higgsfield · Nano Banana 2</dd></div>
   <div class="espacos">
     <div class="espaco"><p class="label">ESPAÇO DO PROBLEMA</p>
       <p>Onde a atenção do patrocinador estava se perdendo</p></div>
-    <div class="espaco"><p class="label" style="color:var(--ink-2)">ESPAÇO DA SOLUÇÃO</p>
+    <div class="espaco espaco--sol"><p class="label">ESPAÇO DA SOLUÇÃO</p>
       <p>Uma página à altura da campanha</p></div>
   </div>
 
@@ -542,7 +585,7 @@ Higgsfield · Nano Banana 2</dd></div>
 <section class="sec" id="problema"><div class="wrap sec__inner">
   <div class="head">
     <p class="eyebrow">01 · O PROBLEMA</p>
-    <h2 class="h2">A página existia. A exclusividade, não.</h2>
+    <h2 class="h2">A página existia.<br />A exclusividade, não.</h2>
     <p class="lead">O CT Ofertas roda num template de portal: lista de produtos, anúncios de rede,
       módulo de recomendação, marcas concorrentes na lateral. É um bom formato para descoberta.
       É um formato ruim para vender exclusividade.</p>
@@ -649,7 +692,7 @@ Higgsfield · Nano Banana 2</dd></div>
       mantém dezoito touchpoints parecendo a mesma campanha sem eu revisar um por um.</p>
   </div>
 
-  <div class="body-col">
+  <div class="body-col body-col--rec">
     <p class="prose">A rampa completa existe por um motivo prático: quando o contraste do CTA
       falhou, eu tinha para onde subir sem inventar uma cor nova. Corrigi no token, e a correção
       desceu sozinha para todas as peças.</p>
@@ -761,7 +804,7 @@ Higgsfield · Nano Banana 2</dd></div>
 <section class="sec"><div class="wrap sec__inner">
   <div class="head">
     <p class="eyebrow">05 · DIREÇÃO E GERAÇÃO</p>
-    <h2 class="h2">A direção é minha. O modelo só executa.</h2>
+    <h2 class="h2">A direção é minha.<br />O modelo só executa.</h2>
     <p class="lead">Nenhuma foto de produto em contexto de Copa existia, e não havia verba nem prazo
       para produção fotográfica. Dirigi as peças e gerei com IA, com acabamento manual.</p>
   </div>
@@ -1059,34 +1102,53 @@ Higgsfield · Nano Banana 2</dd></div>
     <h2 class="h2">Outros projetos</h2>
   </div>
   <div class="projetos">
-    <a class="projeto" href="nega-nago.html"><h3 class="projeto__t">Nega Nagô</h3>
-      <p class="projeto__d">Redesenho do catálogo de uma trancista para acabar com a conversa de ida
-        e volta. Pesquisa, design system e front-end — com resultado medido na agenda dela.</p></a>
-    <article class="projeto"><h3 class="projeto__t">Em breve</h3>
-      <p class="projeto__d">Um terceiro case está sendo escrito no mesmo formato.</p></article>
+    <a class="projeto" href="nega-nago.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_nega_nago.jpg" width="571" height="240"
+             data-desc="capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__txt"><h3 class="projeto__t">Nega Nagô</h3>
+        <p class="projeto__d">Redesenho do catálogo de uma trancista para acabar com a conversa de
+          ida e volta. Pesquisa, design system e front-end — com resultado medido na agenda da
+          Mayara.</p></div>
+    </a>
+    <a class="projeto" href="canaltech-hub.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_canaltech_hub_links.png" width="571" height="240"
+             data-desc="capa · Canaltech Hub de links" alt="Capa do case Canaltech Hub de links"
+             loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__txt"><h3 class="projeto__t">Canaltech · Hub de links</h3>
+        <p class="projeto__d">A página de links da Canaltech deixou de ser alugada. Design system,
+          acessibilidade, consentimento e telemetria num HTML único que o time publica sem
+          build.</p></div>
+    </a>
   </div>
 </div></section>
 
 <!-- ======================= CONTATO ======================= -->
-<section class="sec" id="contato" style="border-top:1px solid var(--line)">
-  <div class="wrap contato">
-    <p class="eyebrow">CONTATO</p>
-    <h2 class="h2">Desenho, escrevo o código e digo o que não deu certo.</h2>
-    <p class="lead" style="max-width:820px">Cinco anos de Canaltech, atuando entre design system,
-      marketing e comercial. Se você tem uma ativação que precisa sair pronta e não especificada,
+<section class="wrap" id="contato">
+  <div class="contato">
+    <div>
+      <p class="disp"><i aria-hidden="true"></i><span>Disponível para trabalhar</span></p>
+      <h2 class="h2 h2--xl">Desenho, escrevo o código e digo o que não deu certo.</h2>
+    </div>
+    <p class="lead">Treze anos de design, cinco deles na Canaltech entre design system, marketing e
+      comercial. Se você tem uma superfície que precisa sair pronta e medida, e não especificada,
       me chama.</p>
     <div class="acoes">
-      <a class="btn btn--p" href="mailto:erick.remember20@gmail.com">Enviar um e-mail</a>
-      <a class="btn btn--s" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="btn btn--light" type="button" data-email="oerickteixeira@gmail.com">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 5.5V5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 5v9A1.5 1.5 0 0 0 5.5 15.5H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="btn__t">Copiar e-mail</span></button>
+      <a class="btn btn--ghost" href="https://drive.google.com/file/d/193hnqVBzl9iG8hfwDgnNSi9pxmla_MYO/view?usp=sharing" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Ver o currículo</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.1 9.4h2.6V18H7.1V9.4Zm1.3-4.1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM11.4 9.4H14v1.2h.04c.36-.66 1.25-1.36 2.57-1.36 2.75 0 3.26 1.72 3.26 3.96V18h-2.6v-4.25c0-1.02-.02-2.32-1.44-2.32-1.45 0-1.67 1.1-1.67 2.25V18h-2.6V9.4Z"/></svg>LinkedIn</a>
     </div>
-    <div class="base">
-      <p>© 2026 Erick Teixeira</p>
-      <p>CT em Campo · Canaltech × Netshoes</p>
-    </div>
+    <div class="base"><p>© 2026 Erick Teixeira</p><p>oerickteixeira@gmail.com · São Paulo</p></div>
   </div>
 </section>
 
 </main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -1110,6 +1172,37 @@ Higgsfield · Nano Banana 2</dd></div>
   [].forEach.call(imgs, function(img){
     img.addEventListener('error', function(){ placeholder(img); });
     if (img.complete && img.naturalWidth === 0) placeholder(img);
+  });
+
+  /* copiar e-mail com aviso curto */
+  var toastEl = document.getElementById('toast'), toastTimer;
+  function toast(msg){
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.setAttribute('data-show','');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.removeAttribute('data-show'); }, 2400);
+  }
+  [].forEach.call(document.querySelectorAll('[data-email]'), function(btn){
+    var alvo = btn.querySelector('.btn__t'), original = alvo ? alvo.textContent : '', voltar;
+    btn.addEventListener('click', function(){
+      var email = btn.getAttribute('data-email');
+      var feito = function(){
+        if (alvo) alvo.textContent = 'E-mail copiado';
+        toast('E-mail copiado: ' + email);
+        clearTimeout(voltar);
+        voltar = setTimeout(function(){ if (alvo) alvo.textContent = original; }, 2400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).then(feito, feito);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = email; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(e){}
+        document.body.removeChild(ta); feito();
+      }
+    });
   });
 
   /* marca o item do menu da seção visível */

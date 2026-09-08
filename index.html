@@ -163,6 +163,8 @@ svg{display:block;flex:none}
 
 /* ---------- painel escuro (IA no fluxo / Contato) ---------- */
 .painel{background:var(--ink);border-radius:var(--r);padding:40px 56px;color:var(--on-dark)}
+/* no Figma o título e o texto do painel "IA no fluxo" quebram em 800px */
+.painel .stack > .h2,.painel .stack > .lead{max-width:800px}
 .painel .h2{color:var(--on-dark)}
 .painel .lead{color:var(--on-dark-2)}
 .painel .lb{color:var(--muted)}
