@@ -60,8 +60,8 @@
   --r-sm:10px; --r-md:12px; --r-lg:14px; --r-xl:22px; --r-pill:999px;
 
   /* ritmo vertical */
-  --sec-y:80px;      /* padding das seções */
-  --blk:40px;        /* gap entre blocos da seção */
+  --sec-y:40px;      /* padding das seções — 277:6176 */
+  --blk:36px;        /* gap entre blocos da seção — 277:6176 */
   --head-gap:14px;   /* gap do cabeçalho */
 }
 
@@ -90,7 +90,7 @@ ul{margin:0;padding:0;list-style:none}
 /* ---------- escala tipográfica (Inter, valores do Figma) ---------- */
 .eyebrow{font-weight:700;font-size:14px;line-height:1.5;text-transform:uppercase;color:var(--muted)}
 .label{font-weight:700;font-size:12px;line-height:1.5;text-transform:uppercase;color:var(--ink-2)}
-.h1{font-weight:700;font-size:40px;line-height:1.1;color:var(--ink)}
+.h1{font-weight:800;font-size:48px;line-height:1.1;color:var(--ink)}
 .h2{font-weight:700;font-size:40px;line-height:1.1;color:var(--ink)}
 .lead{font-weight:400;font-size:20px;line-height:1.5;color:var(--body)}
 .intro{font-weight:400;font-size:18px;line-height:1.5;color:var(--soft,#4d5155)}
@@ -145,19 +145,19 @@ main section[id]{scroll-margin-top:80px}
 
 /* hero */
 .hero{display:flex;flex-direction:column;align-items:center;gap:var(--blk);
-  padding-block:84px 88px;text-align:left}
+  padding-block:var(--sec-y);text-align:left}
 .hero > *{width:100%}
 .hero__cols{display:grid;grid-template-columns:minmax(0,592fr) minmax(0,520fr);gap:48px;align-items:start}
 /* no Figma a caixa "sobre os números" é verde, com texto claro */
 .aviso{background:var(--verde);border:1px solid var(--verde);border-radius:var(--r-lg);
-  padding:18px 20px;display:flex;flex-direction:column;gap:6px}
-.aviso__t{font-weight:700;font-size:13px;line-height:1.5;color:#fefefe}
+  padding:15px 17px;display:flex;flex-direction:column;gap:6px}
+.aviso__t{font-weight:700;font-size:12px;line-height:1.5;color:#fefefe}
 .aviso__d{font-weight:400;font-size:14px;line-height:1.5;color:#eaf6ec}
 
 /* ficha técnica */
 .ficha{grid-template-columns:repeat(5,1fr)}
-.ficha__item{display:flex;flex-direction:column;gap:8px;padding:18px 20px;min-height:160px}
-.ficha__v{font-weight:500;font-size:14px;line-height:1.5;color:var(--ink);white-space:pre-line}
+.ficha__item{display:flex;flex-direction:column;gap:8px;padding:18px 20px}
+.ficha__v{font-weight:600;font-size:16px;line-height:1.5;color:var(--ink);white-space:pre-line}
 
 /* moldura de imagem */
 .shot{background:var(--line);border:1px solid var(--line-3);border-radius:var(--r-xl);
@@ -204,9 +204,10 @@ main section[id]{scroll-margin-top:80px}
 /* escopo (chips) */
 .escopo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-top:8px}
 .chip{padding:8px 14px;border-radius:var(--r-pill);background:var(--surface);
-  border:1px solid var(--line);font-weight:400;font-size:13px;line-height:1.5;color:var(--body)}
-.seta{color:var(--muted);font-size:13px}
-.escopo__nota{width:100%;font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
+  border:1px solid var(--line);font-weight:400;font-size:12px;line-height:1.5;color:var(--body)}
+.seta{color:var(--muted);font-size:12px}
+/* a nota tem 445 x 18 no Figma (277:6270): 12px, na mesma linha dos chips */
+.escopo__nota{margin-left:auto;font-weight:400;font-size:12px;line-height:1.5;color:var(--muted)}
 
 /* nbox */
 .nboxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -377,7 +378,7 @@ main section[id]{scroll-margin-top:80px}
 
 /* --- 1024px: quebras de 4/5 colunas --- */
 @media (max-width:1023px){
-  :root{--pad-x:40px;--sec-y:64px;--blk:32px}
+  :root{--pad-x:40px;--sec-y:32px;--blk:32px}
   .h1{font-size:40px}
   .h2{font-size:33px}
   .lead{font-size:19px}
@@ -386,7 +387,6 @@ main section[id]{scroll-margin-top:80px}
   .body-col--rec{margin-left:0}
   .aviso{max-width:640px}
   .ficha{grid-template-columns:repeat(3,1fr)}
-  .ficha__item{min-height:0}
   .etapas{grid-template-columns:repeat(2,1fr);gap:24px}
   .ciclo{grid-template-columns:repeat(3,1fr)}
   .pipeline{grid-template-columns:repeat(2,1fr)}
@@ -397,7 +397,7 @@ main section[id]{scroll-margin-top:80px}
 
 /* --- 768px: tudo em coluna única --- */
 @media (max-width:767px){
-  :root{--pad-x:20px;--sec-y:52px;--blk:26px;--head-gap:12px}
+  :root{--pad-x:20px;--sec-y:28px;--blk:26px;--head-gap:12px}
   body{font-size:15px}
 
   .h1{font-size:31px;letter-spacing:-.026em;line-height:1.12}
@@ -426,6 +426,9 @@ main section[id]{scroll-margin-top:80px}
   .ficha__v{font-size:13.5px}
 
   .espacos,.etapas,.ad,.grupos,.projetos,.par,.par-img{grid-template-columns:1fr}
+  /* no celular o rótulo e a nota do escopo ocupam a linha inteira */
+  .escopo > .label{width:100%}
+  .escopo__nota{margin-left:0;width:100%}
   .etapas{gap:20px}
   .nboxes{grid-template-columns:1fr 1fr;gap:10px}
   .nbox{padding:16px 16px;min-height:0;gap:6px}
@@ -606,7 +609,7 @@ Higgsfield · Nano Banana 2</dd></div>
   </div>
 
   <div class="escopo">
-    <p class="label" style="width:100%">MEU ESCOPO</p>
+    <p class="label">MEU ESCOPO</p>
     <span class="chip">Marca da campanha</span><span class="seta">→</span>
     <span class="chip">Key visual</span><span class="seta">→</span>
     <span class="chip">Assets e comunidade</span><span class="seta">→</span>

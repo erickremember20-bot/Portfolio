@@ -88,9 +88,22 @@ frase, edite lá e rode `python3 ferramentas/i18n.py`.
 Conferido banda a banda contra os PDFs exportados do arquivo, não a olho nu:
 cor medida em pixel, largura de coluna, raio, preenchimento e quebra de linha.
 
-Container 1160px em todas as páginas, como nos frames de origem. Cabeçalho de
-seção com título em 900px e texto de apoio em 820px (`277:5023`). Escala Sora
+Container 1160px em todas as páginas, como nos frames de origem. Escala Sora
 lida dos nós: 88 / 64 / 48 / 40 / 32 / 20 / 18 / 16 / 14 / 12.
+
+### Ritmo vertical, lido nó a nó
+
+| | Home | Nega Nagô | CT em Campo | Canaltech Hub |
+|---|---|---|---|---|
+| Padding da seção | 40 / 40 | 40 / 40 | 40 / 40 | 40 / 40 |
+| Gap entre blocos | 24 | 24 | 36 | 36 |
+| Cabeçalho: rótulo → título → apoio | — | 16 | 14 | 14 |
+| Largura do título / do apoio | — | 900 / 880 | 900 / 820 | 900 / 820 |
+
+Nós de origem: `277:6805` (hero da home), `277:5614` e `277:5638` (Nega Nagô),
+`277:6150` e `277:6176` (CT em Campo), `277:5022` (Hub). Os três cases usam o
+mesmo padding de seção, mas o Nega Nagô respira 24 entre blocos e os outros dois
+respiram 36 — está assim no arquivo, não é aproximação.
 
 Toda imagem no Figma é `scaleMode: FILL` cobrindo o frame inteiro — as molduras
 aqui usam `object-fit: cover` com o `aspect-ratio` exato de cada frame.

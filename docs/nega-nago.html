@@ -81,6 +81,10 @@
 /* chamada do hero: 620 + 500 com gap 40, como no frame 277:5594 */
 .chamada{display:grid;grid-template-columns:minmax(0,620fr) minmax(0,500fr);gap:40px;align-items:start}
 .eyebrow--forte{color:var(--ink)}
+/* o cabeçalho de seção do Nega Nagô respira 16 (o dos outros cases, 14) e o
+   texto de apoio vai até 880 — medido em 277:5615 e 277:5638 */
+.head{gap:16px}
+.head .lead,.head .intro{max-width:880px}
 /* antes/depois do Nega Nagô (277:5636): marcador circular #778898 com número claro,
    fio entre os passos e texto no tom escuro — como no PDF exportado do Figma. */
 .ad__col .passo{grid-template-columns:25px 1fr;gap:14px;padding-block:11px;
