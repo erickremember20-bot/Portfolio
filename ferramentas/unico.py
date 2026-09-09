@@ -34,6 +34,7 @@ def dataurl(rel):
 
 case_css=open(os.path.join(DIST,'assets','case.css'),encoding='utf-8').read()
 i18n_js=open(os.path.join(DIST,'assets','i18n.js'),encoding='utf-8').read()
+zoom_js=open(os.path.join(DIST,'assets','zoom.js'),encoding='utf-8').read()
 
 partes_css=[]; partes_html=[]; titulos={}
 for pid, arq in PAGS:
@@ -162,6 +163,7 @@ body{{margin:0;background:#f1f1f1}}
      transition:opacity .18s,transform .18s"></div>
 <style>.toast[data-show]{{opacity:1!important;transform:translate(-50%,0)!important}}</style>
 <script>{i18n_js}</script>
+<script>{zoom_js}</script>
 <script>{script}</script>
 </body>
 </html>

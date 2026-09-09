@@ -42,7 +42,7 @@ index.html            home
 nega-nago.html        case 01
 ct-em-campo.html      case 02
 canaltech-hub.html    case 03
-assets/               imagens originais (PNG/JPG/GIF) + case.css + case.js
+assets/               imagens originais (PNG/JPG/GIF) + case.css + case.js + zoom.js
 ferramentas/          scripts que geram docs/ e o arquivo único
 docs/                 saída pronta para publicar
 ```
@@ -129,6 +129,14 @@ deixando o texto reformatar livre em vez de seguir os pontos de corte do design.
 No mockup do WhatsApp isso era mais grave: a mensagem inteira virava um bloco
 único de texto em vez dos parágrafos separados (dados da cliente, valores etc.).
 
+## Zoom nas imagens dos cases
+
+Nos três cases, qualquer imagem abre em tela cheia com um clique (ou Enter, pelo
+teclado) e fecha no Esc, no X ou clicando fora. A legenda é a mesma `data-desc`
+do print, então ela acompanha o idioma. Está em
+[`assets/zoom.js`](assets/zoom.js), que injeta o próprio CSS e a própria
+marcação — a home não tem zoom, como pedido.
+
 ## Responsivo
 
 O Figma só tem o desktop 1400. Abaixo disso é adaptação, verificada sem erro de
@@ -146,7 +154,7 @@ JS, sem overflow horizontal e sem imagem quebrada em
 
 ## Links
 
-- Currículo — https://drive.google.com/file/d/1fOA2GRwlvkM8g6n0hKdpMAUngW7WzRoP/view?usp=sharing
+- Currículo — https://drive.google.com/file/d/1JYXtR79P80dJskrga4ICdHGq94rjy2d0/view
 - LinkedIn — https://www.linkedin.com/in/erick-teixeira-031b3a213/
 - Nega Nagô — [protótipo](https://www.figma.com/design/DPnAXlPAlYzHfeA6hp1j0i/Nega_Nago_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1_pO37J2lMBUw9Kema0x5AYgqKkW54W4L?usp=sharing)
 - CT em Campo — [protótipo](https://www.figma.com/design/aUh8z5QbGFmJ4k48denDDk/CT_em_Campo_Portfolio?node-id=0-1) · [HTML](https://drive.google.com/drive/folders/1pyaQZb6Cmb2Ra1Qt6ZT43MQc41mXQ5do?usp=sharing)
