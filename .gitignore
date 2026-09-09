@@ -1,0 +1,2 @@
+# saída de empacotamento, gerada com "zip -r" a partir de docs/
+*.zip
