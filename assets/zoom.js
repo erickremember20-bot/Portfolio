@@ -103,6 +103,8 @@
         if (img.getAttribute('data-zoom') === 'nao') return;
         // no arquivo único as quatro páginas convivem: o zoom é só dos cases
         if (img.closest && img.closest('.pg[data-p="home"]')) return;
+        // os cards do rodapé só levam para o próximo projeto: o clique é do link
+        if (img.closest && img.closest('a')) return;
         img.style.cursor = 'zoom-in';
         img.setAttribute('tabindex', '0');
         img.setAttribute('role', 'button');

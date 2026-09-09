@@ -135,7 +135,8 @@ Nos três cases, qualquer imagem abre em tela cheia com um clique (ou Enter, pel
 teclado) e fecha no Esc, no X ou clicando fora. A legenda é a mesma `data-desc`
 do print, então ela acompanha o idioma. Está em
 [`assets/zoom.js`](assets/zoom.js), que injeta o próprio CSS e a própria
-marcação — a home não tem zoom, como pedido.
+marcação — a home não tem zoom, como pedido. Os dois cards do rodapé, que só
+levam para o próximo projeto, também ficam de fora: ali o clique é do link.
 
 ## Responsivo
 
