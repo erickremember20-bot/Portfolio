@@ -105,6 +105,10 @@ Nós de origem: `277:6805` (hero da home), `277:5614` e `277:5638` (Nega Nagô),
 mesmo padding de seção, mas o Nega Nagô respira 24 entre blocos e os outros dois
 respiram 36 — está assim no arquivo, não é aproximação.
 
+No card de projeto da home (`277:6855`) o texto ocupa 0–720 e a métrica 820–1160:
+a coluna da direita **encosta na margem**, com 100 de vão entre as duas, e o número
+e a legenda alinham à direita. Empilhado (abaixo de 1024) a métrica volta à esquerda.
+
 Toda imagem no Figma é `scaleMode: FILL` cobrindo o frame inteiro — as molduras
 aqui usam `object-fit: cover` com o `aspect-ratio` exato de cada frame.
 

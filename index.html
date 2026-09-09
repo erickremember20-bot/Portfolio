@@ -164,9 +164,11 @@ svg{display:block;flex:none}
 .proj:focus-visible{outline:2px solid var(--ink);outline-offset:6px;border-radius:8px}
 .proj:last-child{border-bottom:0;padding-bottom:0}
 .proj__capa{height:520px}
-.proj__meta{display:grid;grid-template-columns:720px 340px;gap:40px;align-items:start}
+.proj__meta{display:grid;grid-template-columns:minmax(0,720fr) minmax(0,340fr);gap:100px;
+  align-items:start}
 .proj__txt{display:flex;flex-direction:column;gap:10px}
-.proj__metrica{display:flex;flex-direction:column;gap:6px}
+/* número e legenda alinhados à direita, encostados na margem (277:6860) */
+.proj__metrica{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
 .proj__metrica .p12{color:var(--body)}
 .proj__acao{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -240,7 +242,7 @@ svg{display:block;flex:none}
 @media (max-width:1279px){
   .hero__top,.hero__bio{grid-template-columns:minmax(0,640fr) minmax(0,480fr);gap:32px}
   .sobre__head{grid-template-columns:minmax(0,700fr) minmax(0,420fr);gap:32px}
-  .proj__meta{grid-template-columns:minmax(0,720fr) minmax(0,340fr);gap:32px}
+  .proj__meta{gap:56px}
   .marcas__row{gap:40px}
   .painel{padding:36px 40px}
 }
@@ -259,7 +261,9 @@ svg{display:block;flex:none}
   .provas{grid-template-columns:1fr;gap:0}
   .prova{padding:20px 0}
   .proj__capa{height:400px}
+  /* empilhado, a métrica volta a alinhar à esquerda */
   .proj__meta{grid-template-columns:1fr;gap:20px}
+  .proj__metrica{align-items:flex-start;text-align:left}
   .grade{gap:16px}
   .tile__capa{height:320px}
   .sobre__head{grid-template-columns:1fr;gap:24px}

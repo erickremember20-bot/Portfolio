@@ -146,9 +146,10 @@ body{margin:0;background:#f1f1f1}
 .pg[data-p="home"] .proj:focus-visible{outline:2px solid var(--ink);outline-offset:6px;border-radius:8px}
 .pg[data-p="home"] .proj:last-child{border-bottom:0;padding-bottom:0}
 .pg[data-p="home"] .proj__capa{height:520px}
-.pg[data-p="home"] .proj__meta{display:grid;grid-template-columns:720px 340px;gap:40px;align-items:start}
+.pg[data-p="home"] .proj__meta{display:grid;grid-template-columns:minmax(0,720fr) minmax(0,340fr);gap:100px;
+  align-items:start}
 .pg[data-p="home"] .proj__txt{display:flex;flex-direction:column;gap:10px}
-.pg[data-p="home"] .proj__metrica{display:flex;flex-direction:column;gap:6px}
+.pg[data-p="home"] .proj__metrica{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
 .pg[data-p="home"] .proj__metrica .p12{color:var(--body)}
 .pg[data-p="home"] .proj__acao{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .pg[data-p="home"] .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -205,7 +206,7 @@ body{margin:0;background:#f1f1f1}
 @media (max-width:1399px){.pg[data-p="home"]{--pad-x:56px}}
 @media (max-width:1279px){.pg[data-p="home"] .hero__top, .pg[data-p="home"] .hero__bio{grid-template-columns:minmax(0,640fr) minmax(0,480fr);gap:32px}
 .pg[data-p="home"] .sobre__head{grid-template-columns:minmax(0,700fr) minmax(0,420fr);gap:32px}
-.pg[data-p="home"] .proj__meta{grid-template-columns:minmax(0,720fr) minmax(0,340fr);gap:32px}
+.pg[data-p="home"] .proj__meta{gap:56px}
 .pg[data-p="home"] .marcas__row{gap:40px}
 .pg[data-p="home"] .painel{padding:36px 40px}}
 @media (max-width:1023px){.pg[data-p="home"]{--pad-x:40px;--sec-y:32px}
@@ -222,6 +223,7 @@ body{margin:0;background:#f1f1f1}
 .pg[data-p="home"] .prova{padding:20px 0}
 .pg[data-p="home"] .proj__capa{height:400px}
 .pg[data-p="home"] .proj__meta{grid-template-columns:1fr;gap:20px}
+.pg[data-p="home"] .proj__metrica{align-items:flex-start;text-align:left}
 .pg[data-p="home"] .grade{gap:16px}
 .pg[data-p="home"] .tile__capa{height:320px}
 .pg[data-p="home"] .sobre__head{grid-template-columns:1fr;gap:24px}
