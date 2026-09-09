@@ -119,13 +119,15 @@ O último card de projeto da home tem a mesma divisória dos dois primeiros, ant
 do painel escuro "IA no fluxo" — era removida especificamente ali (`.proj:last-child`),
 inconsistente com o resto da listagem.
 
-A ficha técnica (`CLIENTE`/`PAPEL`/`ENTREGAS`/`FEITO COM`/`PERÍODO`) usa quebras de
-linha manuais dentro de `<dd class="ficha__v">` com `white-space:pre-line`, para
-fechar cada linha do jeito que o Figma desenha. Na tradução para inglês essas
-quebras estavam sendo achatadas — o dicionário guarda a versão sem quebra como
-chave (correto, é assim que o texto original é comparado), mas a tradução em si
-também tinha perdido as quebras, deixando o texto reformatar livre em vez de
-seguir os pontos de corte do design.
+A ficha técnica (`CLIENTE`/`PAPEL`/`ENTREGAS`/`FEITO COM`/`PERÍODO`) e o mockup do
+WhatsApp do Nega Nagô usam quebras de linha manuais dentro de elementos com
+`white-space:pre-line`, para fechar cada linha e cada parágrafo do jeito que o
+Figma desenha. Na tradução para inglês essas quebras estavam sendo achatadas — o
+dicionário casa a versão sem quebra como chave (correto, é assim que o texto
+original é comparado), mas a tradução em si também tinha perdido as quebras,
+deixando o texto reformatar livre em vez de seguir os pontos de corte do design.
+No mockup do WhatsApp isso era mais grave: a mensagem inteira virava um bloco
+único de texto em vez dos parágrafos separados (dados da cliente, valores etc.).
 
 ## Responsivo
 
