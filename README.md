@@ -115,6 +115,18 @@ aqui usam `object-fit: cover` com o `aspect-ratio` exato de cada frame.
 O navegador recua `<figure>` e `<dd>` em 40px por padrão; o reset zera os dois,
 que é o que deixava a ficha técnica e as imagens fora do alinhamento do Figma.
 
+O último card de projeto da home tem a mesma divisória dos dois primeiros, antes
+do painel escuro "IA no fluxo" — era removida especificamente ali (`.proj:last-child`),
+inconsistente com o resto da listagem.
+
+A ficha técnica (`CLIENTE`/`PAPEL`/`ENTREGAS`/`FEITO COM`/`PERÍODO`) usa quebras de
+linha manuais dentro de `<dd class="ficha__v">` com `white-space:pre-line`, para
+fechar cada linha do jeito que o Figma desenha. Na tradução para inglês essas
+quebras estavam sendo achatadas — o dicionário guarda a versão sem quebra como
+chave (correto, é assim que o texto original é comparado), mas a tradução em si
+também tinha perdido as quebras, deixando o texto reformatar livre em vez de
+seguir os pontos de corte do design.
+
 ## Responsivo
 
 O Figma só tem o desktop 1400. Abaixo disso é adaptação, verificada sem erro de
