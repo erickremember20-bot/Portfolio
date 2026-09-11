@@ -16,7 +16,7 @@
     'align-items:center;max-width:100%;max-height:100%}',
     '.lupa__img{max-width:100%;max-height:calc(100vh - 132px);width:auto;height:auto;',
     'object-fit:contain;border-radius:10px;background:#e9e9ea;display:block}',
-    '.lupa__cap{margin:0;font-size:13px;line-height:1.5;color:#d5dadf;text-align:center;max-width:820px}',
+    '.lupa__cap{margin:0;font-size:12px;line-height:1.5;color:#d5dadf;text-align:center;max-width:820px}',
     '.lupa__x{position:fixed;top:20px;right:20px;z-index:1;',
     'width:44px;height:44px;border-radius:999px;border:1px solid rgba(241,241,241,.35);',
     'background:rgba(241,241,241,.08);color:#f1f1f1;font:inherit;font-size:20px;line-height:1;',
@@ -52,6 +52,9 @@
     grande.className = 'lupa__img';
     // pixel transparente: um <img> sem src conta como imagem quebrada nas varreduras
     grande.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    // enquanto fechada, a lupa é decorativa: alt vazio em vez de alt ausente,
+    // que o leitor de tela anunciaria lendo a URL
+    grande.alt = '';
     legenda = document.createElement('figcaption');
     legenda.className = 'lupa__cap';
     figura.appendChild(grande);

@@ -215,23 +215,23 @@ main section[id]{scroll-margin-top:84px}
 }
 @media (max-width:767px){
   :root{--pad-x:20px;--sec-y:28px;--r:14px;--r-lg:18px}
-  body{font-size:15px}
+  body{font-size:16px}
   .h1{font-size:29px;line-height:1.16}
   .h2{font-size:24px;line-height:1.18}
   .h2--xl{font-size:29px}
   .cit{font-size:21px}
   .num{font-size:31px}
-  .t20{font-size:17px}
+  .t20{font-size:18px}
   .t18{font-size:16px}
-  .lead{font-size:16.5px}
+  .lead{font-size:16px}
   .intro{font-size:16px}
-  .p16{font-size:15px}
+  .p16{font-size:14px}
   .eyebrow{font-size:12px;line-height:1.4}
 
   .topo__in{flex-direction:column;align-items:flex-start;gap:8px;padding-block:12px}
   .topo__nome{font-size:14px}
   .menu{width:100%;gap:18px}
-  .menu a{font-size:13.5px}
+  .menu a{font-size:14px}
   main section[id]{scroll-margin-top:104px}
 
   .ficha{grid-template-columns:1fr 1fr}
@@ -241,7 +241,7 @@ main section[id]{scroll-margin-top:84px}
 
   .nboxes{grid-template-columns:1fr 1fr;gap:10px}
   .nbox{padding:16px;gap:6px}
-  .nbox__d{font-size:13px}
+  .nbox__d{font-size:12px}
   .ad__col{padding:20px 18px;gap:14px}
   .card{padding:20px 18px}
   .painel{padding:24px 20px}
@@ -250,7 +250,7 @@ main section[id]{scroll-margin-top:84px}
   .acoes .btn{width:100%;justify-content:center}
   .base{flex-direction:column;gap:6px;padding-top:22px}
   .projeto__t{padding:18px}
-  .chip{font-size:11.5px;padding:5px 11px}
+  .chip{font-size:12px;padding:5px 11px}
   .fig figcaption{font-size:12px}
   .ph{min-height:120px;padding:14px}
 }

@@ -61,11 +61,11 @@
       '.ck{position:fixed;left:0;right:0;bottom:0;z-index:80;display:flex;gap:16px;' +
       'align-items:center;justify-content:center;flex-wrap:wrap;' +
       'padding:14px 20px;background:var(--ink,#21262a);color:var(--on-dark,#f1f1f1);' +
-      'font:400 13px/1.5 Sora,system-ui,sans-serif;' +
+      'font:400 12px/1.5 Sora,system-ui,sans-serif;' +
       'box-shadow:0 -6px 24px rgba(33,38,42,.18)}' +
       '.ck__t{max-width:720px;margin:0;color:var(--on-dark-2,#d5dadf)}' +
       '.ck__acoes{display:flex;gap:8px;flex:0 0 auto}' +
-      '.ck button{font:600 13px/1 Sora,system-ui,sans-serif;padding:10px 18px;' +
+      '.ck button{font:600 12px/1 Sora,system-ui,sans-serif;padding:10px 18px;' +
       'border-radius:999px;border:1px solid transparent;cursor:pointer}' +
       '.ck__ok{background:var(--on-dark,#f1f1f1);color:var(--ink,#21262a)}' +
       '.ck__nao{background:transparent;color:var(--on-dark,#f1f1f1);' +
@@ -73,7 +73,7 @@
       '.ck button:hover{opacity:.88}' +
       '.ck button:focus-visible{outline:2px solid var(--on-dark,#f1f1f1);outline-offset:2px}' +
       'html[data-ck] .idioma--flutua{bottom:104px}' +
-      '@media (max-width:720px){.ck{gap:12px;padding:14px 16px}.ck__t{font-size:12px}}';
+      '@media (max-width:720px){.ck{gap:12px;padding:14px 16px}}';
     document.head.appendChild(css);
 
     var el = document.createElement('div');

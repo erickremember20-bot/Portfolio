@@ -143,7 +143,7 @@
     '.idioma--flutua{position:fixed;right:14px;bottom:14px;z-index:70;' +
     'background:var(--page,#f1f1f1);border-color:var(--line-2,#a4afba);' +
     'box-shadow:0 6px 20px rgba(33,38,42,.18)}' +
-    '.idioma--flutua button{padding:7px 11px;font-size:11.5px}';
+    '.idioma--flutua button{padding:7px 11px;font-size:12px}';
   document.head.appendChild(css);
 
   var caixa = document.createElement('div');
