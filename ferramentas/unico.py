@@ -9,7 +9,7 @@ SD   = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(RAIZ, 'docs')
 
 SAIDA=os.path.join(RAIZ,'portfolio-erick-teixeira.html')
-PAGS=[('home','index.html'),('nega','nega-nago.html'),
+PAGS=[('home','index.html'),('nega','nega-nago.html'),('td','thumbdrop.html'),
       ('ct','ct-em-campo.html'),('hub','canaltech-hub.html')]
 ARQ2ID={a:i for i,a in PAGS}
 
@@ -23,11 +23,17 @@ faces=re.sub(r'url\((assets/fonts/[^)]+)\)', emb_fonte, faces)
 
 # ---------- imagens em base64, uma vez só ----------
 cache={}
+faltando=set()
 def dataurl(rel):
     if rel in cache: return cache[rel]
     cam=os.path.join(DIST, rel)
+    # um asset que ainda não chegou não pode derrubar o arquivo único: a página
+    # mostra a moldura com o nome do arquivo, igual ao site.
+    if not os.path.exists(cam):
+        faltando.add(rel); cache[rel]=rel; return rel
     tipo=mimetypes.guess_type(cam)[0] or 'application/octet-stream'
     if rel.endswith('.webp'): tipo='image/webp'
+    if rel.endswith('.mp4'):  tipo='video/mp4'
     d=base64.b64encode(open(cam,'rb').read()).decode()
     cache[rel]=f'data:{tipo};base64,{d}'
     return cache[rel]

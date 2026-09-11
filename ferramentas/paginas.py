@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Copia as quatro páginas para docs/ com src em .webp e as fontes servidas do próprio domínio."""
+"""Copia as cinco páginas para docs/ com src em .webp e as fontes servidas do próprio domínio."""
 import os, re, json, shutil
 import os, sys
 # a raiz do projeto é a pasta acima desta
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SD   = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(RAIZ, 'docs')
-PAGS=['index.html','nega-nago.html','ct-em-campo.html','canaltech-hub.html']
+PAGS=['index.html','nega-nago.html','ct-em-campo.html','canaltech-hub.html','thumbdrop.html']
 mapa=json.load(open(os.path.join(SD,'mapa.json')))
 local=open(os.path.join(SD,'fontes-web','local.css')).read()
 
@@ -17,6 +17,7 @@ shutil.copy(os.path.join(RAIZ,'assets','case.css'), os.path.join(DIST,'assets','
 shutil.copy(os.path.join(RAIZ,'assets','case.js'),  os.path.join(DIST,'assets','case.js'))
 shutil.copy(os.path.join(RAIZ,'assets','i18n.js'), os.path.join(DIST,'assets','i18n.js'))
 shutil.copy(os.path.join(RAIZ,'assets','zoom.js'), os.path.join(DIST,'assets','zoom.js'))
+shutil.copy(os.path.join(RAIZ,'assets','analytics.js'), os.path.join(DIST,'assets','analytics.js'))
 
 fontes_tag = ('<style>\n/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição\n'
               '   para terceiros e sem depender do Google Fonts. */\n' + local + '</style>')

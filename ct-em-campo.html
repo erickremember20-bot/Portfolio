@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Consentimento (LGPD) — negado por padrão, liberado só depois do aceite -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{if(localStorage.getItem('et_consentimento')==='aceito'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TM34J12CLE"></script>
+<script>
+gtag('js', new Date());
+gtag('config', 'G-TM34J12CLE');
+</script>
 <meta name="theme-color" content="#f1f1f1" />
 <title>CT em Campo · Canaltech × Netshoes — Erick Teixeira</title>
 <meta name="description" content="Case: um patrocinador compra atenção e o portal compartilhado entrega ela de graça. Design system, motion e código de uma ativação de Copa da Canaltech com a Netshoes." />
@@ -19,7 +31,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
 /* ==========================================================================
@@ -262,9 +274,13 @@ main section[id]{scroll-margin-top:80px}
 .grupos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grupo{display:flex;flex-direction:column;gap:12px;padding:32px;
   background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl)}
+/* mesmo selo do Nega Nagô: fundação, ✓ só no que foi medido, versão fraca
+   para a ressalva — que aqui diz "alcance, não resultado" e não pode vir
+   com a cor de confirmado. */
 .selo{align-self:flex-start;padding:6px 10px;border-radius:var(--r-pill);
-  background:#e8f2e8;color:#1a6c2a;
-  font-weight:700;font-size:11px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase}
+  background:var(--line);color:var(--ink);
+  font-weight:700;font-size:12px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase}
+.selo--fraco{background:#e9e9ea;color:var(--body)}
 .grupo__sub{font-weight:400;font-size:14.5px;line-height:1.55;color:var(--muted)}
 .linhas{display:flex;flex-direction:column}
 .linha{display:flex;flex-direction:column;gap:2px;padding-block:13px;
@@ -305,11 +321,6 @@ main section[id]{scroll-margin-top:80px}
 .disp i{width:8px;height:8px;border-radius:50%;background:var(--on-dark-2);flex:none}
 .disp span{font-weight:700;font-size:14px;line-height:1.5;text-transform:uppercase;color:var(--on-dark-2)}
 .acoes{display:flex;flex-wrap:wrap;gap:12px;padding-top:22px}
-.acoes-case{display:flex;flex-wrap:wrap;gap:10px;padding-top:4px}
-.btn-case{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:var(--r-pill);
-  background:var(--dark);color:var(--on-dark);font-weight:600;font-size:15px;line-height:1.5;
-  text-decoration:none;transition:opacity .15s}
-.btn-case:hover{opacity:.86}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:var(--r-pill);
   font-weight:600;font-size:16px;line-height:1.5;text-decoration:none;cursor:pointer;
   border:0;font-family:inherit;transition:opacity .15s,border-color .15s}
@@ -1051,7 +1062,7 @@ Higgsfield · Nano Banana 2</dd></div>
   </div>
   <div class="grupos">
     <div class="grupo">
-      <span class="selo">MEDIDO NO PRODUTO</span>
+      <span class="selo">✓ MEDIDO NO PRODUTO</span>
       <p class="grupo__sub">Confere abrindo o Figma ou o inspetor na página.</p>
       <div class="linhas">
         <div class="linha"><p class="linha__v linha__v--sys">3.84:1 → 4.55:1</p><p class="linha__d">contraste do CTA primário, corrigido no token</p></div>
@@ -1063,7 +1074,7 @@ Higgsfield · Nano Banana 2</dd></div>
       </div>
     </div>
     <div class="grupo">
-      <span class="selo">ALCANCE, NÃO RESULTADO</span>
+      <span class="selo selo--fraco">ALCANCE, NÃO RESULTADO</span>
       <p class="grupo__sub">São audiências, não conversões. É o tamanho dos canais onde a campanha
         circulou — não quantas pessoas compraram. Não tenho acesso ao lado do e-commerce da
         Netshoes, então não há taxa de conversão nesta página.</p>
@@ -1105,9 +1116,9 @@ Higgsfield · Nano Banana 2</dd></div>
         porque a oferta tinha data para acabar, mas amarrar o contador ao estoque do parceiro seria
         mais honesto com o leitor — e é integração, não design.</p></div>
   </div>
-  <div class="acoes-case">
-    <a class="btn-case" href="https://www.figma.com/design/aUh8z5QbGFmJ4k48denDDk/CT_em_Campo_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver Protótipo</span></a>
-    <a class="btn-case" href="https://drive.google.com/drive/folders/1pyaQZb6Cmb2Ra1Qt6ZT43MQc41mXQ5do?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg><span>Baixar HTML</span></a>
+  <div class="chips" style="gap:10px">
+    <a class="btn btn--p" href="https://www.figma.com/design/aUh8z5QbGFmJ4k48denDDk/CT_em_Campo_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver protótipo</span></a>
+    <a class="btn btn--p" href="https://drive.google.com/drive/folders/1pyaQZb6Cmb2Ra1Qt6ZT43MQc41mXQ5do?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg><span>Baixar HTML</span></a>
   </div>
 </div></section>
 
@@ -1118,26 +1129,21 @@ Higgsfield · Nano Banana 2</dd></div>
     <h2 class="h2">Outros projetos</h2>
   </div>
   <div class="projetos">
-    <a class="projeto" href="nega-nago.html">
-      <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_nega_nago.jpg" width="571" height="240"
-             data-desc="capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
-      </div>
-      <div class="projeto__txt"><h3 class="projeto__t">Nega Nagô</h3>
-        <p class="projeto__d">Redesenho do catálogo de uma trancista para acabar com a conversa de
-          ida e volta. Pesquisa, design system e front-end — com resultado medido na agenda da
-          Mayara.</p></div>
-    </a>
     <a class="projeto" href="canaltech-hub.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_canaltech_hub_links.png" width="571" height="240"
-             data-desc="capa · Canaltech Hub de links" alt="Capa do case Canaltech Hub de links"
-             loading="lazy" decoding="async" />
+        <img src="assets/capa_canaltech_hub_links.png" width="621" height="278"
+             data-desc="capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
       </div>
-      <div class="projeto__txt"><h3 class="projeto__t">Canaltech · Hub de links</h3>
-        <p class="projeto__d">A página de links da Canaltech deixou de ser alugada. Design system,
-          acessibilidade, consentimento e telemetria num HTML único que o time publica sem
-          build.</p></div>
+      <div class="projeto__t"><h3 class="t20">Canaltech · Hub de links</h3>
+        <p class="p14">A página de links da Canaltech deixou de ser alugada. Design system, acessibilidade, consentimento e telemetria num HTML único que o time publica sem build.</p></div>
+    </a>
+    <a class="projeto" href="nega-nago.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_nega_nago.jpg" width="621" height="278"
+             data-desc="capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">Nega Nagô</h3>
+        <p class="p14">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta. Pesquisa, design system e front-end — com resultado medido na agenda da Mayara.</p></div>
     </a>
   </div>
 </div></section>
@@ -1240,5 +1246,6 @@ Higgsfield · Nano Banana 2</dd></div>
   }
 })();
 </script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>

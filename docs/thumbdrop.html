@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Consentimento (LGPD) — negado por padrão, liberado só depois do aceite -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{if(localStorage.getItem('et_consentimento')==='aceito'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TM34J12CLE"></script>
+<script>
+gtag('js', new Date());
+gtag('config', 'G-TM34J12CLE');
+</script>
+<meta name="theme-color" content="#f1f1f1" />
+<title>ThumbDrop · editor de thumbnails da Canaltech — Erick Teixeira</title>
+<meta name="description" content="Thumb de designer, feita por quem não é designer. Um editor interno com IA no fluxo: duas rodadas de teste e o tempo por thumb caindo de seis para três minutos." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2321262a'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23f1f1f1' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Erick Teixeira" />
+<meta property="og:title" content="Canaltech · Hub de links — Erick Teixeira" />
+<meta property="og:description" content="A página de links deixou de ser alugada e passou a medir a si mesma. Design system, acessibilidade, consentimento e telemetria num HTML único." />
+<meta property="og:image" content="assets/capa_canaltech_hub_links.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Canaltech · Hub de links — Erick Teixeira" />
+<meta name="twitter:description" content="A página de links deixou de ser alugada e passou a medir a si mesma. Design system, acessibilidade, consentimento e telemetria num HTML único." />
+<meta name="twitter:image" content="assets/capa_canaltech_hub_links.webp" />
+<style>
+/* Sora e JetBrains Mono servidas do próprio domínio: sem requisição
+   para terceiros e sem depender do Google Fonts. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/jetbrains-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;
+  src:url(assets/fonts/sora-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;
+  src:url(assets/fonts/sora-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;
+  src:url(assets/fonts/sora-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;
+  src:url(assets/fonts/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
+<link rel="stylesheet" href="assets/case.css" />
+<style>
+/* tokens próprios deste case (paleta do produto Canaltech) */
+.espacos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+/* no Figma (277:4938) a pílula tem fundo #f1f3f5 e fio #c0c8d0 */
+.pill{display:flex;flex-direction:column;gap:6px;padding:18px 24px;
+  background:#f1f3f5;border:1px solid var(--line-3);border-radius:var(--r-sm)}
+/* as quatro etapas do double diamond ficam soltas: sem fio entre colunas */
+.etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.etapa{display:flex;flex-direction:column;gap:10px}
+.etapa__f{font-weight:700;font-size:12px;line-height:1;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2)}
+.bul{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:start}
+.bul span:first-child{color:var(--muted);font-size:12px}
+.bul p{font-weight:400;font-size:12px;line-height:1.5;color:var(--body)}
+/* no Figma (372:979) o bloco de número é a tinta neutra: a cor de marca do
+   ThumbDrop só aparece nos tokens da seção 08. */
+.nbox{background:var(--ink);border:1px solid var(--line);padding:22px 20px}
+.nbox .num{color:#f1f1f1}
+.nbox .nbox__d,.nbox .p12{color:#f1f3f5}
+/* na seção 10 os mesmos blocos aparecem claros (277:5560) */
+.nbox--claro{background:var(--tile);border-color:var(--line)}
+.nbox--claro .num{color:var(--ink)}
+.nbox--claro .nbox__d,.nbox--claro .p12{color:var(--body)}
+.grade2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grade2--3{grid-template-columns:repeat(3,1fr)}
+.rbox{display:flex;flex-direction:column;gap:8px;padding:22px 24px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+/* dentro do cartão claro do "mesmo método", as três caixas são cinza (#e9e9ea) */
+.rbox--cinza{background:#e9e9ea;border-color:var(--line-3)}
+/* 04 · decisões: dois cartões por linha, número pequeno acima do título (277:5230) */
+.decisoes{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.dbox{display:flex;flex-direction:column;gap:10px;padding:26px 28px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+.dbox__n{font-weight:700;font-size:13px;line-height:1.5;color:var(--body);margin-bottom:2px}
+/* o Figma não usa monoespaçada no corpo: os trechos de código vêm na mesma fonte */
+code{font-family:inherit;font-size:inherit}
+.dbox__pq{font-weight:400;font-size:14px;line-height:1.5;color:var(--muted);margin-top:10px}
+.cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+/* 06 · método (277:5330): cada cartão tem a altura do próprio conteúdo,
+   as etapas 02 e 04 vêm em cinza e o marcador é redondo — 03 em azul */
+.ciclo{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:start}
+.et{display:flex;flex-direction:column;gap:8px;padding:20px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+.et--alt{background:#e9e9ea;border-color:var(--line-3)}
+.et__top{display:flex;align-items:center;gap:8px}
+.et__n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--ink);color:var(--on-dark);font-weight:700;font-size:12px;line-height:1}
+.et__n--cinza{background:var(--body)}
+/* a etiqueta da ferramenta é uma pílula: cinza no cartão claro, branca no cinza */
+.et__top .p12{padding:4px 10px;border-radius:8px;background:#e9e9ea;color:var(--ink-2)}
+.et--alt .et__top .p12{background:#fefefe}
+.et__d{font-weight:600;font-size:12px;line-height:1.5;color:var(--muted);
+  padding-top:8px;margin-top:auto;border-top:1px solid var(--line)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+/* chamada do hero: 592 + 520 com gap 48, como no frame 277:4905 */
+.chamada{display:grid;grid-template-columns:minmax(0,592fr) minmax(0,520fr);gap:48px;align-items:start}
+.tokens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.token{background:var(--tile);border:1px solid var(--line);border-radius:var(--r-xs);overflow:hidden}
+.token i{display:block;height:62px}
+.token span{display:block;padding:9px 12px}
+.comps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.comp{display:flex;flex-direction:column;gap:4px;padding:16px 18px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+.cont{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line-3);
+  border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.cont__i{display:flex;flex-direction:column;gap:6px;padding:20px 18px;background:var(--page)}
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.eventos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ev{display:flex;flex-direction:column;gap:8px;padding:22px 24px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+/* no Figma o nome dos campos é uma pílula #e9e9ea, na mesma fonte do resto (277:5470) */
+.ev code{align-self:flex-start;font-family:inherit;font-size:13px;line-height:1.5;
+  color:var(--body);background:#e9e9ea;border-radius:8px;padding:5px 11px}
+.perg{background:var(--ct-azul);color:var(--on-dark);border:1px solid var(--line-3);
+  border-radius:var(--r-lg);padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+.perg .bul p{color:var(--on-dark-2);font-size:14px}
+.perg .bul span:first-child{color:var(--on-dark-3)}
+.grade3{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.naoaqui{background:var(--line);border:1px solid var(--line-3);border-radius:var(--r-lg);
+  padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+.comparacao{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+/* 277:5046 "como era": #fefefe / #d5dadf · 277:5075 "como ficou": #d5dadf / #c0c8d0 */
+.comparacao .ad__col{padding:22px 24px;gap:0;background:var(--tile);border-color:var(--line)}
+.comparacao .ad__col--dep{background:var(--line);border-color:var(--line-3)}
+.comparacao .eyebrow{color:var(--body)}
+.comparacao .ad__col--dep .eyebrow{color:var(--ink)}
+.comparacao .passos{padding-top:14px}
+.comparacao .passo{padding-block:9px;border-bottom:1px solid var(--line-3)}
+.comparacao .ad__col--dep .passo{border-bottom-color:var(--line-2)}
+.comparacao .passo:last-child{border-bottom:0}
+.comparacao > div > .p12{padding-top:14px}
+.capturas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:1023px){
+  .espacos,.cons,.dois,.boards,.comparacao,.capturas,.chamada{grid-template-columns:1fr}
+  .etapas{grid-template-columns:1fr 1fr}
+  .grade2,.grade2--3,.eventos{grid-template-columns:1fr}
+  .ciclo,.comps,.grade3{grid-template-columns:1fr 1fr}
+  .tokens{grid-template-columns:repeat(3,1fr)}
+  .cont{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:767px){
+  .etapas,.ciclo,.comps,.grade3{grid-template-columns:1fr}
+  .tokens{grid-template-columns:1fr 1fr}
+  .cont{grid-template-columns:1fr 1fr}
+  .decisoes{grid-template-columns:1fr}
+  .dbox{padding:20px 22px}
+}
+
+/* 06 · filtros: sete amostras 16:9 numa grade de quatro, mais a nota de fecho */
+.filtros{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.filtro{display:flex;flex-direction:column;gap:8px;margin:0;padding:14px;
+  background:var(--tile);border:1px solid var(--line);border-radius:var(--r-sm)}
+.filtro__t{font-weight:600;font-size:12px;line-height:1.5;color:var(--ink)}
+.filtro--nota{justify-content:center;background:var(--line);border-color:var(--line-3)}
+@media (max-width:1023px){.filtros{grid-template-columns:1fr 1fr}}
+@media (max-width:767px){.filtros{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a href="#problema" class="sr-only">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap topo__in">
+    <a class="topo__nome" href="index.html">Erick · product &amp; design engineer</a>
+    <nav class="menu" aria-label="Seções do case">
+      <a href="#problema">Problema</a><a href="#v1">V1</a>
+      <a href="#pesquisa">Pesquisa</a><a href="#v2">V2</a>
+      <a href="#craft">Craft</a><a href="#numeros">Números</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="shot shot--hero" style="aspect-ratio:1160/523">
+    <img src="assets/abertura_thumbdrop.webp" width="1160" height="523"
+         data-desc="Abertura · o editor ThumbDrop no desktop e no mobile"
+         alt="O editor ThumbDrop aberto no notebook e no celular" />
+  </div>
+  <div class="stack" style="gap:16px">
+    <p class="eyebrow">Projeto real · produto interno, IA no fluxo e design system</p>
+    <h1 class="h1">Thumb de designer, feita por quem não é designer. Em três minutos.</h1>
+  </div>
+  <div class="chamada">
+    <p class="intro">A Canaltech publica vídeo todo dia, e toda thumbnail passava pelo time de
+      design. Desenhei o ThumbDrop: um editor interno que entrega a estética da casa para qualquer
+      pessoa do time. Testei duas versões com usuários. A segunda, com remoção de fundo e filtros
+      de IA dentro do editor, cortou o tempo pela metade e subiu o nível do resultado. Funcionou —
+      e foi encerrado pelo custo por imagem.</p>
+    <aside class="card card--sm">
+      <p class="s12">Sobre os números.</p>
+      <p class="p14" style="margin-top:6px">Duas rodadas de teste de usabilidade, seis pessoas em
+        cada, uma por versão. O tempo foi medido por tarefa; a qualidade, avaliada pelos
+        participantes. A conta que encerrou o projeto está na seção 10.</p>
+    </aside>
+  </div>
+  <dl class="ficha">
+    <div class="ficha__i"><dt class="lb">Cliente</dt><dd class="ficha__v">Canaltech
+ferramenta interna de thumbnails</dd></div>
+    <div class="ficha__i"><dt class="lb">Papel</dt><dd class="ficha__v">Product design, UX
+e design engineer</dd></div>
+    <div class="ficha__i"><dt class="lb">Entregas</dt><dd class="ficha__v">Pesquisa · 2 versões
+design system · protótipo</dd></div>
+    <div class="ficha__i"><dt class="lb">Feito com</dt><dd class="ficha__v">Claude Design ⇄ Figma via MCP
+PhotoRoom API
+Gemini · Nano Banana</dd></div>
+    <div class="ficha__i"><dt class="lb">Período</dt><dd class="ficha__v">2026 · solo
+2 versões, 2 rodadas de teste</dd></div>
+  </dl>
+</div></section>
+
+<!-- VISÃO GERAL -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">Visão geral · Double Diamond</p>
+    <h2 class="h2">O projeto inteiro em uma tela, se você só tiver um minuto</h2>
+    <p class="lead">Do gargalo no time de design até a thumb que qualquer pessoa exporta. As quatro
+      etapas abaixo aparecem em detalhe no resto da página.</p>
+  </div>
+  <div class="espacos">
+    <div class="pill"><p class="lb" style="color:var(--muted)">Espaço do problema</p>
+      <p class="p14" style="color:var(--ink)">Thumb boa dependia de designer — e de Photoshop</p></div>
+    <div class="pill"><p class="lb" style="color:var(--ink-2)">Espaço da solução</p>
+      <p class="p14" style="color:var(--ink)">Um editor com a estética da casa e a IA a um clique</p></div>
+  </div>
+  <div class="etapas">
+    <div class="etapa"><p class="idx" style="color:var(--muted)">01</p><h3 class="t20">Descobrir</h3>
+      <p class="etapa__f">Diverge</p>
+      <div class="bullets">
+        <div class="bul"><span>–</span><p>Toda thumbnail passava pelo time de design</p></div>
+        <div class="bul"><span>–</span><p>Quem não é designer não domina Photoshop nem a marca</p></div>
+        <div class="bul"><span>–</span><p>Montar rápido gerava colagem, não thumb de canal</p></div>
+        <div class="bul"><span>–</span><p>IA de imagem resolvia a qualidade — mas fora de qualquer fluxo</p></div>
+      </div></div>
+    <div class="etapa"><p class="idx" style="color:var(--muted)">02</p><h3 class="t20">Definir</h3>
+      <p class="etapa__f">Converge</p>
+      <div class="bullets">
+        <div class="bul"><span>–</span><p>O problema não é ferramenta: é conhecimento técnico</p></div>
+        <div class="bul"><span>–</span><p>Critério: resultado de designer sem precisar saber design</p></div>
+        <div class="bul"><span>–</span><p>Validar os filtros antes de pagar qualquer API</p></div>
+        <div class="bul"><span>–</span><p>A estética da Canaltech vem pronta, não é escolha</p></div>
+      </div></div>
+    <div class="etapa"><p class="idx" style="color:var(--muted)">03</p><h3 class="t20">Desenvolver</h3>
+      <p class="etapa__f">Diverge</p>
+      <div class="bullets">
+        <div class="bul"><span>–</span><p>V1: editor com fontes da casa e filtros como prompt copiável</p></div>
+        <div class="bul"><span>–</span><p>Teste 1 · seis pessoas, 6 min por thumb, resultado de colagem</p></div>
+        <div class="bul"><span>–</span><p>V2: PhotoRoom e Nano Banana dentro do editor</p></div>
+        <div class="bul"><span>–</span><p>Seis filtros de direção de arte escritos como prompt</p></div>
+      </div></div>
+    <div class="etapa"><p class="idx" style="color:var(--muted)">04</p><h3 class="t20">Entregar</h3>
+      <p class="etapa__f">Converge</p>
+      <div class="bullets">
+        <div class="bul"><span>–</span><p>Teste 2 · seis pessoas, 3 min por thumb, resultado superior</p></div>
+        <div class="bul"><span>–</span><p>Thumbnail publicada no canal oficial da Canaltech</p></div>
+        <div class="bul"><span>–</span><p>Design system e protótipo desktop + mobile para hand-off</p></div>
+        <div class="bul"><span>–</span><p>Encerrado quando o custo por imagem não fechou</p></div>
+      </div></div>
+  </div>
+  <div class="chips">
+    <p class="lb" style="width:100%;color:var(--muted)">Meu escopo</p>
+    <span class="chip">Pesquisa</span><span class="seta">→</span>
+    <span class="chip">UX e fluxo</span><span class="seta">→</span>
+    <span class="chip">UI e design system</span><span class="seta">→</span>
+    <span class="chip">Prompts e integração</span>
+    <p class="p12" style="width:100%">Da entrevista ao editor que o time usou.</p>
+  </div>
+</div></section>
+
+<!-- 01 PROBLEMA -->
+<section class="wrap sec" id="problema"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">01 · O problema</p>
+    <h2 class="h2">A thumb não podia esperar o designer.</h2>
+    <p class="lead">Thumbnail decide o clique, e o canal publica todo dia. Quando só o time de
+      design sabe fazer uma thumb com a cara da Canaltech, cada vídeo entra numa fila. Quem produz
+      o conteúdo tinha a imagem e a ideia — faltava o conhecimento técnico para chegar no
+      acabamento.</p>
+  </div>
+  <div class="nboxes">
+    <div class="nbox"><p class="num">1</p><p class="nbox__d">time de design atendendo todas as thumbs do canal</p></div>
+    <div class="nbox"><p class="num">3</p><p class="nbox__d">ferramentas para uma thumb com IA: editor, PhotoRoom e Gemini</p></div>
+    <div class="nbox"><p class="num">0</p><p class="nbox__d">conhecimento de Photoshop exigido — o critério do projeto</p></div>
+    <div class="nbox"><p class="num">6</p><p class="nbox__d">filtros de direção de arte convertidos em prompt</p></div>
+  </div>
+</div></section>
+
+<!-- 02 ANTES E DEPOIS -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">02 · Antes e depois</p>
+    <h2 class="h2">A mudança não foi colocar IA. Foi trazer a IA para dentro.</h2>
+    <p class="lead">A V1 já tinha os filtros — como prompt para copiar e colar no Gemini. O mesmo
+      objetivo pelos dois caminhos. O que sai no meio não é recurso novo: é a troca de ferramenta
+      que custava tempo e qualidade.</p>
+  </div>
+  <div class="comparacao">
+    <div class="ad__col">
+      <p class="eyebrow" style="color:var(--soft)">V1 · como era</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p class="p12">Monta a thumb no ThumbDrop: imagem, texto e as fontes da casa</p></div>
+        <div class="passo"><span class="passo__n">2</span><p class="p12">Precisa recortar? Abre o site do PhotoRoom e volta com o PNG</p></div>
+        <div class="passo"><span class="passo__n">3</span><p class="p12">Clica no filtro: o prompt é copiado e a base limpa, baixada</p></div>
+        <div class="passo"><span class="passo__n">4</span><p class="p12">Abre o Gemini e cola o prompt junto com a imagem</p></div>
+        <div class="passo"><span class="passo__n">5</span><p class="p12">Baixa o resultado e traz de volta para finalizar</p></div>
+        <div class="passo"><span class="passo__n">6</span><p class="p12">6 minutos em média, com resultado de colagem</p></div>
+      </div>
+      <p class="p12">Os passos 2, 4 e 5 acontecem fora do produto: cada um é uma troca de contexto
+        e um arquivo a mais.</p>
+    </div>
+    <div class="ad__col ad__col--dep">
+      <p class="eyebrow" style="color:var(--soft)">V2 · como ficou</p>
+      <div class="passos">
+        <div class="passo"><span class="passo__n">1</span><p class="p12">Sobe a imagem e remove o fundo com um clique, sem sair do editor</p></div>
+        <div class="passo"><span class="passo__n">2</span><p class="p12">Compõe com outras imagens, camadas e ferramentas de ajuste</p></div>
+        <div class="passo"><span class="passo__n">3</span><p class="p12">Aplica um dos seis filtros: preview, confirma e exporta</p></div>
+      </div>
+      <p class="p12">3 minutos em média, com resultado que os participantes avaliaram como muito
+        mais satisfatório. Uma ferramenta, nenhum arquivo intermediário.</p>
+    </div>
+  </div>
+  <figure class="fig">
+    <div class="capturas">
+      <div class="shot" style="aspect-ratio:572/321">
+        <img src="assets/thumbdrop_v1.webp" width="572" height="321"
+             data-desc="Vídeo · V1 · thumb finalizada no Gemini"
+             alt="Vídeo acelerado da V1: montagem no editor e filtro aplicado no Gemini"
+             loading="lazy" decoding="async" />
+      </div>
+      <div class="shot" style="aspect-ratio:572/321">
+        <img src="assets/thumbdrop_v2.webp" width="572" height="321"
+             data-desc="Vídeo · V2 · recorte e filtro no próprio canvas"
+             alt="Vídeo acelerado da V2: recorte e filtro aplicados dentro do editor"
+             loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <figcaption>1. Os dois vídeos, acelerados. À esquerda, a V1: a thumb do Canaltech montada no
+      editor e finalizada no Gemini, em outra aba. À direita, a V2: a thumb do Ancelotti com
+      recorte e filtro no próprio canvas. Os dois registram as versões como foram testadas — a
+      interface do arquivo final traz um rearranjo posterior, descrito no encerramento.</figcaption>
+  </figure>
+</div></section>
+
+<!-- 03 HIPÓTESE V1 -->
+<section class="wrap sec" id="v1"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">03 · A hipótese da V1</p>
+    <h2 class="h2">Antes de pagar uma API, provar que o filtro funcionava.</h2>
+    <p class="lead">Integrar IA custa dinheiro por imagem. Então a V1 testou a hipótese mais barata
+      possível: se os prompts certos transformam uma montagem simples em thumb de canal, a pessoa
+      aceita copiar e colar para chegar lá?</p>
+  </div>
+  <div class="grade2">
+    <div class="rbox"><p class="lb">Hipótese</p><p class="p14">Com as fontes da casa e um prompt bem escrito, qualquer pessoa chega numa thumb com cara de designer.</p></div>
+    <div class="rbox"><p class="lb">Teste mais barato</p><p class="p14">Filtro como prompt copiável, com a base limpa baixada junto. Zero custo de API: a pessoa usa a própria conta do Gemini.</p></div>
+    <div class="rbox"><p class="lb">Remoção de fundo</p><p class="p14">Sem integração: um atalho para o site do PhotoRoom, que devolve o PNG recortado.</p></div>
+    <div class="rbox"><p class="lb">O que medimos</p><p class="p14">Tempo por thumb, do upload ao download, e a qualidade percebida por quem montou.</p></div>
+    <div class="rbox"><p class="lb">Quem testou</p><p class="p14">Seis pessoas do time que precisam de thumb, montando uma thumb de pauta real.</p></div>
+    <div class="rbox"><p class="lb">O risco assumido</p><p class="p14">Três ferramentas no fluxo. Se o tempo não caísse, saberíamos se o gargalo era a troca de contexto.</p></div>
+  </div>
+</div></section>
+
+<!-- 04 PESQUISA -->
+<section class="wrap sec" id="pesquisa"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">04 · Pesquisa</p>
+    <h2 class="h2">Duas rodadas, seis pessoas cada, e um tempo que caiu pela metade.</h2>
+    <p class="lead">Cada versão foi testada com seis pessoas fazendo a mesma tarefa: uma thumb
+      completa, do upload ao download. A primeira rodada mostrou onde o fluxo quebrava; a segunda
+      confirmou se a mudança resolvia.</p>
+  </div>
+  <div class="ciclo">
+    <div class="et"><div class="et__top"><span class="et__n">01</span><span class="p12">Rodada 1</span></div>
+      <h3 class="t18">Teste da V1</h3><p class="eyebrow" style="font-size:12px">Usuários · tarefa real</p>
+      <p class="p12">Seis pessoas montam uma thumb com a V1. Tempo medido do upload ao download.</p>
+      <p class="et__d">Resultado · 6 min em média, acabamento de colagem</p></div>
+    <div class="et et--alt"><div class="et__top"><span class="et__n et__n--cinza">02</span><span class="p12">Síntese</span></div>
+      <h3 class="t18">Onde o fluxo quebra</h3><p class="eyebrow" style="font-size:12px">Humano · diagnóstico</p>
+      <p class="p12">O filtro funcionava. O que custava tempo e qualidade era sair do produto:
+        recortar fora, colar o prompt fora, voltar com arquivo.</p></div>
+    <div class="et"><div class="et__top"><span class="et__n">03</span><span class="p12">Design</span></div>
+      <h3 class="t18">V2: a IA vai para dentro</h3><p class="eyebrow" style="font-size:12px">Humano · autoral</p>
+      <p class="p12">Remoção de fundo e filtros viram ações do editor, com preview antes de
+        confirmar e custo visível em créditos.</p>
+      <p class="et__d">Decisão minha · o que entra no fluxo e o que fica fora</p></div>
+    <div class="et et--alt"><div class="et__top"><span class="et__n et__n--cinza">04</span><span class="p12">Integração</span></div>
+      <h3 class="t18">PhotoRoom + Nano Banana</h3><p class="eyebrow" style="font-size:12px">Assistido · APIs</p>
+      <p class="p12">As duas APIs entram no editor. Os seis prompts passam a rodar sobre a
+        composição inteira, sem arquivo intermediário.</p></div>
+    <div class="et"><div class="et__top"><span class="et__n">05</span><span class="p12">Rodada 2</span></div>
+      <h3 class="t18">Teste da V2</h3><p class="eyebrow" style="font-size:12px">Usuários · mesma tarefa</p>
+      <p class="p12">Seis pessoas, a mesma tarefa, agora na V2.</p>
+      <p class="et__d">Resultado · 3 min em média, resultado muito mais satisfatório</p></div>
+  </div>
+  <div class="painel dois" style="padding:30px 32px">
+    <div><h3 class="t18">O que o teste 1 mostrou</h3>
+      <p class="p16" style="margin-top:10px">A hipótese estava certa e o fluxo, errado. Os prompts
+        entregavam qualidade; a troca entre três ferramentas é que devolvia uma colagem e dobrava o
+        tempo.</p></div>
+    <div><h3 class="t18">Onde a IA não decide</h3>
+      <p class="p16" style="margin-top:10px">A IA executa o filtro. A direção de arte — luz, pele,
+        contraste, o que preservar — está escrita no prompt, e o prompt é decisão de design.</p></div>
+  </div>
+  <div class="card" style="padding:26px 24px">
+    <h3 class="t20">Sobre a amostra</h3>
+    <p class="p16" style="margin-top:10px">Seis pessoas por rodada é teste de usabilidade
+      qualitativo, não estatística. Serve para achar onde o fluxo quebra — e foi exatamente o que
+      encontrou.</p>
+    <div class="grade2 grade2--3" style="margin-top:20px">
+      <div class="rbox rbox--cinza"><p class="p12">Rodada 1 · V1</p><p class="s16">6 min por thumb · resultado de colagem</p></div>
+      <div class="rbox rbox--cinza"><p class="p12">Rodada 2 · V2</p><p class="s16">3 min por thumb · resultado superior</p></div>
+      <div class="rbox rbox--cinza"><p class="p12">Mesma tarefa</p><p class="s16">Uma thumb completa, do upload ao download</p></div>
+    </div>
+    <p class="p14" style="margin-top:20px">O tempo caiu pela metade quando a IA deixou de estar em
+      outra aba.</p>
+  </div>
+</div></section>
+
+<!-- 05 DECISÕES V2 -->
+<section class="wrap sec" id="v2"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">05 · Decisões da V2</p>
+    <h2 class="h2">Quatro decisões para a IA caber no fluxo.</h2>
+    <p class="lead">Colocar uma API dentro do editor é a parte fácil. O difícil é a pessoa confiar
+      no resultado, entender o custo e não perder o trabalho que já fez.</p>
+  </div>
+  <div class="decisoes">
+    <div class="dbox"><p class="dbox__n">01</p>
+      <h3 class="t20">Filtro é direção de arte, não efeito</h3>
+      <p class="p16">Cada prompt manda preservar sujeito, enquadramento e fundo, e só então mexe em
+        luz, pele e cor. O filtro melhora a thumb sem trocar a pauta.</p>
+      <p class="dbox__pq">Por quê: um filtro que inventa um fundo novo quebra a notícia — e o
+        jornalismo do canal.</p></div>
+    <div class="dbox"><p class="dbox__n">02</p>
+      <h3 class="t20">Preview antes de aplicar</h3>
+      <p class="p16">O filtro abre um Modo preview · IA no canvas: descartar ou “OK, usar este”.
+        Aprovado, o resultado entra como camada própria e vai para a galeria de IA.</p>
+      <p class="dbox__pq">Por quê: IA erra. Sem preview, um clique ruim destrói o trabalho feito e
+        a confiança na ferramenta.</p></div>
+    <div class="dbox"><p class="dbox__n">03</p>
+      <h3 class="t20">O custo aparece antes do clique</h3>
+      <p class="p16">Toda ação de IA mostra o preço em créditos — 2 por filtro, geração ou recorte
+        — e o saldo fica fixo no topo do editor.</p>
+      <p class="dbox__pq">Por quê: quando cada imagem custa dinheiro, esconder o preço é empurrar a
+        conta para depois.</p></div>
+    <div class="dbox"><p class="dbox__n">04</p>
+      <h3 class="t20">Dois filtros saíram, dois entraram</h3>
+      <p class="p16">Minimalista e Tecnológico deram lugar a Retrô e Épico. Dramático, Vívido,
+        Cinematográfico e Quente ficaram.</p>
+      <p class="dbox__pq">Por quê: no teste, Minimalista e Tecnológico não agradaram visualmente —
+        nem a mim, nem aos participantes. Retrô e Épico entraram porque encaixam nas pautas que o
+        canal usa de verdade, como temas retrô e de grande impacto.</p></div>
+  </div>
+  <figure class="fig">
+    <div class="capturas">
+      <div class="shot" style="aspect-ratio:572/439">
+        <img src="assets/aplicando_01.webp" width="572" height="439"
+             data-desc="Aplicando filtro…" alt="O canvas em Modo preview · IA, com o filtro sendo aplicado"
+             loading="lazy" decoding="async" />
+      </div>
+      <div class="shot" style="aspect-ratio:572/439">
+        <img src="assets/aplicando_02.webp" width="572" height="439"
+             data-desc="Descartar ou “OK, usar este”" alt="O preview aguardando descarte ou confirmação"
+             loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <figcaption>2. A decisão 02 em uso: o filtro roda, aparece em preview e só entra na thumb
+      depois do OK. Aprovado, vira uma camada (IA · Épico, IA · Quente) que dá para esconder,
+      reordenar ou apagar.</figcaption>
+  </figure>
+</div></section>
+
+<!-- 06 FILTROS -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">06 · Os filtros</p>
+    <h2 class="h2">Seis direções de arte, um clique cada.</h2>
+    <p class="lead">O filtro é o jeito de um designer dizer o que faria com a foto — escrito uma
+      vez, reaplicado por qualquer pessoa. Todos partem da mesma regra: manter sujeito,
+      enquadramento e fundo; mudar só o acabamento.</p>
+  </div>
+  <figure class="fig">
+    <div class="filtros">
+      <figure class="filtro">
+        <figcaption class="filtro__t">Sem filtro</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/sem_filtro.webp" width="278" height="156"
+               data-desc="Original “Vai fazer falta?”" alt="A composição montada no editor, sem filtro"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">a composição montada no editor</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Dramático</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_dramatico.webp" width="278" height="156"
+               data-desc="Filtro Dramático" alt="A mesma thumb com o filtro Dramático"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">sombras profundas, luz intensa</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Vívido</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_vivido.webp" width="278" height="156"
+               data-desc="Filtro Vívido" alt="A mesma thumb com o filtro Vívido"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">cor saturada, energia</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Cinematográfico</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_cinematografico.webp" width="278" height="156"
+               data-desc="Filtro Cinematográfico" alt="A mesma thumb com o filtro Cinematográfico"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">cor gradada, clima de filme</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Retrô</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_retro.webp" width="278" height="156"
+               data-desc="Filtro Retrô" alt="A mesma thumb com o filtro Retrô"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">grão e pátina âmbar</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Épico</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_epico.webp" width="278" height="156"
+               data-desc="Filtro Épico" alt="A mesma thumb com o filtro Épico"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">luz de arena, heroico</p>
+      </figure>
+      <figure class="filtro">
+        <figcaption class="filtro__t">Com filtro Quente</figcaption>
+        <div class="shot" style="aspect-ratio:278/156">
+          <img src="assets/filtro_quente.webp" width="278" height="156"
+               data-desc="Filtro Quente" alt="A mesma thumb com o filtro Quente"
+               loading="lazy" decoding="async" /></div>
+        <p class="p12">golden hour, acolhedor</p>
+      </figure>
+      <div class="filtro filtro--nota">
+        <p class="s16">Mesma foto, mesmo texto, seis direções.</p>
+        <p class="p12">Sujeito, enquadramento e título ficam onde estavam. Muda só a luz, a pele e
+          a cor — é a regra de preservação escrita em todos os prompts.</p>
+      </div>
+    </div>
+    <figcaption>3. Os seis filtros aplicados à mesma thumb. Imagens do post que publiquei no
+      LinkedIn durante a construção da ferramenta.</figcaption>
+  </figure>
+  <div class="nboxes">
+    <div class="nbox"><p class="num">6</p><p class="nbox__d">filtros, todos com a mesma regra de preservação</p></div>
+    <div class="nbox"><p class="num">2</p><p class="nbox__d">créditos por aplicação, visíveis antes do clique</p></div>
+    <div class="nbox"><p class="num">1</p><p class="nbox__d">clique do filtro até a thumb no canvas</p></div>
+    <div class="nbox"><p class="num">2</p><p class="nbox__d">APIs no fluxo: PhotoRoom e Nano Banana</p></div>
+  </div>
+</div></section>
+
+<!-- 07 CRAFT -->
+<section class="wrap sec" id="craft"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">07 · Craft</p>
+    <h2 class="h2">Uma ferramenta interna com acabamento de produto.</h2>
+    <p class="lead">Ferramenta interna costuma ser feia porque “é só pro time”. Aqui o acabamento é
+      parte da função: se a interface compete com a thumb, a pessoa erra a thumb. Cada escolha
+      visual abaixo existe para o conteúdo aparecer e a próxima ação ficar óbvia.</p>
+  </div>
+  <figure class="fig">
+    <div class="shot shot--hero" style="aspect-ratio:1160/652">
+      <img src="assets/mock_laptop.webp" width="1160" height="652"
+           data-desc="Editor completo no notebook" alt="O editor ThumbDrop completo, no notebook"
+           loading="lazy" decoding="async" />
+    </div>
+    <div class="capturas" style="margin-top:16px">
+      <div class="shot" style="aspect-ratio:572/640">
+        <img src="assets/phone_01.webp" width="572" height="640"
+             data-desc="Painel Imagem no celular" alt="O painel Imagem do editor no celular"
+             loading="lazy" decoding="async" />
+      </div>
+      <div class="shot" style="aspect-ratio:572/640">
+        <img src="assets/phone_02.webp" width="572" height="640"
+             data-desc="Filtro aplicado no celular" alt="Um filtro aplicado, no celular"
+             loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <figcaption>4. Mockups do editor em uso. As telas vêm do protótipo navegável no Figma — as
+      mesmas instâncias do design system.</figcaption>
+  </figure>
+  <div class="stack" style="gap:14px">
+    <h3 class="t20">Por que funciona</h3>
+    <div class="comps">
+      <div class="comp"><p class="t16">Dark para a thumb brilhar</p><p class="p12">Contraste</p><p class="p12">A interface some em #0B0D14 para a única coisa colorida da tela ser a thumbnail.</p></div>
+      <div class="comp"><p class="t16">Laranja só onde avança</p><p class="p12">Hierarquia</p><p class="p12">Baixar e Gerar são os únicos laranjas com brilho. O olho acha a saída sem procurar.</p></div>
+      <div class="comp"><p class="t16">Azul marca onde você está</p><p class="p12">Estado</p><p class="p12">Ferramenta, aba, camada e toggle ativos são azuis. Nunca azul em ação.</p></div>
+      <div class="comp"><p class="t16">O preview nunca sai da tela</p><p class="p12">Layout</p><p class="p12">Canvas 16:9 fixo; o painel se adapta em volta — à direita no desktop, embaixo no mobile.</p></div>
+      <div class="comp"><p class="t16">Mobile é app, não site</p><p class="p12">Responsivo</p><p class="p12">Até 880px: tela cheia, dock rolável e tab bar com área segura. Mesmos componentes, outro modo.</p></div>
+      <div class="comp"><p class="t16">Custo e IA sempre à vista</p><p class="p12">Confiança</p><p class="p12">Badge de crédito em toda ação de IA e Modo preview com borda azul antes de aplicar.</p></div>
+      <div class="comp"><p class="t16">Texto que troca de modo</p><p class="p12">16 → 14</p><p class="p12">O mesmo estilo vira 14 no mobile. Só tamanhos pares, entrelinha 150% e 110%.</p></div>
+      <div class="comp"><p class="t16">Guia do timer 16:20</p><p class="p12">Detalhe</p><p class="p12">A área que o YouTube cobre com a duração aparece no canvas, para ninguém escrever embaixo.</p></div>
+      <div class="comp"><p class="t16">Direção de arte embutida</p><p class="p12">Marca</p><p class="p12">Fontes, molduras e fundos da casa já vêm prontos. A estética não é uma escolha da pessoa.</p></div>
+      <div class="comp"><p class="t16">Estados desenhados</p><p class="p12">Sistema</p><p class="p12">Hover, pressed, disabled e foco em todos os controles. Nada fica para o dev inventar.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 08 SISTEMA -->
+<section class="wrap sec" id="sistema"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">08 · Design system</p>
+    <h2 class="h2">22 conjuntos, 75 variantes, e cada tela montada só com instâncias.</h2>
+    <p class="lead">O sistema existe para a próxima tela sair sem desenho novo: os 8 painéis são
+      variantes de um único componente, e o mesmo estilo de texto passa de 16 para 14 quando a tela
+      é mobile.</p>
+  </div>
+  <div class="tokens">
+    <div class="token"><i style="background:#f87737"></i><span><b class="s12">--td-orange</b><br><span class="p12">#F87737 · ação que avança e exporta</span></span></div>
+    <div class="token"><i style="background:#1c8cfe"></i><span><b class="s12">--td-blue</b><br><span class="p12">#1C8CFE · ativo, foco e navegação</span></span></div>
+    <div class="token"><i style="background:#0b0d14"></i><span><b class="s12">--td-ink</b><br><span class="p12">#0B0D14 · fundo do editor</span></span></div>
+    <div class="token"><i style="background:#171a22"></i><span><b class="s12">--td-card</b><br><span class="p12">#171A22 · painéis e cards</span></span></div>
+    <div class="token"><i style="background:#ffd400"></i><span><b class="s12">--td-yellow</b><br><span class="p12">#FFD400 · créditos e custo de IA</span></span></div>
+    <div class="token"><i style="background:#22d3a8"></i><span><b class="s12">--td-success</b><br><span class="p12">#22D3A8 · confirmação</span></span></div>
+  </div>
+  <p class="p12">Seis das 19 cores de base. As outras 11 são tints com alfa embutido — criados
+    porque opacidade sobre variável não renderiza de forma confiável dentro de instâncias.</p>
+
+  <div class="stack" style="gap:14px">
+    <h3 class="t20">Os conjuntos-chave</h3>
+    <div class="comps">
+      <div class="comp"><p class="t16">Painel/Conteúdo</p><p class="p12">8 variantes</p><p class="p12">um por painel, de Texto a Moldura, e 3 subpainéis</p></div>
+      <div class="comp"><p class="t16">Botão/CTA</p><p class="p12">2 tipos × 4 estados</p><p class="p12">laranja avança, cinza apoia</p></div>
+      <div class="comp"><p class="t16">Editor/Canvas</p><p class="p12">2 dispositivos × 2 estados</p><p class="p12">padrão e Modo preview · IA</p></div>
+      <div class="comp"><p class="t16">Editor/Rail · Tab Bar</p><p class="p12">5 + 5 variantes</p><p class="p12">a aba ativa é a variante</p></div>
+      <div class="comp"><p class="t16">Filtro/IA</p><p class="p12">2 estados</p><p class="p12">letra, nome, descrição e custo</p></div>
+      <div class="comp"><p class="t16">Campo/Texto</p><p class="p12">5 estados</p><p class="p12">foco com borda interna de 2px</p></div>
+      <div class="comp"><p class="t16">Card/IA</p><p class="p12">2 tipos × 2 estados</p><p class="p12">Gerador e Filtros com badge de crédito</p></div>
+      <div class="comp"><p class="t16">Toggle</p><p class="p12">3 estados</p><p class="p12">desligado, ligado e desabilitado</p></div>
+      <div class="comp"><p class="t16">Thumb/Fundo</p><p class="p12">2 estados</p><p class="p12">galeria 16:9 com nome</p></div>
+      <div class="comp"><p class="t16">Ícones</p><p class="p12">26 ícones</p><p class="p12">SVG do próprio código, stroke 24px</p></div>
+    </div>
+  </div>
+
+  <dl class="cont">
+    <div class="cont__i"><dt class="num">30</dt><dd class="p12" style="margin:0">tokens de cor, 11 com alfa</dd></div>
+    <div class="cont__i"><dt class="num">11</dt><dd class="p12" style="margin:0">estilos de texto responsivos</dd></div>
+    <div class="cont__i"><dt class="num">15</dt><dd class="p12" style="margin:0">passos de espaçamento</dd></div>
+    <div class="cont__i"><dt class="num">5</dt><dd class="p12" style="margin:0">raios</dd></div>
+    <div class="cont__i"><dt class="num">2</dt><dd class="p12" style="margin:0">modos de layout: desktop e mobile</dd></div>
+    <div class="cont__i"><dt class="num">22</dt><dd class="p12" style="margin:0">conjuntos de componentes</dd></div>
+  </dl>
+
+  <figure class="fig">
+    <div class="boards">
+      <div class="shot" style="aspect-ratio:572/322">
+        <img src="assets/thumbdrop_board_01.png" width="578" height="325"
+             data-desc="Board 01 · Fundamentos" alt="Board 01 com as fundações do sistema do ThumbDrop"
+             loading="lazy" decoding="async" />
+      </div>
+      <div class="shot" style="aspect-ratio:572/322">
+        <img src="assets/thumbdrop_board_02.png" width="572" height="322"
+             data-desc="Board 02 · Componentes" alt="Board 02 com os componentes e variantes do ThumbDrop"
+             loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <figcaption>5. Board 01 · Fundamentos e Board 02 · Componentes, exportados direto do arquivo
+      Figma do projeto.</figcaption>
+  </figure>
+</div></section>
+
+<!-- 09 NÚMEROS -->
+<section class="wrap sec" id="numeros"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">09 · Números</p>
+    <h2 class="h2">O que foi medido — e o que não foi.</h2>
+    <p class="lead">Os tempos vêm das duas rodadas de teste. Os demais números são de construção e
+      podem ser conferidos no arquivo do Figma.</p>
+  </div>
+  <div class="grade3">
+    <div class="nbox nbox--claro"><p class="num">6 min</p><p class="p12">por thumb na V1, com resultado de colagem</p></div>
+    <div class="nbox nbox--claro"><p class="num">3 min</p><p class="p12">por thumb na V2, com resultado superior</p></div>
+    <div class="nbox nbox--claro"><p class="num">−50%</p><p class="p12">no tempo por thumb entre as versões</p></div>
+    <div class="nbox nbox--claro"><p class="num">6</p><p class="p12">pessoas em cada rodada de teste</p></div>
+    <div class="nbox nbox--claro"><p class="num">2</p><p class="p12">versões testadas com usuários</p></div>
+    <div class="nbox nbox--claro"><p class="num">6</p><p class="p12">filtros de IA escritos como prompt</p></div>
+    <div class="nbox nbox--claro"><p class="num">3 → 1</p><p class="p12">ferramentas no fluxo de uma thumb com IA</p></div>
+    <div class="nbox nbox--claro"><p class="num">1</p><p class="p12">thumb publicada no canal oficial</p></div>
+    <div class="nbox nbox--claro"><p class="num">2×</p><p class="p12">custo de IA por thumb contra o Higgsfield: ≈ R$ 1,05 × R$ 0,50</p></div>
+    <div class="nbox nbox--claro"><p class="num">16</p><p class="p12">telas no protótipo navegável</p></div>
+  </div>
+  <div class="naoaqui">
+    <p class="s12">O que não está aqui.</p>
+    <p class="p14">Nenhum dado de CTR ou views atribuído à thumb: o desempenho de um vídeo depende
+      de pauta, título e algoritmo. O teste mediu tempo e a qualidade percebida pelos
+      participantes.</p>
+  </div>
+</div></section>
+
+<!-- 10 ENCERRAMENTO -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">10 · Por que encerramos</p>
+    <h2 class="h2">Funcionou. E a conta não fechou.</h2>
+    <p class="lead">O produto entregou o que prometia. O problema foi a escala: cada filtro e cada
+      recorte passavam por uma API paga, e o custo de IA por thumb chegou a cerca do dobro do
+      Higgsfield — plataforma que a equipe já usava e que compra o mesmo modelo em volume.</p>
+  </div>
+  <div class="bullets" style="gap:9px">
+    <div class="bul"><span>–</span><p class="p14">Filtro: R$ 0,72 por aplicação via API do Nano Banana (média de R$ 0,76 por geração), contra R$ 0,50 no Higgsfield — 44% a mais só nessa etapa.</p></div>
+    <div class="bul"><span>–</span><p class="p14">Remoção de fundo: US$ 20 por 1.000 imagens no PhotoRoom, mas cerca de 3 recortes por thumb — a pessoa testa, descarta e recorta de novo. ≈ R$ 0,33 por thumb.*</p></div>
+    <div class="bul"><span>–</span><p class="p14">Somando: ≈ R$ 1,05 de IA por thumb no ThumbDrop — cerca do dobro dos R$ 0,50 do Higgsfield.</p></div>
+    <div class="bul"><span>–</span><p class="p14">A conta do Higgsfield: plano de R$ 250 com 1.000 créditos. A 2 créditos por imagem, são 500 imagens por mês, a R$ 0,50 cada.</p></div>
+    <div class="bul"><span>–</span><p class="p14">E o custo não era só a API: construir, dar suporte e manter uma ferramenta própria, com a equipe já trabalhando em outras ferramentas. Mudar o fluxo de todo mundo para pagar mais por imagem não se sustentava.</p></div>
+    <div class="bul"><span>–</span><p class="p14">O que eu faria diferente: medir o custo por thumb já na V1, junto com o tempo, e cobrar o recorte só na confirmação. Três recortes por thumb mostram que a tentativa e erro estava sendo paga.</p></div>
+    <div class="bul"><span>–</span><p class="p14">Deixado pronto para voltar: depois da segunda rodada eu reorganizei a interface no arquivo final — a ordem dos painéis e das ações — para que uma eventual reativação comece de um fluxo melhor, e não de onde o teste parou. Por isso o arquivo não é idêntico ao que o vídeo da V2 mostra.</p></div>
+    <div class="bul"><span>–</span><p class="p14">O que sobrou: o design system, o protótipo e seis prompts de direção de arte que funcionam em qualquer ferramenta. E a ironia do timing: o próprio canal publicou “Fim da IA barata?” — com uma thumb feita na V1.</p></div>
+  </div>
+  <p class="p12">* Câmbio de referência: R$ 5,50 por dólar.</p>
+  <div class="chips" style="gap:10px">
+    <a class="btn btn--dark" href="https://www.figma.com/design/Jb6w9GH2aN7mVVCQseu3n5/paginas_portfolio?node-id=277-4888" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver protótipo</span></a>
+  </div>
+</div></section>
+
+<!-- VER MAIS -->
+<section class="wrap sec"><div class="stack" style="gap:36px">
+  <div class="head">
+    <p class="eyebrow">11 · Mais</p>
+    <h2 class="h2">Outros projetos</h2>
+  </div>
+  <div class="projetos">
+    <a class="projeto" href="ct-em-campo.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_ct_em_campo.webp" width="571" height="428"
+             data-desc="capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">CT em Campo</h3>
+        <p class="p14">Uma ativação de Copa que não cabia no template do portal. Superfície dedicada, design system, motion e front-end — com o patrocinador dividindo tela com ninguém.</p></div>
+    </a>
+    <a class="projeto" href="canaltech-hub.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_canaltech_hub_links.webp" width="621" height="278"
+             data-desc="capa · Canaltech · Hub de links" alt="Capa do case Canaltech Hub de links" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">Canaltech · Hub de links</h3>
+        <p class="p14">A página de links da Canaltech deixou de ser alugada. Design system, acessibilidade, consentimento e telemetria num HTML único que o time publica sem build.</p></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- CONTATO -->
+<section class="wrap" id="contato">
+  <div class="contato">
+    <div>
+      <p class="disp"><i aria-hidden="true"></i><span>Disponível para trabalhar</span></p>
+      <h2 class="h2 h2--xl">Desenho, escrevo o código e digo o que não deu certo.</h2>
+    </div>
+    <p class="lead">Treze anos de design, cinco deles na Canaltech entre design system, marketing e
+      comercial. Se você tem uma superfície que precisa sair pronta e medida, e não especificada,
+      me chama.</p>
+    <div class="acoes">
+      <button class="btn btn--light" type="button" data-email="oerickteixeira@gmail.com">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 5.5V5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 5v9A1.5 1.5 0 0 0 5.5 15.5H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="btn__t">Copiar e-mail</span></button>
+      <a class="btn btn--ghost" href="https://drive.google.com/file/d/1JYXtR79P80dJskrga4ICdHGq94rjy2d0/view" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="2.5" width="15" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M6.6 8h7.8M6.6 12h7.8M6.6 16h4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Ver o currículo</a>
+      <a class="btn btn--ghost" href="https://www.linkedin.com/in/erick-teixeira-031b3a213/" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.1 9.4h2.6V18H7.1V9.4Zm1.3-4.1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM11.4 9.4H14v1.2h.04c.36-.66 1.25-1.36 2.57-1.36 2.75 0 3.26 1.72 3.26 3.96V18h-2.6v-4.25c0-1.02-.02-2.32-1.44-2.32-1.45 0-1.67 1.1-1.67 2.25V18h-2.6V9.4Z"/></svg>LinkedIn</a>
+    </div>
+    <div class="base"><p>© 2026 Erick Teixeira</p><p>oerickteixeira@gmail.com · São Paulo</p></div>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/i18n.js"></script>
+<script src="assets/zoom.js"></script>
+<script src="assets/case.js"></script>
+<script src="assets/analytics.js" defer></script>
+</body>
+</html>

@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Consentimento (LGPD) — negado por padrão, liberado só depois do aceite -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{if(localStorage.getItem('et_consentimento')==='aceito'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TM34J12CLE"></script>
+<script>
+gtag('js', new Date());
+gtag('config', 'G-TM34J12CLE');
+</script>
 <meta name="theme-color" content="#f1f1f1" />
 <title>Erick Teixeira · Product &amp; design engineer</title>
 <meta name="description" content="Desenho a campanha inteira e escrevo o código que a entrega — com IA dentro do fluxo, não ao lado dele. Treze anos de design entre marca, campanha, produto, design system e front-end." />
@@ -102,8 +114,11 @@ svg{display:block;flex:none}
 .contato{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 
 /* ---------- botões ---------- */
+/* <button> herda borda, fonte e cursor do navegador: sem este reset o
+   "Copiar e-mail" sai com a moldura cinza padrão e fora da Sora. */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:var(--r-pill);
-  font-weight:600;font-size:16px;line-height:1.5;transition:opacity .15s,background .15s,border-color .15s}
+  font-weight:600;font-size:16px;line-height:1.5;font-family:inherit;
+  border:0;cursor:pointer;text-decoration:none;transition:opacity .15s,background .15s,border-color .15s}
 .btn--dark{background:var(--ink);color:var(--on-dark)}
 .btn--dark:hover{opacity:.88}
 .btn--mut{background:var(--muted);color:var(--on-dark)}
@@ -183,7 +198,8 @@ svg{display:block;flex:none}
 .painel .h2{color:var(--on-dark)}
 .painel .lead{color:var(--on-dark-2)}
 .painel .lb{color:var(--muted)}
-.provas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.provas{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media (max-width:1199px){.provas{grid-template-columns:1fr 1fr}}
 .prova{display:flex;flex-direction:column;gap:10px;padding:24px 20px 0 0;
   border-top:1px solid var(--muted)}
 .prova .t18{color:var(--on-dark)}
@@ -403,7 +419,7 @@ TEIXEIRA</h1>
     </div>
     <p class="intro">Treze anos de design. Comecei em direção de arte, passei por marca, campanha,
       produto e design system — e hoje faço as cinco na mesma entrega, com IA no meio do processo e
-      o código saindo junto. Os três cases abaixo estão documentados de ponta a ponta, inclusive
+      o código saindo junto. Os quatro cases abaixo estão documentados de ponta a ponta, inclusive
       onde a IA não decidiu nada.</p>
   </div>
 </section>
@@ -462,6 +478,34 @@ TEIXEIRA</h1>
     </div>
   </a>
 
+  <a class="proj" href="thumbdrop.html" aria-label="Abrir o case ThumbDrop">
+    <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
+      <img src="assets/capa_thumbdrop.png" width="1160" height="520"
+           data-desc="Capa · ThumbDrop" alt="Capa do case ThumbDrop" loading="lazy" decoding="async" />
+    </div>
+    <div class="proj__meta">
+      <div class="proj__txt">
+        <p class="idx">02</p>
+        <h2 class="t20">ThumbDrop</h2>
+        <p class="p16">Ferramenta interna que tirou a thumbnail da fila do time de design. Duas
+          rodadas de teste com seis pessoas, IA dentro do editor, e o tempo por thumb caindo pela
+          metade.</p>
+      </div>
+      <div class="proj__metrica">
+        <p class="num">−50%</p>
+        <p class="p12">no tempo por thumb: 6 min → 3 min</p>
+      </div>
+    </div>
+    <div class="proj__acao">
+      <div class="chips">
+        <span class="chip">Product design</span><span class="chip">Pesquisa</span>
+        <span class="chip">Design system</span><span class="chip">IA no produto</span>
+        <span class="chip">Protótipo</span>
+      </div>
+      <span class="btn btn--mut ver" aria-hidden="true">Ver o case →</span>
+    </div>
+  </a>
+
   <a class="proj" href="ct-em-campo.html" aria-label="Abrir o case CT em Campo · Canaltech × Netshoes">
     <div class="shot shot--bordered proj__capa" style="aspect-ratio:1160/520">
       <img src="assets/capa_ct_em_campo.png" width="1160" height="520"
@@ -469,7 +513,7 @@ TEIXEIRA</h1>
     </div>
     <div class="proj__meta">
       <div class="proj__txt">
-        <p class="idx">02</p>
+        <p class="idx">03</p>
         <h2 class="t20">CT em Campo · Canaltech × Netshoes</h2>
         <p class="p16">Uma ativação de Copa que não cabia no template do portal. Superfície dedicada,
           brandbook, motion e código — sem anúncio, recomendação ou concorrente dividindo a tela.</p>
@@ -496,7 +540,7 @@ TEIXEIRA</h1>
     </div>
     <div class="proj__meta">
       <div class="proj__txt">
-        <p class="idx">03</p>
+        <p class="idx">04</p>
         <h2 class="t20">Canaltech · Hub de links</h2>
         <p class="p16">A página de links deixou de ser alugada e passou a medir a si mesma. Design
           system, acessibilidade, consentimento e telemetria dentro de um HTML único.</p>
@@ -522,7 +566,7 @@ TEIXEIRA</h1>
     <div class="stack" style="gap:16px">
       <p class="lb">IA no fluxo</p>
       <h2 class="h2">A IA não desenha por mim. Ela tira o atrito entre decidir e entregar.</h2>
-      <p class="lead">Ela move artefato entre etapas e executa o que já foi definido. Nos três cases
+      <p class="lead">Ela move artefato entre etapas e executa o que já foi definido. Nos quatro cases
         eu documentei onde ela entrou, o que produziu e onde a decisão continuou sendo minha — com
         o método desenhado, não descrito.</p>
     </div>
@@ -539,6 +583,12 @@ TEIXEIRA</h1>
           prazo para produção. Dirigi as peças, gerei com IA e graduei à mão. Seis peças em dois dias.</p>
       </div>
       <div class="prova">
+        <h3 class="t18">ThumbDrop</h3>
+        <p class="p14">Aqui a IA não está no meu fluxo: está no produto. Seis filtros de direção de
+          arte escritos como prompt, com preview e custo por clique — e o tempo por thumb caiu pela
+          metade quando a IA saiu da outra aba.</p>
+      </div>
+      <div class="prova">
         <h3 class="t18">Canaltech · Hub de links</h3>
         <p class="p14">O frame entrou por MCP, virou HTML testado por 176 asserções, e o design
           system saiu do código de volta para o Figma como dois boards 16:9.</p>
@@ -548,7 +598,7 @@ TEIXEIRA</h1>
       <h3 class="t18">Onde ela não decide</h3>
       <p class="p14">O contrato do projeto, a direção de arte, a hierarquia da tela, os estados de
         interação e o que é fiel ou precisa ceder no código. Essas cinco decisões não saíram de
-        prompt em nenhum dos três projetos — e cada case diz isso na própria página.</p>
+        prompt em nenhum dos quatro projetos — e cada case diz isso na própria página.</p>
     </div>
   </div>
 </section>
@@ -683,7 +733,7 @@ TEIXEIRA</h1>
   <dl class="nums">
     <div class="nums__i"><dt class="num">13+</dt><dd class="p12" style="margin:0">anos de design, do impresso ao produto</dd></div>
     <div class="nums__i"><dt class="num">5</dt><dd class="p12" style="margin:0">disciplinas dentro da mesma entrega</dd></div>
-    <div class="nums__i"><dt class="num">3</dt><dd class="p12" style="margin:0">cases documentados de ponta a ponta</dd></div>
+    <div class="nums__i"><dt class="num">4</dt><dd class="p12" style="margin:0">cases documentados de ponta a ponta</dd></div>
     <div class="nums__i"><dt class="num">2026</dt><dd class="p12" style="margin:0">disponível para projeto e para time remoto</dd></div>
   </dl>
 </section>
@@ -799,5 +849,6 @@ TEIXEIRA</h1>
   });
 })();
 </script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>

@@ -8,7 +8,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SD   = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(RAIZ, 'docs')
 
-PAGS=['index.html','nega-nago.html','ct-em-campo.html','canaltech-hub.html']
+PAGS=['index.html','nega-nago.html','ct-em-campo.html','canaltech-hub.html','thumbdrop.html']
 
 # ---- 1. larguras declaradas de cada asset (o maior uso em todas as páginas)
 larg={}

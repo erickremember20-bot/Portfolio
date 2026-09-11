@@ -139,8 +139,11 @@ main section[id]{scroll-margin-top:84px}
 .seta{font-size:12px;color:var(--muted)}
 
 /* botões */
+/* <button> herda borda, fonte e cursor do navegador: sem este reset o
+   "Copiar e-mail" sai com a moldura cinza padrão e fora da Sora. */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:var(--r-pill);
-  font-weight:600;font-size:16px;line-height:1.5;transition:opacity .15s,border-color .15s}
+  font-weight:600;font-size:16px;line-height:1.5;font-family:inherit;
+  border:0;cursor:pointer;text-decoration:none;transition:opacity .15s,border-color .15s}
 .btn--dark{background:var(--ink);color:var(--on-dark)}
 .btn--dark:hover{opacity:.88}
 .btn--light{background:var(--page);color:var(--ink)}

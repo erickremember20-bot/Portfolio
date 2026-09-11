@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Consentimento (LGPD) — negado por padrão, liberado só depois do aceite -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{if(localStorage.getItem('et_consentimento')==='aceito'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TM34J12CLE"></script>
+<script>
+gtag('js', new Date());
+gtag('config', 'G-TM34J12CLE');
+</script>
 <meta name="theme-color" content="#f1f1f1" />
 <title>Canaltech · Hub de links — Erick Teixeira</title>
 <meta name="description" content="O link da bio era alugado. A audiência era nossa — e o dado, de ninguém. Design system, acessibilidade, consentimento e telemetria num HTML único." />
@@ -668,7 +680,7 @@ Playwright</dd></div>
     <div class="bul"><span>–</span><p class="p14">Não houve teste com leitor de tela real — só verificação de foco, rótulo, ordem de teclado e contraste.</p></div>
   </div>
   <div class="chips" style="gap:10px">
-    <a class="btn btn--dark" href="https://www.figma.com/design/Kvw7C8zKm7ppLMmgFErrf2/CT_Links_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver Protótipo</span></a>
+    <a class="btn btn--dark" href="https://www.figma.com/design/Kvw7C8zKm7ppLMmgFErrf2/CT_Links_Portfolio?node-id=0-1" target="_blank" rel="noopener"><svg class="ic-fig" viewBox="0 0 38 57" width="12" height="18" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 0 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 0 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Ver protótipo</span></a>
     <a class="btn btn--dark" href="https://drive.google.com/drive/folders/1X7_uG_CaMZfWMl8K55ng5t3JL-Ukh39u?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg><span>Baixar HTML</span></a>
   </div>
 </div></section>
@@ -680,24 +692,21 @@ Playwright</dd></div>
     <h2 class="h2">Outros projetos</h2>
   </div>
   <div class="projetos">
-    <a class="projeto" href="ct-em-campo.html">
-      <div class="shot projeto__capa" style="border:0;border-radius:0">
-        <img src="assets/capa_ct_em_campo.webp" width="571" height="428"
-             data-desc="capa · CT em Campo" alt="Capa do case CT em Campo" loading="lazy" decoding="async" />
-      </div>
-      <div class="projeto__t"><h3 class="t20">CT em Campo</h3>
-        <p class="p14">Uma ativação de Copa que não cabia no template do portal. Superfície
-          dedicada, design system, motion e front-end — com o patrocinador dividindo tela com
-          ninguém.</p></div>
-    </a>
     <a class="projeto" href="nega-nago.html">
       <div class="shot projeto__capa" style="border:0;border-radius:0">
         <img src="assets/capa_nega_nago.webp" width="621" height="278"
              data-desc="capa · Nega Nagô" alt="Capa do case Nega Nagô" loading="lazy" decoding="async" />
       </div>
       <div class="projeto__t"><h3 class="t20">Nega Nagô</h3>
-        <p class="p14">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e
-          volta. Pesquisa, design system e front-end — com resultado medido na agenda da Mayara.</p></div>
+        <p class="p14">Redesenho do catálogo de uma trancista para acabar com a conversa de ida e volta. Pesquisa, design system e front-end — com resultado medido na agenda da Mayara.</p></div>
+    </a>
+    <a class="projeto" href="thumbdrop.html">
+      <div class="shot projeto__capa" style="border:0;border-radius:0">
+        <img src="assets/capa_thumbdrop.webp" width="571" height="428"
+             data-desc="capa · ThumbDrop" alt="Capa do case ThumbDrop" loading="lazy" decoding="async" />
+      </div>
+      <div class="projeto__t"><h3 class="t20">ThumbDrop</h3>
+        <p class="p14">Ferramenta interna que tirou a thumbnail da fila do time de design. Duas rodadas de teste, IA dentro do editor e o tempo por thumb caindo de seis para três minutos.</p></div>
     </a>
   </div>
 </div></section>
@@ -726,5 +735,6 @@ Playwright</dd></div>
 <script src="assets/i18n.js"></script>
 <script src="assets/zoom.js"></script>
 <script src="assets/case.js"></script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>

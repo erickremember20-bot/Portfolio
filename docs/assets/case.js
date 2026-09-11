@@ -16,7 +16,6 @@
     img.addEventListener('error', function () { placeholder(img); });
     if (img.complete && img.naturalWidth === 0) placeholder(img);
   });
-
   var toastEl = document.getElementById('toast'), toastTimer;
   function toast(msg) {
     if (!toastEl) return;
