@@ -787,6 +787,33 @@ TEIXEIRA</h1>
   font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
   box-shadow:0 12px 32px -12px rgba(33,38,42,.5)}
 .toast[data-show]{opacity:1;transform:translate(-50%,0)}
+
+/* ==========================================================================
+   Impressão / PDF. O portfólio também circula como anexo, e o que sai daqui
+   precisa ser o mesmo documento — com os fundos escuros, sem o chrome de
+   navegação e sem cortar cartão no meio da página.
+   ========================================================================== */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{background:var(--page)}
+  /* chrome que só existe na tela */
+  .topo{position:static;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .menu,.idioma,.ck,.sr-only,#toast,.lupa,.lupa__fig{display:none!important}
+  /* nada de CARTÃO partido entre páginas. A seção fica de fora de propósito:
+     ela é mais alta que uma página, e pedir para não quebrar empurra a seção
+     inteira para a página seguinte, deixando a anterior em branco. */
+  .nbox,.dbox,.et,.rbox,.projeto,.comp,.token,.filtro,.pill,.card,
+  .grupo,.tab,.aberto,.pas,.etapa,.passo,.linha,.contato,figure,
+  .disc,.disc__item,.prova,.tile,.proj,.nums__i,.marca,.foto,.traj,
+  .ficha,.ficha__i,.cont__i,.ad__col,.espacos,.chips{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  figcaption{break-before:avoid}
+  /* a imagem nunca sai da caixa dela na paginação */
+  .shot,.fig,.figura{break-inside:avoid}
+  img{max-width:100%}
+  /* o link continua clicável no PDF, então não precisa imprimir a URL */
+  a[href]::after{content:none}
+}
 </style>
 
 <script src="assets/i18n.js"></script>
